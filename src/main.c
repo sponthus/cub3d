@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/09 16:36:15 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:49:55 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,22 @@ int	press(int keycode, t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
+
+	if (argc == 2)
+	{
+		if (parsing(argv[1], &data) == 1)
+			return (1);
+	}
+	else if (argc == 1)
+	{
+		if (parsing("inc/default.cub", &data) == 1)
+			return (1);
+	}
+	else
+		return (1);
 
 	data.mlx = mlx_init(); // secu
 	data.win = mlx_new_window(data.mlx, 600, 600, "cub3d");
