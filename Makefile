@@ -1,7 +1,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3
+CFLAGS = -Wall -Wextra -Werror -I/usr/include -Iinc -Imlx_linux -O3
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
 
 SRC_DIR = ./src/
