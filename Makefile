@@ -1,13 +1,13 @@
 NAME = cub3d
 
-CC = c
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = $(wildcard *.c)
+SRC_DIR = ./src/
+OBJ_DIR = ./obj/
 
-OBJ_DIR = ./OBJ/
-
-OBJ = $(SRC:%.cpp=$(OBJ_DIR)%.o)
+SRC = $(wildcard $(SRC_DIR)*.c)
+OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
 HEADER = $(wildcard *.h)
 
@@ -27,7 +27,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJ)
 	@echo "$(NAME) done"
 
-$(OBJ_DIR)%.o: %.cpp $(HEADER)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
