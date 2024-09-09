@@ -1,25 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/09 15:57:05 by sponthus         ###   ########.fr       */
+/*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
+/*   Updated: 2024/09/09 16:16:36 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "mlx.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-int	main(void)
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
+
+typedef struct s_inc
+{
+	t_img	*no;
+	t_img	*so;
+	t_img	*ea;
+	t_img	*we;
+}	t_inc;
+
+typedef struct s_data
 {
 	void	*mlx;
-	void	*mlx_win;
+	void	*win;
+	int		win_height;
+	int		win_width;
+	char	**map;
+	t_inc	*sprites;
+}	t_data;
 
-	mlx = mlx_init(); // secu
-	mlx_win = mlx_new_window(mlx, 600, 600, "Hello world!");
-	(void)mlx_win;
-	mlx_loop(mlx);
-}
+#endif
