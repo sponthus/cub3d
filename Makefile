@@ -3,7 +3,7 @@ NAME = cub3d
 CC = c
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = $(wildcard *.cpp)
+SRC = $(wildcard *.c)
 
 OBJ_DIR = ./OBJ/
 
