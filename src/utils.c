@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:01:20 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/09 17:02:25 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/10 23:29:15 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	size_t	llen;
 
-	llen = ft_strlen(little);
+	llen = ft_strlen((char *)little);
 	if (llen == 0)
 		return ((char *)big);
 	i = 0;
@@ -70,25 +70,25 @@ int	is_charset(char c, char	*charset)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	char	*str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (s1[i] && is_charset(s1[i], (char *)set) == 1)
-		i++;
-	while (s1[i + j])
-		j++;
-	j--;
-	while (is_charset(s1[i + j], (char *)set) == 1 && j >= 0)
-		j--;
-	j++;
-	str = ft_calloc (j + 1, sizeof (char));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s1 + i, j + 1);
-	return (str);
-}
+//char	*ft_strtrim(char const *s1, char const *set)
+//{
+//	char	*str;
+//	int		i;
+//	int		j;
+//
+//	i = 0;
+//	j = 0;
+//	while (s1[i] && is_charset(s1[i], (char *)set) == 1)
+//		i++;
+//	while (s1[i + j])
+//		j++;
+//	j--;
+//	while (is_charset(s1[i + j], (char *)set) == 1 && j >= 0)
+//		j--;
+//	j++;
+//	str = ft_calloc (j + 1, sizeof (char));
+//	if (!str)
+//		return (NULL);
+//	ft_strlcpy(str, s1 + i, j + 1);
+//	return (str);
+//}

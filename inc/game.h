@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/10 23:15:36 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/10 23:38:36 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_move
 	double		movespeed;
 	double		rotspeed;
 	double		ticktock;
+	double		wallheight;
 } t_move;
 
 typedef struct s_raycast

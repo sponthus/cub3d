@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/10 22:45:47 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 00:03:24 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,11 +182,11 @@ void	retracing(t_data *data)
 			ray.perpwalldist = (ray.sidedistx - ray.deltadistx);
 		else
 			ray.perpwalldist = (ray.sidedisty - ray.deltadisty);
-		ray.lineheight = (int)(h / ray.perpwalldist);
+		ray.lineheight = (int)((h *data->player.wallheight) / ray.perpwalldist);
 		ray.drawstart = ((ray.lineheight / 2) * -1) + h / 2;
 		if (ray.drawstart < 0)
 			ray.drawstart = 0;
-		ray.drawend = ray.lineheight / 2 + h / 2;
+		ray.drawend = ray.lineheight / 2 + h  / 2;
 		if (ray.drawend >= h)
 			ray.drawend = h - 1;
 		if (map[ray.mapx][ray.mapy] == 1)
@@ -199,6 +199,8 @@ void	retracing(t_data *data)
 			color = red;
 		else
 			color = yellow;
+		if (side == 1)
+			color = color /2;
 		int		i = ray.drawstart;
 		if (ptr == 1)
 		{
@@ -230,6 +232,8 @@ int	move(t_data *data)
 {
 	double		newx;
 	double		newy;
+	double		olddirx;
+	double		oldplanex;
 
 	if (data->key.z)
 	{
@@ -251,7 +255,7 @@ int	move(t_data *data)
 	}
 	if (data->key.q)
 	{
-		newx = data->player.posx + data->player.diry * data->player.movespeed;
+		newx = data->player.posx - data->player.diry * data->player.movespeed;
 		newy = data->player.posy + data->player.dirx * data->player.movespeed;
 		if (map[(int)(newx)][(int)(data->player.posy)] == 0)
 			data->player.posx = newx;
@@ -260,7 +264,7 @@ int	move(t_data *data)
 	}
 	if (data->key.d)
 	{
-		newx = data->player.posx - data->player.diry * data->player.movespeed;;
+		newx = data->player.posx + data->player.diry * data->player.movespeed;;
 		newy = data->player.posy - data->player.dirx * data->player.movespeed;
 		if (map[(int)(newx)][(int)(data->player.posy)] == 0)
 			data->player.posx = newx;
@@ -269,22 +273,23 @@ int	move(t_data *data)
 	}
 	if (data->key.right) 
 	{
-		double oldDirX = data->player.dirx;
+		olddirx = data->player.dirx;
 		data->player.dirx = data->player.dirx * cos(-data->player.rotspeed) - data->player.diry * sin(-data->player.rotspeed);
-		data->player.diry = oldDirX * sin(-data->player.rotspeed) + data->player.diry * cos(-data->player.rotspeed);
-		double oldPlaneX = data->player.planex;
+		data->player.diry = olddirx * sin(-data->player.rotspeed) + data->player.diry * cos(-data->player.rotspeed);
+		oldplanex = data->player.planex;
 		data->player.planex = data->player.planex * cos(-data->player.rotspeed) - data->player.planey * sin(-data->player.rotspeed);
-		data->player.planey = oldPlaneX * sin(-data->player.rotspeed) + data->player.planey * cos(-data->player.rotspeed);
+		data->player.planey = oldplanex * sin(-data->player.rotspeed) + data->player.planey * cos(-data->player.rotspeed);
 	}
 	if (data->key.left) 
 	{
-		double oldDirX = data->player.dirx;
+		olddirx = data->player.dirx;
 		data->player.dirx = data->player.dirx * cos(data->player.rotspeed) - data->player.diry * sin(data->player.rotspeed);
-		data->player.diry = oldDirX * sin(data->player.rotspeed) + data->player.diry * cos(data->player.rotspeed);
-		double oldPlaneX = data->player.planex;
+		data->player.diry = olddirx * sin(data->player.rotspeed) + data->player.diry * cos(data->player.rotspeed);
+		oldplanex = data->player.planex;
 		data->player.planex = data->player.planex * cos(data->player.rotspeed) - data->player.planey * sin(data->player.rotspeed);
-		data->player.planey = oldPlaneX * sin(data->player.rotspeed) + data->player.planey * cos(data->player.rotspeed);
+		data->player.planey = oldplanex * sin(data->player.rotspeed) + data->player.planey * cos(data->player.rotspeed);
 	}
+	//data->player.wallheight += 0.002;
 	retracing(data);
 	return (0);
 }
@@ -300,9 +305,10 @@ void	init_game(t_data *data)
 	data->player.time = 0; // current frame
 	data->player.old_time = 0; // old frame
 	data->player.frame = 0;
-	data->player.movespeed = 0.2;
+	data->player.movespeed = 0.1;
 	data->player.rotspeed = 0.03;
 	data->display.ptr1.img = NULL;
 	data->display.ptr2.img = NULL;
+	data->player.wallheight = 1.5;
 	retracing(data);
 }
