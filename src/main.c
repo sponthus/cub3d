@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/09 16:49:55 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:38:04 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	press(int keycode, t_data *data)
 {
 	printf("%d ", keycode);
 	if (keycode == XK_Escape)
+	{
 		mlx_destroy_window(data->mlx, data->win);
+		exit (0);
+	}
 	return (0);
 }
 
@@ -39,9 +42,11 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (1);
-
+	(void)argc;
+	(void)argv;
 	data.mlx = mlx_init(); // secu
-	data.win = mlx_new_window(data.mlx, 600, 600, "cub3d");
+	data.win = mlx_new_window(data.mlx, 800, 800, "cub3d");
 	mlx_hook(data.win, 2, 1L<<0, press, &data);
 	mlx_loop(data.mlx);
+	return (0);
 }
