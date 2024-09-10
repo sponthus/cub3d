@@ -23,6 +23,9 @@
 # include "game.h"
 # include "mlx.h"
 
+# define WIN_HEIGHT 600;
+# define WIN_WIDTH 600;
+
 typedef struct s_img
 {
 	void		*img;

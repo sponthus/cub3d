@@ -24,6 +24,15 @@ typedef struct s_pars
 	int		fd;
 	char 	**file;
 	t_list	*lst_file;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*floor_color;
+	char	*ceiling_color;
+
 }	t_pars;
+
+void	init_data(t_data *data);
 
 #endif
