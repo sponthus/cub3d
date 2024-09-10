@@ -14,10 +14,9 @@
 
 void	write_error(char *error, char *target)
 {
-	(void)!write(2, "error", 5);
+	(void)!write(2, "Error\n", 5);
 	if (error)
 	{
-		(void)!write(2, " : ", 3);
 		(void)!write(2, error, ft_strlen(error));
 		if (target)
 			(void)!write(2, target, ft_strlen(target));
