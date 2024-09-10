@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.h                                          :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/10 16:59:15 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/10 23:15:36 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <math.h>
 
 # include "cub3d.h"
+
+struct s_data;
 
 typedef struct s_move
 {
@@ -68,5 +70,7 @@ typedef	struct s_keypress
 	int		esc;
 }	t_keypress;
 
+void	init_game(struct s_data  *data);
+int		move(struct s_data  *data);
 
 #endif

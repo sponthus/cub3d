@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/09 17:34:43 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/10 23:14:48 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "utils.h"
+
+struct s_data;
 
 typedef struct s_pars
 {
@@ -33,6 +35,6 @@ typedef struct s_pars
 
 }	t_pars;
 
-void	init_data(t_data *data);
+void	init_data(struct s_data *data);
 
 #endif

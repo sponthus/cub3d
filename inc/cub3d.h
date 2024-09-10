@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/10 22:59:47 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/10 23:15:04 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ typedef struct s_data
 	t_keypress	key;
 }	t_data;
 
+int	main(int argc, char **argv);
 int		parsing(char *path, t_data *data);
-void	init_game(t_data *data);
-int		move(t_data *data);
 
 #endif
