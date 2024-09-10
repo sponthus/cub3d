@@ -23,6 +23,7 @@ typedef struct s_pars
 {
 	int		fd;
 	char 	**file;
+	t_list	*lst_file;
 }	t_pars;
 
 #endif
