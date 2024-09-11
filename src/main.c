@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/11 19:28:40 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 20:44:39 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,19 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	//init_data(&data);
-	//if (argc == 2)
-	//{
-	//	if (parsing(argv[1], &data) == 1)
-	//		return (1);
-	//}
-	//else if (argc == 1)
-	//{
-	//	if (parsing("inc/default.cub", &data) == 1)
-	//		return (1);
-	//}
-	//else
-	//	return (1);
+	init_data(&data);
+	if (argc == 2)
+	{
+		if (parsing(argv[1], &data) == 1)
+			return (1);
+	}
+	else if (argc == 1)
+	{
+		if (parsing("inc/default.cub", &data) == 1)
+			return (1);
+	}
+	else
+		return (1);
 	memset(&data, 0, sizeof(t_data));
 	data.mlx = mlx_init(); // secu
 	data.win = mlx_new_window(data.mlx, 800, 800, "cub3d");
