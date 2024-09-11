@@ -24,11 +24,10 @@
 
 typedef struct s_list
 {
-	void			*content;
+	char			*content;
 	struct s_list	*next;
 	int				size;
 	char			*id;
-	char			*value;
 	bool			map; // init tout ca sarah stp et fonction qui free tt
 }	t_list;
 
@@ -51,6 +50,7 @@ char	*get_next_line(int fd);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		is_charset(char c, char	*charset);
-char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strtrim(char *s1, char *set);
+size_t	ft_strlcpy(char *dst, char *src, size_t size);
 
 #endif

@@ -14,12 +14,10 @@
 # define PARSING_H
 
 # include "cub3d.h"
+# include "utils.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "utils.h"
-
-struct s_data;
 
 typedef struct s_pars
 {
@@ -35,11 +33,11 @@ typedef struct s_pars
 
 }	t_pars;
 
-void	init_data(struct s_data *data);
-
+int		determine_content(t_list *lst);
 bool	is_empty(t_list *lst);
 bool	prepare_element(t_list *lst);
 bool	is_element(t_list *lst, char *id);
+bool	is_map(t_list *lst);
 
 
 #endif

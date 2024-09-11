@@ -1,5 +1,24 @@
 #include "parsing.h"
 
+int	determine_content(t_list *lst)
+{
+	int	i;
+
+	i = ft_strlen(lst->id);
+	while (lst->content[i] && (lst->content[i] == ' ' || lst->content[i] == '\n'
+			|| lst->content[i] == '\t' || lst->content[i] == '\v'
+			|| lst->content[i] == '\f' || lst->content[i] == '\r'))
+		i++;
+	if (i != lst->size)
+		ft_strlcpy(&lst->content[0], &lst->content[i], lst->size - i);
+	else
+	{
+		write_error("Content is empty : ", lst->id);
+		return (1);
+	}
+	return (0);
+}
+
 bool	is_empty(t_list *lst)
 {
 	int	i;
@@ -12,8 +31,8 @@ bool	is_empty(t_list *lst)
 	while (lst->content[i])
 	{
 		if (lst->content[i] == ' ' || lst->content[i] == '\n'
-			|| lst->content[i] == '\t' || lst->content[i] != '\v'
-			|| lst->content[i] != '\f' || lst->content[i] != '\r')
+			|| lst->content[i] == '\t' || lst->content[i] == '\v'
+			|| lst->content[i] == '\f' || lst->content[i] == '\r')
 			i++;
 		else
 			return (false);
@@ -27,9 +46,10 @@ bool	prepare_element(t_list *lst)
 	
 	str = ft_strtrim(lst->content, " \n\t\v\f\r");
 	if (!str)
-		return (write_error("Malloc error"), false);
+		return (write_error("Malloc error", NULL), false);
 	free(lst->content);
 	lst->content = str;
+	lst->size = ft_strlen(str);
 	return (true);
 }
 
@@ -58,4 +78,10 @@ bool	is_element(t_list *lst, char *id)
 	}
 	return (false);
 
+}
+
+bool	is_map(t_list *lst)
+{
+	(void)lst;
+	return (false);
 }

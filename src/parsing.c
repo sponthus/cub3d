@@ -49,46 +49,54 @@ int	fill_file(t_pars *pars)
 	return (0);
 }
 
-bool	what_is_it(t_pars *pars, t_list *actual)
+bool	what_is_it(t_list *actual)
 {
 	if (is_empty(actual)) // Ajouter PEC !map
 		return (true);
 	if (prepare_element(actual) == false)
 	{
-		write_error("Malloc error");
+		write_error("Malloc error", NULL);
 		return (false);
 	}
 	if (is_element(actual, "NO") == true)
-		pars->no = ft_strdup(actual->content); // ou fonction fill element qui check si double et met erreur specifique
+		return (true);
 	else if (is_element(actual, "SO") == true)
-		pars->so = ft_strdup(actual->content);
+		return (true);
 	else if (is_element(actual, "WE") == true)
-		pars->we = ft_strdup(actual->content);
+		return (true);
 	else if (is_element(actual, "EA") == true)
-		pars->ea = ft_strdup(actual->content);
+		return (true);
 	else if (is_element(actual, "F") == true)
-		pars->floor_color = ft_strdup(actual->content);
+		return (true);
 	else if (is_element(actual, "C") == true)
-		pars->floor_color = ft_strdup(actual->content);
+		return (true);
 	else if (is_map(actual) == true)
-		(void)pars;
+		return (true);
 	else
 		write_error("Not an expected element : ", actual->content);
 	return (false); // ecrit ta propre erreur laisse pas remonter
 }
 
+int	fill_element(t_data *data, t_pars *pars, t_list *actual)
+{
+	(void)data;
+	(void)pars;
+	(void)actual;
+	return (0);
+}
+
 bool	is_valid_file_content(t_data *data, t_pars *pars)
 {
-	// t_list	*prev;
 	t_list	*actual;
 
-	// prev = NULL;
 	actual = pars->lst_file;
 	while (actual)
 	{
-		if (what_is_it(actual, data) == true)
+		if (what_is_it(actual) == true)
 		{
-			// prev = actual;
+			if (determine_content(actual) != 0)
+				return (false);
+			fill_element(data, pars, actual); // check si double et met erreur specifique
 			actual = actual->next;
 		}
 		else

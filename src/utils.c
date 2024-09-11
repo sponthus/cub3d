@@ -12,6 +12,47 @@
 
 #include "utils.h"
 
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)s;
+	while (n > 0)
+	{
+		*ptr = 0;
+		ptr++;
+		n--;
+	}
+	return ;
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ptr;
+
+	if (nmemb * size != 0 && (nmemb * size) / nmemb != size)
+		return (NULL);
+	ptr = malloc (nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
+}
+
+char	*ft_strdup(char *s)
+{
+	char	*res;
+	size_t	len;
+
+	len = ft_strlen(s);
+	res = ft_calloc(len + 1, sizeof (char ));
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, s, len + 1);
+	return (res);
+}
+
+
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -20,6 +61,23 @@ int	ft_strlen(char *str)
 	while (str && str[i])
 		i++;
 	return (i);
+}
+
+size_t	ft_strlcpy(char *dst, char *src, size_t size)
+{
+	size_t	i;
+
+	if (src && size > 0)
+	{
+		i = 0;
+		while (src[i] != '\0' && i < (size - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (ft_strlen(src));
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -70,7 +128,7 @@ int	is_charset(char c, char	*charset)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char *set)
 {
 	char	*str;
 	int		i;
