@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/11 16:02:36 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 19:53:11 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,29 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+unsigned int calculate_shaded_color(unsigned int color, double distance)
+{
+    // Adjust shading factor (more subtle shading)
+	double max_distance = 40.0; // Maximum distance for shading effect
+	double shading_factor = 1.0 - fmin(distance / max_distance, 1.0); // Smoothly interpolate shading
+	
+	unsigned int r = (color >> 16) & 0xFF;
+	unsigned int g = (color >> 8) & 0xFF;
+	unsigned int b = color & 0xFF;
+
+	// Apply shading with a lower intensity
+	r = (unsigned int)(r * shading_factor);
+	g = (unsigned int)(g * shading_factor);
+	b = (unsigned int)(b * shading_factor);
+
+	// Ensure color values are within the valid range [0, 255]
+	if (r > 255) r = 255;
+	if (g > 255) g = 255;
+	if (b > 255) b = 255;
+	
+	return (r << 16) | (g << 8) | b;
+}
+
 void	put_pixel_background(t_data *data, t_img *dis)
 {
 	int		x = 0;
@@ -62,24 +85,33 @@ void	put_pixel_background(t_data *data, t_img *dis)
 	unsigned int color1 = 0x00f3aeae;
 	unsigned int color2 = 0x00aef3da;
 	double		up = 1;
-	if (data->player.up > 1)
-		up = (data->player.up * 1.2);
+	//if (data->player.up > 1.1)
+	//	up = (data->player.up * 1.3);
+	//else 
+	up = (800 / 2.0) - (data->player.pitch * 800);// + data->player.posz * (800 / 2.0);
+	if (data->player.posz > 0)
+		up -= data->player.posz;
 	else 
-		up = (data->player.up * 0.9);
+		up -= data->player.posz / 1.4;
 	while (x < 800)
 	{
 		y = 0;
 		while (y < 800)
 		{
-			if (y > ((800/2) * up) - data->player.sit)
+			if (y > up)
+			{
 				my_mlx_pixel_put(dis, x, y, color1);
+			}
 			else
+			{
 				my_mlx_pixel_put(dis, x, y, color2);
+			}
 			y++;
 		}
 		x++;
 	}
 }
+
 void	display_background(t_data *data, t_img *img)
 {
 	put_pixel_background(data, img);
@@ -121,6 +153,7 @@ void	superposition_img(t_img *background, t_img *face)
 		y++;
 	}
 }
+
 
 void	init_img(t_data *data, int *ptr)
 {
@@ -170,28 +203,6 @@ void	destroy_img(t_data *data, int *ptr)
 		data->display.ptr1.img = NULL;
 	}
 }
-unsigned int calculate_shaded_color(unsigned int color, double distance)
-{
-    // Adjust shading factor (more subtle shading)
-    double max_distance = 40.0; // Maximum distance for shading effect
-    double shading_factor = 1.0 - fmin(distance / max_distance, 1.0); // Smoothly interpolate shading
-
-    unsigned int r = (color >> 16) & 0xFF;
-    unsigned int g = (color >> 8) & 0xFF;
-    unsigned int b = color & 0xFF;
-    
-    // Apply shading with a lower intensity
-    r = (unsigned int)(r * shading_factor);
-    g = (unsigned int)(g * shading_factor);
-    b = (unsigned int)(b * shading_factor);
-    
-    // Ensure color values are within the valid range [0, 255]
-    if (r > 255) r = 255;
-    if (g > 255) g = 255;
-    if (b > 255) b = 255;
-
-    return (r << 16) | (g << 8) | b;
-}
 
 void	retracing(t_data *data)
 {
@@ -211,6 +222,7 @@ void	retracing(t_data *data)
 	int hit;
 	int side;
 	init_img(data, &ptr);
+	
 	while(x < w)
 	{
 		ticktock(&data->player.ticktock);
@@ -271,17 +283,21 @@ void	retracing(t_data *data)
 			ray.perpwalldist = (ray.sidedistx - ray.deltadistx);
 		else
 			ray.perpwalldist = (ray.sidedisty - ray.deltadisty);
-		ray.lineheight = (int)((h * data->player.wallheight) / ray.perpwalldist) * (data->player.up * 0.5 + 0.5);
+		data->player.horizon = data->player.pitch * h;
+		ray.lineheight = (int)((h * data->player.wallheight) / ray.perpwalldist);// * ((data->player.pitch + 1) * 0.5 + 0.5);
+		ray.drawstart = (((ray.lineheight / 2) * -1) + (h / 2)) - data->player.horizon ;
 		//ray.drawstart = (((ray.lineheight / 2) * -1) + (h * data->player.up) / 2) * data->player.up;
 		//if (data->player.up < 1)
-			ray.drawstart = (((ray.lineheight / 2) * -1) + (h * data->player.up) / 2) * (data->player.up * 0.5 + 0.5);
-		ray.drawstart -= data->player.sit; 
+		//	ray.drawstart = (((ray.lineheight / 2) * -1) + (h * data->player.up ) / 2) * (data->player.up * 0.9);
+		ray.drawstart -=  data->player.posz;
 		if (ray.drawstart < 0)
 			ray.drawstart = 0;
-		ray.drawend = (ray.lineheight / 2 + (h * data->player.up)  / 2) * data->player.up + h * (1 - data->player.up) / 2;
-		if (data->player.up < 1)
-			ray.drawend = (ray.lineheight / 2 + (h * data->player.up)  / 2) * (data->player.up * 0.5 + 0.5);
-		ray.drawend -= data->player.sit; 
+		
+		//ray.drawend = ((ray.lineheight / 2 )+ (h * data->player.up)  / 2) * data->player.up;// + h * (1 - data->player.up) / 2;
+		//if (data->player.up < 1)
+		//	ray.drawend = (ray.lineheight / 2 + (h * data->player.up)  / 2) * (data->player.up * 0.5 + 0.5);
+		ray.drawend = (ray.lineheight / 2 + (h / 2)) - data->player.horizon;
+		ray.drawend -=  data->player.posz; 
 		if (ray.drawend >= h)
 			ray.drawend = h - 0.1;
 		if (map[ray.mapx][ray.mapy] == 1)
@@ -302,6 +318,7 @@ void	retracing(t_data *data)
 		{
 			while (i <= ray.drawend)
 			{
+				//color = color_custom *(x % 16 && i % 16);
 				my_mlx_pixel_put(&data->display.ptr1, x, i, color);
 				i++;
 			}
@@ -310,6 +327,7 @@ void	retracing(t_data *data)
 		{
 			while (i <= ray.drawend)
 			{
+				//color = color_custom * (x % 16 && i % 16);
 				my_mlx_pixel_put(&data->display.ptr2, x, i, color);
 				i++;
 			}
@@ -323,7 +341,23 @@ void	retracing(t_data *data)
 	data->player.frame = (data->player.time - data->player.old_time) / 1000;
 	//printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", data->player.frame, data->player.movespeed, data->player.rotspeed);
 }
-
+void	jump(t_data *data)
+{
+	int		i = 0;
+	while (i < 50)
+	{
+		data->player.posz -= 4;
+		retracing(data);
+		i += 4;
+	}
+	while (i >= 0)
+	{
+		data->player.posz += 4;
+		retracing(data);
+		i -= 4;
+	}
+	return ;
+}
 int	move(t_data *data)
 {
 	double		newx;
@@ -387,34 +421,41 @@ int	move(t_data *data)
 	}
 	if (data->key.up)
 	{
-		if (data->player.up < 1.6)
-			data->player.up += data->player.rotspeed;
+		if (data->player.pitch > -0.7)
+			data->player.pitch -= data->player.rotspeed;
 	}
 	if (data->key.down)
 	{
-		if (data->player.up > 0.3)
-			data->player.up -= data->player.rotspeed;	
+		if (data->player.pitch < 0.8)
+			data->player.pitch += data->player.rotspeed;	
 	}
 	if (data->key.tab && !data->key.c)
-		data->player.movespeed = 0.4;
+		data->player.movespeed = 0.3;
 	else if (!data->key.tab && !data->key.c)
-		data->player.movespeed = 0.25;
-	if (data->key.c)
-	{		
-		data->player.sit = 800/3;
-		data->player.movespeed = 0.1;
+		data->player.movespeed = 0.2;
+	if (data->key.space)
+	{
+		data->player.posz += data->player.jump_speed;
+        data->player.jump_speed += data->player.gravity;
+		if (data->player.posz >= data->player.initz)
+		{
+			data->player.posz = data->player.initz;
+			data->key.space = 0;
+			data->player.jump_speed  = 0;
+		}
 	}
-	else if (!data->key.c)
-		data->player.sit = 0;
 	//data->player.wallheight += 0.002;
 	retracing(data);
 	return (0);
 }
+
 void	init_game(t_data *data)
 {
 	/* the inital value for calculate racasting */ 
 	data->player.posx = 22; // vecteur du player (pos sur la map)
 	data->player.posy = 11.5;
+	data->player.posz = 0;
+	data->player.pitch = 0.0;
 	data->player.dirx = -1; // vecteur direction du player (direction de depard n,s,e,w)
 	data->player.diry = 0;
 	data->player.planex = 0;	// niveau de la camera (angle)
@@ -422,10 +463,9 @@ void	init_game(t_data *data)
 	data->player.time = 0; // current frame
 	data->player.old_time = 0; // old frame
 	data->player.frame = 0;
-	data->player.sit = 1;
-	data->player.movespeed = 0.25;
+	data->player.gravity = 0.9;
+	data->player.movespeed = 0.2;
 	data->player.rotspeed = 0.08;
 	data->player.wallheight = 5;
-	data->player.up = 1;
 	retracing(data);
 }

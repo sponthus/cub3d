@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/11 16:04:27 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 19:28:40 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	key_release(int keycode, t_data *data)
 		data->key.q = 0;
 	if (keycode == XK_d)
 		data->key.d = 0;
-	if (keycode == XK_c)
-		data->key.c = 0;
+	//if (keycode == XK_c)
+	//	data->key.c = 0;
 	if (keycode == XK_Left)
 		data->key.left = 0;
 	if (keycode == XK_Right)
@@ -40,6 +40,8 @@ int	key_release(int keycode, t_data *data)
 		data->key.down = 0;
 	if (keycode == XK_Shift_L)
 		data->key.tab = 0;
+	//if (keycode == XK_space)
+	//	data->key.space = 0;
 	return (0);
 }
 
@@ -67,7 +69,19 @@ int	press(int keycode, t_data *data)
 	if (keycode == XK_d)
 		data->key.d = 1;
 	if (keycode == XK_c)
-		data->key.c = 1;
+	{	
+		if (data->player.posz == 0)
+		{
+			data->key.c = 1;
+			data->player.posz = 800/4;
+			data->player.movespeed = 0.1;
+		}
+		else
+		{
+			data->key.c = 0;	
+			data->player.posz = 0;
+		}
+	}
 	if (keycode == XK_Left)
 		data->key.left = 1;
 	if (keycode == XK_Right)
@@ -78,6 +92,12 @@ int	press(int keycode, t_data *data)
 		data->key.down = 1;
 	if (keycode == XK_Shift_L)
 		data->key.tab = 1;
+	if (keycode == XK_space)
+	{	
+		data->key.space = 1;
+		data->player.jump_speed = -20;
+		data->player.initz = data->player.posz;
+	}
 	return (0);
 }
 
@@ -85,19 +105,19 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	init_data(&data);
-	if (argc == 2)
-	{
-		if (parsing(argv[1], &data) == 1)
-			return (1);
-	}
-	else if (argc == 1)
-	{
-		if (parsing("inc/default.cub", &data) == 1)
-			return (1);
-	}
-	else
-		return (1);
+	//init_data(&data);
+	//if (argc == 2)
+	//{
+	//	if (parsing(argv[1], &data) == 1)
+	//		return (1);
+	//}
+	//else if (argc == 1)
+	//{
+	//	if (parsing("inc/default.cub", &data) == 1)
+	//		return (1);
+	//}
+	//else
+	//	return (1);
 	memset(&data, 0, sizeof(t_data));
 	data.mlx = mlx_init(); // secu
 	data.win = mlx_new_window(data.mlx, 800, 800, "cub3d");

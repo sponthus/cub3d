@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/11 02:31:11 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 19:04:07 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ typedef struct s_move
 {
 	double		posx;
 	double		posy;
+	double		posz;
+	double		pitch;
+	double		horizon;
 	double		dirx;
 	double		diry;
 	double		olddirx;
@@ -38,8 +41,9 @@ typedef struct s_move
 	double		rotspeed;
 	double		ticktock;
 	double		wallheight;
-	double		up;
-	double		sit;
+	double		initz;
+	double 		jump_speed;
+	double		gravity;
 } t_move;
 
 typedef struct s_raycast
@@ -75,6 +79,7 @@ typedef	struct s_keypress
 	int		down;
 	int		tab;
 	int		esc;
+	int		space;
 }	t_keypress;
 
 void	init_game(struct s_data  *data);
