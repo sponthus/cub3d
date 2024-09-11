@@ -6,13 +6,13 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/11 00:05:09 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 00:06:38 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_data(t_data *data)
+/*void	init_data(t_data *data)
 {
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
@@ -126,7 +126,7 @@ int	parsing(char *path, t_data *data)
 	// 	return (ft_lstclear(&pars.lst_file, free), 1);
 	(void)data;
 	return (0);
-} 
+} */
 
 /*
 	t_data	data;

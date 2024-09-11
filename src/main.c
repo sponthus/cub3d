@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/11 00:05:39 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 02:33:22 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,18 @@ int	key_release(int keycode, t_data *data)
 		data->key.q = 0;
 	if (keycode == XK_d)
 		data->key.d = 0;
+	if (keycode == XK_c)
+		data->key.c = 0;
 	if (keycode == XK_Left)
 		data->key.left = 0;
 	if (keycode == XK_Right)
 		data->key.right = 0;
+	if (keycode == XK_Up)
+		data->key.up = 0;
+	if (keycode == XK_Down)
+		data->key.down = 0;
+	if (keycode == XK_Shift_L)
+		data->key.tab = 0;
 	return (0);
 }
 
@@ -58,10 +66,18 @@ int	press(int keycode, t_data *data)
 		data->key.q = 1;
 	if (keycode == XK_d)
 		data->key.d = 1;
+	if (keycode == XK_c)
+		data->key.c = 1;
 	if (keycode == XK_Left)
 		data->key.left = 1;
 	if (keycode == XK_Right)
 		data->key.right = 1;
+	if (keycode == XK_Up)
+		data->key.up = 1;
+	if (keycode == XK_Down)
+		data->key.down = 1;
+	if (keycode == XK_Shift_L)
+		data->key.tab = 1;
 	return (0);
 }
 
@@ -69,19 +85,19 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	init_data(&data);
-	if (argc == 2)
-	{
-		if (parsing(argv[1], &data) == 1)
-			return (1);
-	}
-	else if (argc == 1)
-	{
-		if (parsing("inc/default.cub", &data) == 1)
-			return (1);
-	}
-	else
-		return (1);
+	//init_data(&data);
+	//if (argc == 2)
+	//{
+	//	if (parsing(argv[1], &data) == 1)
+	//		return (1);
+	//}
+	//else if (argc == 1)
+	//{
+	//	if (parsing("inc/default.cub", &data) == 1)
+	//		return (1);
+	//}
+	//else
+	//	return (1);
 	memset(&data, 0, sizeof(t_data));
 	data.mlx = mlx_init(); // secu
 	data.win = mlx_new_window(data.mlx, 800, 800, "cub3d");
@@ -90,5 +106,7 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win, 3, 1L<<1, key_release, &data);
 	mlx_loop_hook(data.mlx, move, &data);
 	mlx_loop(data.mlx);
+	(void)argc;
+	(void)argv;
 	return (0);
 }

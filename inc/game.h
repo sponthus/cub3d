@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/10 23:38:36 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 02:31:11 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_move
 	double		rotspeed;
 	double		ticktock;
 	double		wallheight;
+	double		up;
+	double		sit;
 } t_move;
 
 typedef struct s_raycast
@@ -57,7 +59,7 @@ typedef struct s_raycast
 	int			lineheight;
 	int			drawstart;
 	int			drawend;
-
+	
 } t_raycast;
 
 typedef	struct s_keypress
@@ -66,8 +68,12 @@ typedef	struct s_keypress
 	int		s;
 	int		q;
 	int		d;
+	int		c;
 	int		right;
 	int		left;
+	int		up;
+	int		down;
+	int		tab;
 	int		esc;
 }	t_keypress;
 

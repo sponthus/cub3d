@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/10 23:18:50 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 14:27:10 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_display
 {
 	t_img		ptr1;
 	t_img		ptr2;
+	t_img		bg1;
+	t_img		bg2;
 } t_display;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/11 00:03:24 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 15:59:54 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,38 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 	*(unsigned int*)dst = color;
 }
+
+void	put_pixel_background(t_data *data, t_img *dis)
+{
+	int		x = 0;
+	int		y = 0;
+	unsigned int color1 = 0x00f3aeae;
+	unsigned int color2 = 0x00aef3da;
+	double		up = 1;
+	if (data->player.up > 1)
+		up = (data->player.up * 1.2);
+	else 
+		up = (data->player.up * 0.9);
+	while (x < 800)
+	{
+		y = 0;
+		while (y < 800)
+		{
+			if (y > ((800/2) * up) - data->player.sit)
+				my_mlx_pixel_put(dis, x, y, color1);
+			else
+				my_mlx_pixel_put(dis, x, y, color2);
+			y++;
+		}
+		x++;
+	}
+}
+void	display_background(t_data *data, t_img *img)
+{
+	put_pixel_background(data, img);
+	
+}
+
 void	ticktock(double *ticktock)
 {
 	(*ticktock)++;
@@ -68,10 +100,36 @@ void	update_frame_data(t_data *data)
 	data->player.rotspeed = data->player.frame * 0.03;
 	printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", data->player.frame, data->player.movespeed, data->player.rotspeed);
 }
+void	superposition_img(t_img *background, t_img *face)
+{
+	unsigned int	color = 0;
+	int				x = 0;
+	int				y = 0;
+	int				index = 0;
+
+	while (y < 800)
+	{
+       x = 0;
+        while (x < 800)
+		{
+			index = y * background->line_length + x * (background->bpp / 8);
+			color = *(unsigned int *)(face->addr + index);
+			if (color != 0)
+			    *(unsigned int *)(background->addr + index) = color;
+			x++;
+		}
+		y++;
+	}
+}
+
 void	init_img(t_data *data, int *ptr)
 {
 	if (data->display.ptr1.img)
 	{
+		data->display.bg2.img = mlx_new_image(data->mlx, 800, 800);
+		data->display.bg2.addr = mlx_get_data_addr(data->display.bg2.img, &data->display.bg2.bpp, &data->display.bg2.line_length,
+								&data->display.bg2.endian);
+		put_pixel_background(data, &data->display.bg2);
 		data->display.ptr2.img = mlx_new_image(data->mlx, 800, 800);
 		data->display.ptr2.addr = mlx_get_data_addr(data->display.ptr2.img, &data->display.ptr2.bpp, &data->display.ptr2.line_length,
 								&data->display.ptr2.endian);
@@ -79,42 +137,73 @@ void	init_img(t_data *data, int *ptr)
 	}
 	else
 	{
-		
+		data->display.bg1.img = mlx_new_image(data->mlx, 800, 800);
+		data->display.bg1.addr = mlx_get_data_addr(data->display.bg1.img, &data->display.bg1.bpp, &data->display.bg1.line_length,
+								&data->display.bg1.endian);
+		put_pixel_background(data, &data->display.bg1);
 		data->display.ptr1.img = mlx_new_image(data->mlx, 800, 800);
 		data->display.ptr1.addr = mlx_get_data_addr(data->display.ptr1.img, &data->display.ptr1.bpp, &data->display.ptr1.line_length,
 								&data->display.ptr1.endian);
 		(*ptr) = 1;
 	}
 }
-
 void	destroy_img(t_data *data, int *ptr)
 {
 	if ((*ptr) == 1)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->display.ptr1.img, 0, 0);
+		superposition_img(&data->display.bg1, &data->display.ptr1);
+		mlx_put_image_to_window(data->mlx, data->win, data->display.bg1.img, 0, 0);
+		if (data && data->display.bg2.img)
+			mlx_destroy_image(data->mlx, data->display.bg2.img);
 		if (data && data->display.ptr2.img)
 			mlx_destroy_image(data->mlx, data->display.ptr2.img);
 		data->display.ptr2.img = NULL;
 	}
 	else if ((*ptr) == 2)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->display.ptr2.img, 0, 0);
+		superposition_img(&data->display.bg2, &data->display.ptr2);
+		mlx_put_image_to_window(data->mlx, data->win, data->display.bg2.img, 0, 0);
+		if (data && data->display.bg1.img)
+			mlx_destroy_image(data->mlx, data->display.bg1.img);
 		if (data && data->display.ptr1.img)
-			mlx_destroy_image(data->mlx, data->display.ptr1.img);
+			mlx_destroy_image(data->mlx, data->display.ptr1.img);	
 		data->display.ptr1.img = NULL;
 	}
 }
+unsigned int calculate_shaded_color(unsigned int color, double distance)
+{
+    // Adjust shading factor (more subtle shading)
+    double max_distance = 40.0; // Maximum distance for shading effect
+    double shading_factor = 1.0 - fmin(distance / max_distance, 1.0); // Smoothly interpolate shading
+
+    unsigned int r = (color >> 16) & 0xFF;
+    unsigned int g = (color >> 8) & 0xFF;
+    unsigned int b = color & 0xFF;
+    
+    // Apply shading with a lower intensity
+    r = (unsigned int)(r * shading_factor);
+    g = (unsigned int)(g * shading_factor);
+    b = (unsigned int)(b * shading_factor);
+    
+    // Ensure color values are within the valid range [0, 255]
+    if (r > 255) r = 255;
+    if (g > 255) g = 255;
+    if (b > 255) b = 255;
+
+    return (r << 16) | (g << 8) | b;
+}
+
 void	retracing(t_data *data)
 {
 	t_raycast	ray;
 	memset(&ray, 0, sizeof(t_raycast));
-	int			w = 800;
-	int			h = 800;
+	int				w = 800;
+	int				h = 800;
 	unsigned int 	color = 0;
 	unsigned int 	blue = 0x004c51a7;
 	unsigned int  	green = 0x0093db8a;
 	unsigned int 	pink = 0x00cc3dd6;
-	unsigned int 	red = 0x00d63d3d;
+	unsigned int 	red = 0x00bd1155;
 	unsigned int 	yellow = 0x00dfd565;
 /*				ray casting 		*/
 	int		x = 0;
@@ -182,13 +271,19 @@ void	retracing(t_data *data)
 			ray.perpwalldist = (ray.sidedistx - ray.deltadistx);
 		else
 			ray.perpwalldist = (ray.sidedisty - ray.deltadisty);
-		ray.lineheight = (int)((h *data->player.wallheight) / ray.perpwalldist);
-		ray.drawstart = ((ray.lineheight / 2) * -1) + h / 2;
+		ray.lineheight = (int)((h * data->player.wallheight) / ray.perpwalldist) * (data->player.up * 0.5 + 0.5);
+		//ray.drawstart = (((ray.lineheight / 2) * -1) + (h * data->player.up) / 2) * data->player.up;
+		//if (data->player.up < 1)
+			ray.drawstart = (((ray.lineheight / 2) * -1) + (h * data->player.up) / 2) * (data->player.up * 0.5 + 0.5);
+		ray.drawstart -= data->player.sit; 
 		if (ray.drawstart < 0)
 			ray.drawstart = 0;
-		ray.drawend = ray.lineheight / 2 + h  / 2;
+		ray.drawend = (ray.lineheight / 2 + (h * data->player.up)  / 2) * data->player.up + h * (1 - data->player.up) / 2;
+		if (data->player.up < 1)
+			ray.drawend = (ray.lineheight / 2 + (h * data->player.up)  / 2) * (data->player.up * 0.5 + 0.5);
+		ray.drawend -= data->player.sit; 
 		if (ray.drawend >= h)
-			ray.drawend = h - 1;
+			ray.drawend = h - 0.1;
 		if (map[ray.mapx][ray.mapy] == 1)
 			color = blue;
 		else if (map[ray.mapx][ray.mapy] == 2)
@@ -201,6 +296,7 @@ void	retracing(t_data *data)
 			color = yellow;
 		if (side == 1)
 			color = color /2;
+		color = calculate_shaded_color(color, ray.perpwalldist);
 		int		i = ray.drawstart;
 		if (ptr == 1)
 		{
@@ -289,6 +385,27 @@ int	move(t_data *data)
 		data->player.planex = data->player.planex * cos(data->player.rotspeed) - data->player.planey * sin(data->player.rotspeed);
 		data->player.planey = oldplanex * sin(data->player.rotspeed) + data->player.planey * cos(data->player.rotspeed);
 	}
+	if (data->key.up)
+	{
+		if (data->player.up < 1.6)
+			data->player.up += data->player.rotspeed;
+	}
+	if (data->key.down)
+	{
+		if (data->player.up > 0.3)
+			data->player.up -= data->player.rotspeed;	
+	}
+	if (data->key.tab && !data->key.c)
+		data->player.movespeed = 0.4;
+	else if (!data->key.tab && !data->key.c)
+		data->player.movespeed = 0.25;
+	if (data->key.c)
+	{		
+		data->player.sit = 800/3;
+		data->player.movespeed = 0.1;
+	}
+	else if (!data->key.c)
+		data->player.sit = 0;
 	//data->player.wallheight += 0.002;
 	retracing(data);
 	return (0);
@@ -305,10 +422,10 @@ void	init_game(t_data *data)
 	data->player.time = 0; // current frame
 	data->player.old_time = 0; // old frame
 	data->player.frame = 0;
-	data->player.movespeed = 0.1;
-	data->player.rotspeed = 0.03;
-	data->display.ptr1.img = NULL;
-	data->display.ptr2.img = NULL;
-	data->player.wallheight = 1.5;
+	data->player.sit = 1;
+	data->player.movespeed = 0.25;
+	data->player.rotspeed = 0.08;
+	data->player.wallheight = 5;
+	data->player.up = 1;
 	retracing(data);
 }
