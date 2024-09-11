@@ -65,5 +65,6 @@ typedef struct s_data
 
 int		main(int argc, char **argv);
 int		parsing(char *path, t_data *data);
+void	init_data(t_data *data);
 
 #endif
