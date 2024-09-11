@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -26,6 +27,9 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 	int				size;
+	char			*id;
+	char			*value;
+	bool			map; // init tout ca sarah stp et fonction qui free tt
 }	t_list;
 
 int	ft_strlen(char *str);

@@ -37,4 +37,9 @@ typedef struct s_pars
 
 void	init_data(struct s_data *data);
 
+bool	is_empty(t_list *lst);
+bool	prepare_element(t_list *lst);
+bool	is_element(t_list *lst, char *id);
+
+
 #endif

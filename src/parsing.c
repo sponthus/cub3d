@@ -51,8 +51,13 @@ int	fill_file(t_pars *pars)
 
 bool	what_is_it(t_pars *pars, t_list *actual)
 {
-	if (is_empty(actual) == true) // actual == NULL || actual->size == 1 + whitespqces
+	if (is_empty(actual)) // Ajouter PEC !map
 		return (true);
+	if (prepare_element(actual) == false)
+	{
+		write_error("Malloc error");
+		return (false);
+	}
 	if (is_element(actual, "NO") == true)
 		pars->no = ft_strdup(actual->content); // ou fonction fill element qui check si double et met erreur specifique
 	else if (is_element(actual, "SO") == true)
@@ -66,8 +71,10 @@ bool	what_is_it(t_pars *pars, t_list *actual)
 	else if (is_element(actual, "C") == true)
 		pars->floor_color = ft_strdup(actual->content);
 	else if (is_map(actual) == true)
-		(void)pars; // determner comment faire
-	return (false); // add msg erreur
+		(void)pars;
+	else
+		write_error("Not an expected element : ", actual->content);
+	return (false); // ecrit ta propre erreur laisse pas remonter
 }
 
 bool	is_valid_file_content(t_data *data, t_pars *pars)

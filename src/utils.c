@@ -70,25 +70,25 @@ int	is_charset(char c, char	*charset)
 	return (0);
 }
 
-//char	*ft_strtrim(char const *s1, char const *set)
-//{
-//	char	*str;
-//	int		i;
-//	int		j;
-//
-//	i = 0;
-//	j = 0;
-//	while (s1[i] && is_charset(s1[i], (char *)set) == 1)
-//		i++;
-//	while (s1[i + j])
-//		j++;
-//	j--;
-//	while (is_charset(s1[i + j], (char *)set) == 1 && j >= 0)
-//		j--;
-//	j++;
-//	str = ft_calloc (j + 1, sizeof (char));
-//	if (!str)
-//		return (NULL);
-//	ft_strlcpy(str, s1 + i, j + 1);
-//	return (str);
-//}
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (s1[i] && is_charset(s1[i], (char *)set) == 1)
+		i++;
+	while (s1[i + j])
+		j++;
+	j--;
+	while (is_charset(s1[i + j], (char *)set) == 1 && j >= 0)
+		j--;
+	j++;
+	str = malloc (sizeof (char) * (j + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1 + i, j + 1);
+	return (str);
+}
