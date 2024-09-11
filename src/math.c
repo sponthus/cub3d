@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/11 19:53:11 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 22:25:01 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 unsigned int calculate_shaded_color(unsigned int color, double distance)
 {
     // Adjust shading factor (more subtle shading)
-	double max_distance = 40.0; // Maximum distance for shading effect
-	double shading_factor = 1.0 - fmin(distance / max_distance, 1.0); // Smoothly interpolate shading
-	
+	//double max_distance = 11.0; // Maximum distance for shading effect
+	double shading_factor;
+	shading_factor = 1.0 / (1.0 + (distance * 0.07)); // Smoothly interpolate shading
+	//if (shading_factor < 0.3) // 0.3 garantit que la couleur ne sera jamais complètement noire
+	//	shading_factor = 0.3;
 	unsigned int r = (color >> 16) & 0xFF;
 	unsigned int g = (color >> 8) & 0xFF;
 	unsigned int b = color & 0xFF;
@@ -82,30 +84,35 @@ void	put_pixel_background(t_data *data, t_img *dis)
 {
 	int		x = 0;
 	int		y = 0;
-	unsigned int color1 = 0x00f3aeae;
+	unsigned int color1 = 0x00f3aeae; 
 	unsigned int color2 = 0x00aef3da;
-	double		up = 1;
-	//if (data->player.up > 1.1)
-	//	up = (data->player.up * 1.3);
-	//else 
-	up = (800 / 2.0) - (data->player.pitch * 800);// + data->player.posz * (800 / 2.0);
+	unsigned int color = 0;
+	double		horizon;
+	double		distance;
+
+	horizon = (800 / 2.0) - (data->player.pitch * 800);// + data->player.posz * (800 / 2.0);
 	if (data->player.posz > 0)
-		up -= data->player.posz;
+		horizon -= data->player.posz * 1.3;
 	else 
-		up -= data->player.posz / 1.4;
+		horizon -= data->player.posz / 1.4;
 	while (x < 800)
 	{
 		y = 0;
 		while (y < 800)
 		{
-			if (y > up)
+			if (y > horizon)
 			{
+				distance = (y - horizon) / 800;
+				color = color1; 
 				my_mlx_pixel_put(dis, x, y, color1);
 			}
 			else
 			{
-				my_mlx_pixel_put(dis, x, y, color2);
+				distance = (horizon - y) / 800;
+				color = color2;
 			}
+			color = calculate_shaded_color(color, distance*30);
+			my_mlx_pixel_put(dis, x, y, color);
 			y++;
 		}
 		x++;
@@ -318,7 +325,6 @@ void	retracing(t_data *data)
 		{
 			while (i <= ray.drawend)
 			{
-				//color = color_custom *(x % 16 && i % 16);
 				my_mlx_pixel_put(&data->display.ptr1, x, i, color);
 				i++;
 			}
@@ -327,7 +333,6 @@ void	retracing(t_data *data)
 		{
 			while (i <= ray.drawend)
 			{
-				//color = color_custom * (x % 16 && i % 16);
 				my_mlx_pixel_put(&data->display.ptr2, x, i, color);
 				i++;
 			}

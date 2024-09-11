@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/11 20:44:39 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/11 21:04:56 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,17 @@ int	press(int keycode, t_data *data)
 	if (keycode == XK_Shift_L)
 		data->key.tab = 1;
 	if (keycode == XK_space)
-	{	
-		data->key.space = 1;
-		data->player.jump_speed = -20;
-		data->player.initz = data->player.posz;
+	{
+		if (!data->key.space)
+		{
+			data->key.space = 1;
+			data->player.jump_speed = -20;
+			data->player.initz = data->player.posz;
+		}
+
+
+
+
 	}
 	return (0);
 }
