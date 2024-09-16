@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/11 20:46:54 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/16 14:46:27 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ bool	what_is_it(t_list *actual)
 {
 	if (is_empty(actual)) // Ajouter PEC !map
 		return (true);
-	if (prepare_element(actual) == false)
-	{
-		write_error("Malloc error", NULL);
+	if (handle_map_elements(actual) == false)
 		return (false);
-	}
+	if (actual->map == true)
+		return (true);
+	if (prepare_element(actual) == false)
+		return (false);
 	if (is_element(actual, "NO") == true)
 		return (true);
 	else if (is_element(actual, "SO") == true)
@@ -70,22 +71,12 @@ bool	what_is_it(t_list *actual)
 		return (true);
 	else if (is_element(actual, "C") == true)
 		return (true);
-	else if (is_map(actual) == true)
-		return (true);
 	else
-		write_error("Not an expected element : ", actual->content);
-	return (false); // ecrit ta propre erreur laisse pas remonter
+		write_error("Not an expected element : ", actual->content); // ecrit ta propre erreur laisse pas remonter
+	return (false);
 }
 
-int	fill_element(t_data *data, t_pars *pars, t_list *actual)
-{
-	(void)data;
-	(void)pars;
-	(void)actual;
-	return (0);
-}
-
-bool	is_valid_file_content(t_data *data, t_pars *pars)
+bool	is_valid_file_content(t_pars *pars)
 {
 	t_list	*actual;
 
@@ -94,9 +85,10 @@ bool	is_valid_file_content(t_data *data, t_pars *pars)
 	{
 		if (what_is_it(actual) == true)
 		{
-			if (determine_content(actual) != 0)
+			if (actual->empty == false && determine_content(actual) != 0)
 				return (false);
-			fill_element(data, pars, actual); // check si double et met erreur specifique
+			if (fill_element(pars, actual) != 0)
+				return (false); // check si double et met erreur specifique
 			actual = actual->next;
 		}
 		else
@@ -118,27 +110,49 @@ bool	is_valid_file_format(char *path)
 	return (false);
 }
 
-void	write_elem(void *ptr) // to suppress 
+void	write_elem(t_pars *pars) // to suppress 
 {
-	if (write(1, ptr, ft_strlen(ptr)) == -1)
-		return ;
+	printf("no = %s\n", pars->no);
+	printf("so = %s\n", pars->so);
+	printf("we = %s\n", pars->ea);
+	printf("ea = %s\n", pars->we);
+	printf("floor = %s\n", pars->floor_color);
+	printf("ceiling = %s\n", pars->ceiling_color);
+}
+
+void	init_parsing(t_pars *pars) // init pars values
+{
+	pars->no = NULL;
+	pars->so = NULL;
+	pars->we = NULL;
+	pars->ea = NULL;
+	pars->floor_color = NULL;
+	pars->ceiling_color = NULL;
+	pars->fd = -1;
+	pars->file = NULL;
+	pars->lst_file = NULL;
+	printf("Pars structure initialized\n"); //
 }
 
 int	parsing(char *path, t_data *data)
 {
-	t_pars	pars; // init valeurs de pars
+	t_pars	pars; 
 
+	init_parsing(&pars);
 	if (is_valid_file_format(path) == false)
 		return (write_error("Invalid filename ", path), 1);
+	printf("valid file format\n"); //
 	pars.fd = open(path, O_RDONLY);
 	if (pars.fd == -1)
-		return (write_error("Cound not open file ", path), 1);
+		return (write_error("Could not open file ", path), 1);
+	printf("file open\n"); //
 	if (fill_file(&pars) != 0)
 		return (write_error("Malloc error", NULL), 1); // encore rien a free normalement
+	printf("file filled\n");
 	close(pars.fd);
-	ft_lstiter(pars.lst_file, write_elem); // to supp
-	// if (is_valid_file_content(data, pars) == false)
-	// 	return (ft_lstclear(&pars.lst_file, free), 1);
+	if (is_valid_file_content(&pars) == false)
+		return (ft_lstclear(&pars.lst_file, free), 1);
+	write_elem(&pars);
 	(void)data;
 	return (0);
 }

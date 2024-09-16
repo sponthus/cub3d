@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:02:36 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/09 17:37:33 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:01:50 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_list
 	int				size;
 	char			*id;
 	bool			map; // init tout ca sarah stp et fonction qui free tt
+	bool			empty;
 }	t_list;
 
 int	ft_strlen(char *str);

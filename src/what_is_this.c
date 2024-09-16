@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   what_is_this.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
+/*   Updated: 2024/09/16 14:28:53 by sponthus         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 int	determine_content(t_list *lst)
@@ -10,7 +22,7 @@ int	determine_content(t_list *lst)
 			|| lst->content[i] == '\f' || lst->content[i] == '\r'))
 		i++;
 	if (i != lst->size)
-		ft_strlcpy(&lst->content[0], &lst->content[i], lst->size - i);
+		ft_strlcpy(&lst->content[0], &lst->content[i], lst->size);
 	else
 	{
 		write_error("Content is empty : ", lst->id);
@@ -35,7 +47,10 @@ bool	is_empty(t_list *lst)
 			|| lst->content[i] == '\f' || lst->content[i] == '\r')
 			i++;
 		else
+		{
+			lst->empty = false;
 			return (false);
+		}
 	}
 	return (true);
 }
@@ -46,7 +61,10 @@ bool	prepare_element(t_list *lst)
 	
 	str = ft_strtrim(lst->content, " \n\t\v\f\r");
 	if (!str)
-		return (write_error("Malloc error", NULL), false);
+	{
+		write_error("Malloc error", NULL);
+		return (false);
+	}
 	free(lst->content);
 	lst->content = str;
 	lst->size = ft_strlen(str);
@@ -80,8 +98,45 @@ bool	is_element(t_list *lst, char *id)
 
 }
 
-bool	is_map(t_list *lst)
+bool	is_map_element(t_list *lst)
 {
-	(void)lst;
+	int		i;
+
+	i = 0;
+	while (lst->content[i])
+	{
+		if (is_charset(lst->content[i], " \n\t\v\f\r01NSEW"))
+			i++;
+		else
+		{
+			break ;
+		}
+	}
+	if (i == lst->size)
+		return (true);
 	return (false);
+}
+
+bool	handle_map_elements(t_list *lst)
+{
+	t_list	*actual;
+
+	actual = lst;
+	if (is_map_element(lst) == true)
+	{
+		if (lst->map == false)
+		{
+			while (actual)
+			{
+				if (is_map_element(actual) == false)
+				{
+					write_error("Unexpected element after map : ", actual->content);
+					return (false);
+				}
+				actual->map = true;
+				actual = actual->next;
+			}
+		}
+	}
+	return (true);
 }

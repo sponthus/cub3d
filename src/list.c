@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/16 12:53:09 by sponthus          #+#    #+#             */
+/*   Updated: 2024/09/16 13:43:28 by sponthus         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
@@ -120,6 +132,9 @@ t_list	*ft_lstnew(void *content)
 	new->content = content;
 	new->next = NULL;
 	new->size = ft_strlen(content);
+	new->empty = true;
+	new->map = false;
+	new->id = NULL;
 	return (new);
 }
 

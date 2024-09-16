@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/10 23:14:48 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/16 14:43:31 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int		determine_content(t_list *lst);
 bool	is_empty(t_list *lst);
 bool	prepare_element(t_list *lst);
 bool	is_element(t_list *lst, char *id);
-bool	is_map(t_list *lst);
+bool	is_map_element(t_list *lst);
+bool	handle_map_elements(t_list *lst);
+int	fill_element(t_pars *pars, t_list *actual);
 
+int	fill_colors(t_pars *pars, t_list *actual);
 
 #endif
