@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 13:09:22 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 15:18:22 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int	fill_ea(t_pars *pars, t_list *actual);
 int	fill_we(t_pars *pars, t_list *actual);
 int	fill_so(t_pars *pars, t_list *actual);
 int	fill_no(t_pars *pars, t_list *actual);
+
+bool	valid_color(char *floor_color);
 
 #endif

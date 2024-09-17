@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:01:20 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 13:16:25 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 15:18:39 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,4 +151,30 @@ char	*ft_strtrim(char *s1, char *set)
 		return (NULL);
 	ft_strlcpy(str, s1 + i, j + 1);
 	return (str);
+}
+
+unsigned int	color_atoi(const char *nptr)
+{
+	unsigned int	nb;
+	int				i;
+
+	nb = 0;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nb = (nb * 10) + (nptr[i++] - '0');
+		if (nb > 255)
+			return (256);
+	}
+	return (nb);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

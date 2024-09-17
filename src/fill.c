@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_element_map.c                                 :+:      :+:    :+:   */
+/*   fill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 13:09:18 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 14:40:12 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	fill_map(t_data *data, t_list *actual)
 		map[i] = ft_strdup(actual->content);
 		if (!map[i])
 		{
-			// fonction free de la map selon i
+			free_split(map, i); // Check that plz
 			return (write_error("Malloc error", "map", 1));
 		}
 		i++;

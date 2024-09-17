@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 13:25:11 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 15:33:56 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,22 @@ void	init_data(t_data *data)
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
 	data->map = NULL;
-	data->sprites = NULL;
+	data->mlx = NULL;
+	data->win = NULL;
+}
+
+void	init_parsing(t_pars *pars) // init pars values
+{
+	pars->no = NULL;
+	pars->so = NULL;
+	pars->we = NULL;
+	pars->ea = NULL;
+	pars->floor_color = NULL;
+	pars->ceiling_color = NULL;
+	pars->fd = -1;
+	pars->file = NULL;
+	pars->lst_file = NULL;
+	printf("Pars structure initialized\n"); //
 }
 
 int	fill_file(t_pars *pars)
@@ -104,20 +119,20 @@ void	write_elem(t_data *data, t_pars *pars) // to suppress
 			printf("/%s/\n", data->map[i]);
 		i++;
 	}
+	printf("RGB floor color registered is : ");
+	printf("%d - %d - %d\n", ((data->sprites.floor >> 16) & 0xFF), ((data->sprites.floor >> 8) & 0xFF), (data->sprites.floor & 0xFF));
+	printf("RGB ceiling color registered is : ");
+	printf("%d - %d - %d\n", ((data->sprites.ceiling >> 16) & 0xFF), ((data->sprites.ceiling >> 8) & 0xFF), (data->sprites.ceiling & 0xFF));
+	
 }
 
-void	init_parsing(t_pars *pars) // init pars values
+bool	valid_elements(t_data *data, t_pars *pars)
 {
-	pars->no = NULL;
-	pars->so = NULL;
-	pars->we = NULL;
-	pars->ea = NULL;
-	pars->floor_color = NULL;
-	pars->ceiling_color = NULL;
-	pars->fd = -1;
-	pars->file = NULL;
-	pars->lst_file = NULL;
-	printf("Pars structure initialized\n"); //
+	if (valid_color(pars->floor_color) && char_to_color(data, pars->floor_color, "floor") == false)
+		return (false);
+	if (valid_color(pars->ceiling_color) && char_to_color(data, pars->ceiling_color, "ceiling") == false)
+		return (false);
+	return (true);
 }
 
 int	parsing(char *path, t_data *data)
@@ -137,7 +152,9 @@ int	parsing(char *path, t_data *data)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	if (is_valid_map(data) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
-	write_elem(data, &pars);
+	if (valid_elements(data, &pars) == false)
+		return (ft_lstclear(&pars.lst_file, free), 1);
+	write_elem(data, &pars); //
 	ft_lstclear(&pars.lst_file, free);
 	return (0);
 }

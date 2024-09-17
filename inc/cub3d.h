@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:45:15 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 15:17:16 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ typedef struct s_inc
 	t_img				*so;
 	t_img				*ea;
 	t_img				*we;
+	unsigned int		floor;
+	unsigned int		ceiling;
 }	t_inc;
+
 typedef struct s_display
 {
 	t_img				ptr1;
@@ -57,7 +60,7 @@ typedef struct s_data
 	int					win_height;
 	int					win_width;
 	char				**map;
-	t_inc				*sprites;
+	t_inc				sprites;
 	t_move				player;
 	t_display			display;
 	t_keypress			key;
@@ -69,5 +72,6 @@ void	init_data(t_data *data);
 
 int		fill_map(t_data *data, t_list *actual);
 bool	is_valid_map(t_data *data);
+bool	char_to_color(t_data *data, char *color, char *what);
 
 #endif
