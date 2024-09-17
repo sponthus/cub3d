@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:03:50 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 12:45:15 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		main(int argc, char **argv);
 int		parsing(char *path, t_data *data);
 void	init_data(t_data *data);
 
-int	fill_map(t_data *data, t_list *actual);
+int		fill_map(t_data *data, t_list *actual);
+bool	is_valid_map(t_data *data);
 
 #endif

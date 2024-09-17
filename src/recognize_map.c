@@ -6,13 +6,14 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:04:08 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 13:09:06 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <X11/Xlib.h>
 
-int	map_size(t_list *lst)
+int	list_map_size(t_list *lst)
 {
 	int	i;
 
@@ -42,6 +43,38 @@ bool	is_map_element(t_list *lst)
 	if (i == lst->size)
 		return (true);
 	return (false);
+}
+
+void	replace_whitespaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (is_charset(str[i], "\n\t\v\f\r"))
+			str[i] = ' ';
+		i++;
+	}
+}
+
+bool	empty_mapline(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (true);
+	if (ft_strlen(str) < 2)
+		return (true);
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			i++;
+		else
+			return (false);
+	}
+	return (true);
 }
 
 bool	handle_map_elements(t_list *lst)

@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:10:26 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 13:09:18 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <X11/Xlib.h>
 
 int	fill_element(t_pars *pars, t_list *actual)
 {
@@ -36,7 +37,7 @@ int	fill_map(t_data *data, t_list *actual)
 	map = NULL;
 	if (!actual || actual->map == false)
 		return (write_error("No map detected in file", NULL, 1));
-	map = malloc(sizeof (char *) * (map_size(actual) + 1));
+	map = malloc(sizeof (char *) * (list_map_size(actual) + 1));
 	if (!map)
 		return (write_error("Malloc error", "map", 1));
 	while (actual)

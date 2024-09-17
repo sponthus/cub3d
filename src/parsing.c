@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:08:53 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 13:25:11 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,35 +127,17 @@ int	parsing(char *path, t_data *data)
 	init_parsing(&pars);
 	if (is_valid_file_format(path) == false)
 		return (write_error("Invalid filename ", path, 1));
-	printf("valid file format\n"); //
 	pars.fd = open(path, O_RDONLY);
 	if (pars.fd == -1)
 		return (write_error("Could not open file ", path, 1));
-	printf("file open\n"); //
 	if (fill_file(&pars) != 0)
 		return (write_error("Malloc error", NULL, 1)); // encore rien a free normalement
-	printf("file filled\n");
 	close(pars.fd);
 	if (is_valid_file_content(data, &pars) == false)
+		return (ft_lstclear(&pars.lst_file, free), 1);
+	if (is_valid_map(data) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	write_elem(data, &pars);
 	ft_lstclear(&pars.lst_file, free);
 	return (0);
 }
-
-/*
-	t_data	data;
-
-	if (argc == 2)
-	{
-		if (parsing(argv[1], &data) == 1)
-			return (1);
-	}
-	else if (argc == 1)
-	{
-		if (parsing("inc/default.cub", &data) == 1)
-			return (1);
-	}
-	else
-		return (1);
-*/

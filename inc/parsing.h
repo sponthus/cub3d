@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:03:45 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 13:09:22 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ bool	is_element(t_list *lst, char *id);
 
 bool	is_map_element(t_list *lst);
 bool	handle_map_elements(t_list *lst);
-int	map_size(t_list *lst);
+int		list_map_size(t_list *lst);
+void	replace_whitespaces(char *str);
+bool	empty_mapline(char *str);
 
 bool	what_is_it(t_list *actual);
 
