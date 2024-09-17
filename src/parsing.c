@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 15:33:56 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 15:37:08 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void	write_elem(t_data *data, t_pars *pars) // to suppress
 	printf("%d - %d - %d\n", ((data->sprites.floor >> 16) & 0xFF), ((data->sprites.floor >> 8) & 0xFF), (data->sprites.floor & 0xFF));
 	printf("RGB ceiling color registered is : ");
 	printf("%d - %d - %d\n", ((data->sprites.ceiling >> 16) & 0xFF), ((data->sprites.ceiling >> 8) & 0xFF), (data->sprites.ceiling & 0xFF));
-	
 }
 
 bool	valid_elements(t_data *data, t_pars *pars)
