@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/16 14:43:31 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 12:03:45 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,23 @@ typedef struct s_pars
 
 }	t_pars;
 
-int		determine_content(t_list *lst);
+int		resize_content(t_list *lst);
 bool	is_empty(t_list *lst);
 bool	prepare_element(t_list *lst);
 bool	is_element(t_list *lst, char *id);
+
 bool	is_map_element(t_list *lst);
 bool	handle_map_elements(t_list *lst);
+int	map_size(t_list *lst);
+
+bool	what_is_it(t_list *actual);
+
 int	fill_element(t_pars *pars, t_list *actual);
 
 int	fill_colors(t_pars *pars, t_list *actual);
+int	fill_ea(t_pars *pars, t_list *actual);
+int	fill_we(t_pars *pars, t_list *actual);
+int	fill_so(t_pars *pars, t_list *actual);
+int	fill_no(t_pars *pars, t_list *actual);
 
 #endif

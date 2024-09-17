@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/16 14:46:27 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 12:08:53 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,7 @@ int	fill_file(t_pars *pars)
 	return (0);
 }
 
-bool	what_is_it(t_list *actual)
-{
-	if (is_empty(actual)) // Ajouter PEC !map
-		return (true);
-	if (handle_map_elements(actual) == false)
-		return (false);
-	if (actual->map == true)
-		return (true);
-	if (prepare_element(actual) == false)
-		return (false);
-	if (is_element(actual, "NO") == true)
-		return (true);
-	else if (is_element(actual, "SO") == true)
-		return (true);
-	else if (is_element(actual, "WE") == true)
-		return (true);
-	else if (is_element(actual, "EA") == true)
-		return (true);
-	else if (is_element(actual, "F") == true)
-		return (true);
-	else if (is_element(actual, "C") == true)
-		return (true);
-	else
-		write_error("Not an expected element : ", actual->content); // ecrit ta propre erreur laisse pas remonter
-	return (false);
-}
-
-bool	is_valid_file_content(t_pars *pars)
+bool	is_valid_file_content(t_data *data, t_pars *pars)
 {
 	t_list	*actual;
 
@@ -85,7 +58,9 @@ bool	is_valid_file_content(t_pars *pars)
 	{
 		if (what_is_it(actual) == true)
 		{
-			if (actual->empty == false && determine_content(actual) != 0)
+			if (actual->map)
+				break ;
+			if (actual->empty == false && resize_content(actual) != 0)
 				return (false);
 			if (fill_element(pars, actual) != 0)
 				return (false); // check si double et met erreur specifique
@@ -94,6 +69,8 @@ bool	is_valid_file_content(t_pars *pars)
 		else
 			return (false);
 	}
+	if (fill_map(data, actual) != 0)
+		return (false);
 	return (true);
 }
 
@@ -110,14 +87,23 @@ bool	is_valid_file_format(char *path)
 	return (false);
 }
 
-void	write_elem(t_pars *pars) // to suppress 
+void	write_elem(t_data *data, t_pars *pars) // to suppress 
 {
+	int	i;
+
+	i = 0;	
 	printf("no = %s\n", pars->no);
 	printf("so = %s\n", pars->so);
 	printf("we = %s\n", pars->ea);
 	printf("ea = %s\n", pars->we);
 	printf("floor = %s\n", pars->floor_color);
 	printf("ceiling = %s\n", pars->ceiling_color);
+	while (data->map && data->map[i])
+	{
+		if (data->map[i])
+			printf("/%s/\n", data->map[i]);
+		i++;
+	}
 }
 
 void	init_parsing(t_pars *pars) // init pars values
@@ -140,20 +126,20 @@ int	parsing(char *path, t_data *data)
 
 	init_parsing(&pars);
 	if (is_valid_file_format(path) == false)
-		return (write_error("Invalid filename ", path), 1);
+		return (write_error("Invalid filename ", path, 1));
 	printf("valid file format\n"); //
 	pars.fd = open(path, O_RDONLY);
 	if (pars.fd == -1)
-		return (write_error("Could not open file ", path), 1);
+		return (write_error("Could not open file ", path, 1));
 	printf("file open\n"); //
 	if (fill_file(&pars) != 0)
-		return (write_error("Malloc error", NULL), 1); // encore rien a free normalement
+		return (write_error("Malloc error", NULL, 1)); // encore rien a free normalement
 	printf("file filled\n");
 	close(pars.fd);
-	if (is_valid_file_content(&pars) == false)
+	if (is_valid_file_content(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
-	write_elem(&pars);
-	(void)data;
+	write_elem(data, &pars);
+	ft_lstclear(&pars.lst_file, free);
 	return (0);
 }
 

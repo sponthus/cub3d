@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/13 15:48:58 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 11:40:09 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (1);
-	data.mlx = mlx_init(); // secu
-	data.win = mlx_new_window(data.mlx, data.win_width , data.win_height, "cub3d");
-	init_game(&data);
-	mlx_hook(data.win, 2, 1L<<0, key_press, &data);
-	mlx_hook(data.win, 3, 1L<<1, key_release, &data);
-	mlx_loop_hook(data.mlx, move, &data);
-	mlx_loop(data.mlx);
-	(void)argc;
-	(void)argv;
+	// data.mlx = mlx_init(); // secu
+	// data.win = mlx_new_window(data.mlx, data.win_width , data.win_height, "cub3d");
+	// init_game(&data);
+	// mlx_hook(data.win, 2, 1L<<0, key_press, &data);
+	// mlx_hook(data.win, 3, 1L<<1, key_release, &data);
+	// mlx_loop_hook(data.mlx, move, &data);
+	// mlx_loop(data.mlx);
 	return (0);
 }

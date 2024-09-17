@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:02:36 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/16 13:01:50 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 11:59:46 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ typedef struct s_list
 	struct s_list	*next;
 	int				size;
 	char			*id;
-	bool			map; // init tout ca sarah stp et fonction qui free tt
-	bool			empty;
+	bool			map; // Is on when map is found
+	bool			empty; // Basically positive until proven otherwise
 }	t_list;
 
 int	ft_strlen(char *str);
 
-void	write_error(char *error, char *target);
+int	write_error(char *error, char *target, int errno);
 
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(void *content);
@@ -53,5 +53,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		is_charset(char c, char	*charset);
 char	*ft_strtrim(char *s1, char *set);
 size_t	ft_strlcpy(char *dst, char *src, size_t size);
+char	*ft_strdup(char *s);
 
 #endif

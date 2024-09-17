@@ -6,13 +6,13 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/16 14:28:53 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 11:59:16 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	determine_content(t_list *lst)
+int	resize_content(t_list *lst)
 {
 	int	i;
 
@@ -22,11 +22,13 @@ int	determine_content(t_list *lst)
 			|| lst->content[i] == '\f' || lst->content[i] == '\r'))
 		i++;
 	if (i != lst->size)
+	{
 		ft_strlcpy(&lst->content[0], &lst->content[i], lst->size);
+		lst->size = ft_strlen(lst->content);
+	}
 	else
 	{
-		write_error("Content is empty : ", lst->id);
-		return (1);
+		return (write_error("Content is empty", lst->id, 1));
 	}
 	return (0);
 }
@@ -62,8 +64,7 @@ bool	prepare_element(t_list *lst)
 	str = ft_strtrim(lst->content, " \n\t\v\f\r");
 	if (!str)
 	{
-		write_error("Malloc error", NULL);
-		return (false);
+		return (write_error("Malloc error", NULL, false));
 	}
 	free(lst->content);
 	lst->content = str;
@@ -98,45 +99,27 @@ bool	is_element(t_list *lst, char *id)
 
 }
 
-bool	is_map_element(t_list *lst)
+bool	what_is_it(t_list *actual)
 {
-	int		i;
-
-	i = 0;
-	while (lst->content[i])
-	{
-		if (is_charset(lst->content[i], " \n\t\v\f\r01NSEW"))
-			i++;
-		else
-		{
-			break ;
-		}
-	}
-	if (i == lst->size)
+	if (is_empty(actual)) // Ajouter PEC !map
 		return (true);
-	return (false);
-}
-
-bool	handle_map_elements(t_list *lst)
-{
-	t_list	*actual;
-
-	actual = lst;
-	if (is_map_element(lst) == true)
-	{
-		if (lst->map == false)
-		{
-			while (actual)
-			{
-				if (is_map_element(actual) == false)
-				{
-					write_error("Unexpected element after map : ", actual->content);
-					return (false);
-				}
-				actual->map = true;
-				actual = actual->next;
-			}
-		}
-	}
-	return (true);
+	if (handle_map_elements(actual) == false)
+		return (false);
+	if (actual->map == true)
+		return (true);
+	if (prepare_element(actual) == false)
+		return (false);
+	if (is_element(actual, "NO") == true)
+		return (true);
+	else if (is_element(actual, "SO") == true)
+		return (true);
+	else if (is_element(actual, "WE") == true)
+		return (true);
+	else if (is_element(actual, "EA") == true)
+		return (true);
+	else if (is_element(actual, "F") == true)
+		return (true);
+	else if (is_element(actual, "C") == true)
+		return (true);
+	return (write_error("Found an expected element", actual->content, false));
 }
