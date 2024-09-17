@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/13 15:51:20 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 17:00:59 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ int	key_press(int keycode, t_data *data)
 			mlx_destroy_image(data->mlx, data->display.ptr1.img);
 		mlx_destroy_window(data->mlx, data->win);
 		mlx_destroy_display(data->mlx);
-		exit (0);
+		free_data(data);
+		exit (0); // A modif proprement Sarah stp
 	}
 	set_keyplayer(keycode, data);
 	set_keycam(keycode, data);

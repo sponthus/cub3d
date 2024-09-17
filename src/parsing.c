@@ -6,11 +6,13 @@
 /*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 15:37:08 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/17 16:35:17 by sponthus         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	init_mlx(t_data *data, t_pars *pars);
 
 void	init_data(t_data *data)
 {
@@ -32,7 +34,6 @@ void	init_parsing(t_pars *pars) // init pars values
 	pars->fd = -1;
 	pars->file = NULL;
 	pars->lst_file = NULL;
-	printf("Pars structure initialized\n"); //
 }
 
 int	fill_file(t_pars *pars)
@@ -152,6 +153,8 @@ int	parsing(char *path, t_data *data)
 	if (is_valid_map(data) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	if (valid_elements(data, &pars) == false)
+		return (ft_lstclear(&pars.lst_file, free), 1);
+	if (init_mlx(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	write_elem(data, &pars); //
 	ft_lstclear(&pars.lst_file, free);
