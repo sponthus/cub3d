@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:41:06 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 16:37:23 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/19 14:54:01 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ bool	check_rgb(char **rgb, char *color)
 	if (rgb[0])
 		r = color_atoi(rgb[0]);
 	else
-		return (write_error("Color contains no R", NULL, false)); // free malloc
+		return (write_error("Color contains no R", NULL, false));
 	if (rgb[1])
 		g = color_atoi(rgb[1]);
 	else
-	 	return (write_error("Color contains no G", NULL, false));
+		return (write_error("Color contains no G", NULL, false));
 	if (rgb[2])
 		b = color_atoi(rgb[1]);
 	else
@@ -53,7 +53,6 @@ bool	char_to_color(t_data *data, char *color, char *what)
 	r = 0;
 	g = 0;
 	b = 0;
-	rgb = NULL;
 	rgb = ft_split(color, ',');
 	if (rgb == NULL)
 		return (write_error("Malloc error", "color", false));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   what_is_this.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 11:59:16 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/19 14:54:00 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	resize_content(t_list *lst)
 bool	is_empty(t_list *lst)
 {
 	int	i;
-	
+
 	i = 0;
 	if (lst == NULL)
 		return (true);
@@ -59,8 +59,8 @@ bool	is_empty(t_list *lst)
 
 bool	prepare_element(t_list *lst)
 {
-	char *str;
-	
+	char	*str;
+
 	str = ft_strtrim(lst->content, " \n\t\v\f\r");
 	if (!str)
 	{
@@ -101,7 +101,7 @@ bool	is_element(t_list *lst, char *id)
 
 bool	what_is_it(t_list *actual)
 {
-	if (is_empty(actual)) // Ajouter PEC !map
+	if (is_empty(actual))
 		return (true);
 	if (handle_map_elements(actual) == false)
 		return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 16:35:17 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/19 14:54:02 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,11 @@ void	write_elem(t_data *data, t_pars *pars) // to suppress
 
 bool	valid_elements(t_data *data, t_pars *pars)
 {
-	if (valid_color(pars->floor_color) && char_to_color(data, pars->floor_color, "floor") == false)
+	if (valid_color(pars->floor_color)
+		&& char_to_color(data, pars->floor_color, "floor") == false)
 		return (false);
-	if (valid_color(pars->ceiling_color) && char_to_color(data, pars->ceiling_color, "ceiling") == false)
+	if (valid_color(pars->ceiling_color)
+		&& char_to_color(data, pars->ceiling_color, "ceiling") == false)
 		return (false);
 	return (true);
 }
@@ -146,7 +148,7 @@ int	parsing(char *path, t_data *data)
 	if (pars.fd == -1)
 		return (write_error("Could not open file ", path, 1));
 	if (fill_file(&pars) != 0)
-		return (write_error("Malloc error", NULL, 1)); // encore rien a free normalement
+		return (write_error("Malloc error", NULL, 1));
 	close(pars.fd);
 	if (is_valid_file_content(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 13:31:01 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/19 14:54:04 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ bool	closed_map(t_data *data, int map_size)
 				if (data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' '
 					|| data->map[i][j + 1] == ' ' || data->map[i][j + 1] == ' ')
 					return (false);
-			}
+			} // ATTENTION segfault possible si map qui dep en haut a DT ?
 			j++;
 		}
 		i++;

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   recognize_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 13:09:06 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/19 14:54:03 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <X11/Xlib.h>
 
 int	list_map_size(t_list *lst)
 {
