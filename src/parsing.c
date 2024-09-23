@@ -6,15 +6,11 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:12:11 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:42:41 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool	init_mlx(t_data *data, t_pars *pars);
-bool	valid_data(t_data *data, t_pars *pars);
-bool	fill_file_content(t_data *data, t_pars *pars);
 
 void	init_data(t_data *data)
 {

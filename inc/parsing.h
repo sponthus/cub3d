@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:13:32 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:45:45 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+struct s_data;
 
 typedef struct s_pars
 {
@@ -65,5 +67,18 @@ int	fill_ea(t_pars *pars, t_list *actual);
 int	fill_we(t_pars *pars, t_list *actual);
 int	fill_so(t_pars *pars, t_list *actual);
 int	fill_no(t_pars *pars, t_list *actual);
+
+bool	init_mlx(struct s_data *data, t_pars *pars);
+bool	valid_data(struct s_data *data, t_pars *pars);
+bool	fill_file_content(struct s_data *data, t_pars *pars);
+
+int	map_length(struct s_data *data);
+int	map_size(struct s_data *data);
+
+bool	valid_color(char *floor_color);
+
+int		fill_map(struct s_data *data, t_list *actual);
+bool	is_valid_map(struct s_data *data);
+bool	char_to_color(struct s_data *data, char *color, char *what);
 
 #endif

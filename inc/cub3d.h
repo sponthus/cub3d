@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 11:29:01 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:46:23 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
 # include "mlx.h"
 # include "hook.h"
 
-# define WIN_HEIGHT 800;
-# define WIN_WIDTH 800;
-
+# define WIN_HEIGHT 800
+# define WIN_WIDTH 800
 
 typedef struct s_img
 {
@@ -52,7 +51,7 @@ typedef struct s_display
 {
 	t_img				ptr1;
 	t_img				ptr2;
-} t_display;
+}	t_display;
 
 typedef struct s_data
 {
@@ -71,14 +70,5 @@ int		main(int argc, char **argv);
 int		parsing(char *path, t_data *data);
 void	init_data(t_data *data);
 void	free_data(t_data *data);
-
-int		fill_map(t_data *data, t_list *actual);
-bool	is_valid_map(t_data *data);
-bool	char_to_color(t_data *data, char *color, char *what);
-
-int	map_length(t_data *data);
-int	map_size(t_data *data);
-
-bool	valid_color(char *floor_color);
 
 #endif
