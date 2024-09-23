@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/13 19:08:57 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 14:20:25 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void	raycasting(t_data *data)
 		data->player.speed = data->player.frame * 3;
 		data->player.movespeed = data->player.speed;
 		data->player.rotspeed = data->player.frame * 2;
-		printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", 1/data->player.frame, data->player.movespeed, data->player.rotspeed);
+		// printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", 1/data->player.frame, data->player.movespeed, data->player.rotspeed);
 	}
 }
 

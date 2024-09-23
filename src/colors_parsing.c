@@ -24,19 +24,19 @@ bool	check_rgb(char **rgb, char *color)
 	if (rgb[0])
 		r = color_atoi(rgb[0]);
 	else
-		return (write_error(ERR_MIS_RGB, "R", NULL, false));
+		return (write_err(ERR_MIS_RGB, "R", NULL, false));
 	if (rgb[1])
 		g = color_atoi(rgb[1]);
 	else
-		return (write_error(ERR_MIS_RGB, "G", NULL, false));
+		return (write_err(ERR_MIS_RGB, "G", NULL, false));
 	if (rgb[2])
 		b = color_atoi(rgb[1]);
 	else
-		return (write_error(ERR_MIS_RGB, "B", NULL, false));
+		return (write_err(ERR_MIS_RGB, "B", NULL, false));
 	if (rgb[3])
-		return (write_error(ERR_RGB_ONL, color, NULL, false));
+		return (write_err(ERR_RGB_ONL, color, NULL, false));
 	if (r > 255 || g > 255 || b > 255)
-		return (write_error(ERR_RGB_RAN, color, NULL, false));
+		return (write_err(ERR_RGB_RAN, color, NULL, false));
 	return (true);
 }
 
@@ -52,7 +52,7 @@ bool	char_to_color(t_data *data, char *color, char *what)
 	b = 0;
 	rgb = ft_split(color, ',');
 	if (rgb == NULL)
-		return (write_error(ERR_MALLOC, "color", NULL, false));
+		return (write_err(ERR_MALLOC, "color", NULL, false));
 	if (check_rgb(rgb, color) == false)
 	{
 		free_full_split(rgb);
@@ -85,23 +85,23 @@ bool	valid_color(char *color)
 		}
 		if (color[i] != ',' && ft_isdigit(color[i]) == 0)
 		{
-			return (write_error(ERR_RGB_RAN, color, NULL, false));
+			return (write_err(ERR_RGB_RAN, color, NULL, false));
 		}
 		if (color[i] == ',')
 			count++;
 		i++;
 	}
 	if (count != 2)
-		return (write_error(ERR_RGB_FOR, color, NULL, false));
+		return (write_err(ERR_RGB_FOR, color, NULL, false));
 	return (true);
 }
 
 bool	valid_data(t_data *data, t_pars *pars)
 {
 	if (!pars->floor_color)
-		return (write_error(ERR_MIS_COL, "F", NULL, false));
+		return (write_err(ERR_MIS_COL, "F", NULL, false));
 	if (!pars->ceiling_color)
-		return (write_error(ERR_MIS_COL, "C", NULL, false));
+		return (write_err(ERR_MIS_COL, "C", NULL, false));
 	if (valid_color(pars->floor_color)
 		&& char_to_color(data, pars->floor_color, "floor") == false)
 		return (false);
@@ -109,12 +109,12 @@ bool	valid_data(t_data *data, t_pars *pars)
 		&& char_to_color(data, pars->ceiling_color, "ceiling") == false)
 		return (false);
 	if (!pars->no)
-		return (write_error(ERR_MIS_TEX, "NO", NULL, false));
+		return (write_err(ERR_MIS_TEX, "NO", NULL, false));
 	if (!pars->so)
-		return (write_error(ERR_MIS_TEX, "SO", NULL, false));
+		return (write_err(ERR_MIS_TEX, "SO", NULL, false));
 	if (!pars->we)
-		return (write_error(ERR_MIS_TEX, "WE", NULL, false));
+		return (write_err(ERR_MIS_TEX, "WE", NULL, false));
 	if (!pars->ea)
-		return (write_error(ERR_MIS_TEX, "EA", NULL, false));
+		return (write_err(ERR_MIS_TEX, "EA", NULL, false));
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:02:36 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:04:24 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:13:40 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_list
 
 int	ft_strlen(char *str);
 
-int	write_error(char *error, char *target, char *obj, int errno);
+int	write_err(char *error, char *target, char *obj, int errno);
 
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(void *content);
@@ -47,6 +47,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 char	*get_next_line(int fd);
+
+void	*ft_buffmove(char *dest, char *src, size_t size, int *n);
+char	*ft_strlcpy_nl(char *str, char *s, int len, int *n);
+char	*ft_strjoin_free(char *s1, char *s2, int *n, int size);
+
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strnstr(const char *big, const char *little, size_t len);

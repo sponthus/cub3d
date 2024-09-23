@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:11:33 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:28:14 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,30 @@
 
 void	free_data(t_data *data)
 {
-	if (data->map != NULL)
+	if (data->map)
 		free_full_split(data->map);
+	if (data->sprites.no.img)
+		mlx_destroy_image(data->mlx, data->sprites.no.img);
+	if (data->sprites.so.img)
+		mlx_destroy_image(data->mlx, data->sprites.so.img);
+	if (data->sprites.ea.img)
+		mlx_destroy_image(data->mlx, data->sprites.ea.img);
+	if (data->sprites.we.img)
+		mlx_destroy_image(data->mlx, data->sprites.we.img);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	memset(&data, 0, sizeof(t_data));
+	ft_memset(&data, 0, sizeof(t_data));
 	init_data(&data);
 	if (argc == 2)
 	{
@@ -45,17 +60,17 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		return (write_error("Wrong number of arguments", "expected only file.cub", NULL, 1));
+		return (write_err(ERR_COUNT, EXP_CUB, "arguments", 1));
 	
 	// Coucou c'est Sarah, j'ai init la MLX dans le parsing, tu trouveras l'init dans init_mlx
 	// Bisous 1
 	
 	// data.mlx = mlx_init(); // secu
 	// if (!data.mlx)
-	// 	return (write_error("Failed to init mlx", NULL, 1));
+	// 	return (write_err("Failed to init mlx", NULL, 1));
 	// data.win = mlx_new_window(data.mlx, data.win_width , data.win_height, "cub3d");
 	// if (!data.win)
-	// 	return (write_error("Failed to init window", NULL, 1));
+	// 	return (write_err("Failed to init window", NULL, 1));
 	// init_game(&data);
 	// mlx_hook(data.win, 2, 1L<<0, key_press, &data);
 	// mlx_hook(data.win, 3, 1L<<1, key_release, &data);

@@ -6,24 +6,11 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:11:55 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:07:46 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-int	list_map_size(t_list *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
 
 bool	is_map_element(t_list *lst)
 {
@@ -78,21 +65,21 @@ bool	empty_mapline(char *str)
 
 bool	handle_map_elements(t_list *lst)
 {
-	t_list	*actual;
+	t_list	*a;
 
-	actual = lst;
+	a = lst;
 	if (is_map_element(lst) == true)
 	{
 		if (lst->map == false)
 		{
-			while (actual)
+			while (a)
 			{
-				if (is_map_element(actual) == false)
+				if (is_map_element(a) == false)
 				{
-					return (write_error("Unexpected element after map", actual->content, NULL, false));
+					return (write_err(ERR_UNEX, a->content, "after map", false));
 				}
-				actual->map = true;
-				actual = actual->next;
+				a->map = true;
+				a = a->next;
 			}
 		}
 	}

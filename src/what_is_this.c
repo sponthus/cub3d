@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:15:04 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:07:18 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	resize_content(t_list *lst)
 	}
 	else
 	{
-		return (write_error("Content is empty", lst->id, NULL, 1));
+		return (write_err("Content is empty", lst->id, NULL, 1));
 	}
 	return (0);
 }
@@ -64,7 +64,7 @@ bool	prepare_element(t_list *lst)
 	str = ft_strtrim(lst->content, " \n\t\v\f\r");
 	if (!str)
 	{
-		return (write_error(ERR_MALLOC, NULL, NULL, false));
+		return (write_err(ERR_MALLOC, NULL, NULL, false));
 	}
 	free(lst->content);
 	lst->content = str;
@@ -121,5 +121,5 @@ bool	what_is_it(t_list *actual)
 		return (true);
 	else if (is_element(actual, "C") == true)
 		return (true);
-	return (write_error("Found an expected element", actual->content, NULL, false));
+	return (write_err(ERR_UNEX, actual->content, NULL, false));
 }

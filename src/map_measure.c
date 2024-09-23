@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:09:26 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 11:27:40 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:55:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ int	map_size(t_data *data)
 			break ;
 		}
 		i++;
+	}
+	return (i);
+}
+
+int	list_map_size(t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
 	}
 	return (i);
 }

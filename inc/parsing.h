@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 13:45:45 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:10:21 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ typedef struct s_pars
 
 }	t_pars;
 
-
+# define ERR_COUNT "Wrong count"
+# define EXP_1 "1 expected"
+# define EXP_CUB "expected only file.cub"
 # define ERR_MALLOC "Malloc error"
 # define ERR_MIS_COL "Missing color"
 # define ERR_MIS_TEX "Missing texture"
+# define ERR_OP_TEX "Could not open texture"
 # define ERR_RGB_ONL "Color should contain only R,G,B"
 # define ERR_RGB_RAN "Color RGB shoud contain 0 to 255"
 # define ERR_RGB_FOR "Color should be in R,G,B format"
@@ -46,39 +49,60 @@ typedef struct s_pars
 # define ERR_RED "Redefined"
 # define ERR_INIT "Failed to init"
 # define ERR_NO_ELEM "Element missing"
+# define ERR_UNEX "Unexpected element found"
 
-int		resize_content(t_list *lst);
-bool	is_empty(t_list *lst);
-bool	prepare_element(t_list *lst);
-bool	is_element(t_list *lst, char *id);
+// PARSING
+void	init_data(struct s_data *data);
+void	init_parsing(t_pars *pars);
+int		fill_file(t_pars *pars);
+bool	is_valid_file_format(char *path);
+int		parsing(char *path, struct s_data *data);
 
-bool	is_map_element(t_list *lst);
-bool	handle_map_elements(t_list *lst);
-int		list_map_size(t_list *lst);
-void	replace_whitespaces(char *str);
-bool	empty_mapline(char *str);
-
+// WHAT_IS_IT
 bool	what_is_it(t_list *actual);
+bool	is_element(t_list *lst, char *id);
+bool	prepare_element(t_list *lst);
+bool	is_empty(t_list *lst);
+int		resize_content(t_list *lst);
 
-int	fill_element(t_pars *pars, t_list *actual);
-
-int	fill_colors(t_pars *pars, t_list *actual);
-int	fill_ea(t_pars *pars, t_list *actual);
-int	fill_we(t_pars *pars, t_list *actual);
-int	fill_so(t_pars *pars, t_list *actual);
-int	fill_no(t_pars *pars, t_list *actual);
-
-bool	init_mlx(struct s_data *data, t_pars *pars);
-bool	valid_data(struct s_data *data, t_pars *pars);
-bool	fill_file_content(struct s_data *data, t_pars *pars);
-
-int	map_length(struct s_data *data);
-int	map_size(struct s_data *data);
-
-bool	valid_color(char *floor_color);
-
-int		fill_map(struct s_data *data, t_list *actual);
+// MAP_IS_VALID
+bool	only_one_map(struct s_data *data);
+bool	only_one_player(struct s_data *data);
+bool	closed_map(struct s_data *data, int map_size);
 bool	is_valid_map(struct s_data *data);
+
+// MAP_MEASURE
+int		map_length(struct s_data *data);
+int		map_size(struct s_data *data);
+int		list_map_size(t_list *lst);
+
+// MAP_RECOGNIZE
+bool	empty_mapline(char *str);
+bool	is_map_element(t_list *lst);
+void	replace_whitespaces(char *str);
+bool	handle_map_elements(t_list *lst);
+
+// FILL
+bool	fill_file_content(struct s_data *data, t_pars *pars);
+int		fill_element(t_pars *pars, t_list *actual);
+int		fill_map(struct s_data *data, t_list *actual);
+void	copy_map(char *dst, char *src);
+int		resize_map(struct s_data *data);
+
+// FILL_ELEMENTS
+int		fill_colors(t_pars *pars, t_list *actual);
+int		fill_ea(t_pars *pars, t_list *actual);
+int		fill_we(t_pars *pars, t_list *actual);
+int		fill_so(t_pars *pars, t_list *actual);
+int		fill_no(t_pars *pars, t_list *actual);
+
+// COLOR PARSING
+bool	check_rgb(char **rgb, char *color);
 bool	char_to_color(struct s_data *data, char *color, char *what);
+bool	valid_color(char *color);
+bool	valid_data(struct s_data *data, t_pars *pars);
+
+// INIT_MLX
+bool	init_mlx(struct s_data *data, t_pars *pars);
 
 #endif

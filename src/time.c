@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:05:07 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/17 13:56:55 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 14:24:39 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,25 @@ double 	second(char *line)
 void	ticktock(t_time *tv)
 {
 	int		fd;
+	char	*line;
 
 	fd = open("/proc/uptime", O_RDONLY, 0);
 	if (fd < 0)
 		exit (42); // free and exit
-	char *line = get_next_line(fd);
+	line = get_next_line(fd);
 	//printf("poc time = %s\n", line);
 	tv->tv_usec = milisecond(line);
 	tv->tv_sec = second(line)  - (tv->tv_sec * 1000.0);
 	//printf("atood sec = %f, usec = %f\n",tv->tv_sec,tv->tv_usec);
+	free(line);
 	close(fd);
-	
 }
+
 double	my_get_time(void)
 {
 	t_time				t;
 
+	ft_memset(&t, 0, sizeof(t_time));
 	ticktock(&t);
 	return ((t.tv_sec * 1000 + (t.tv_usec)));
 }

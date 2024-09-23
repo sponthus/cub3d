@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:13:48 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:21:15 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	resize_map(t_data *data)
 		{
 			new = malloc(len + 1 * sizeof (char));
 			if (!new)
-				return (write_error(ERR_MALLOC, "map", NULL, 1));
+				return (write_err(ERR_MALLOC, "map", NULL, 1));
 			ft_memset(new, ' ', len + 1);
-			new[len + 1] = '\0';
+			new[len] = '\0';
 			copy_map(new, data->map[i]);
 			free(data->map[i]);
 			data->map[i] = new;
@@ -73,17 +73,17 @@ int	fill_map(t_data *data, t_list *actual)
 	i = 0;
 	map = NULL;
 	if (!actual || actual->map == false)
-		return (write_error(ERR_NO_ELEM, "map", NULL, 1));
+		return (write_err(ERR_NO_ELEM, "map", NULL, 1));
 	map = malloc(sizeof (char *) * (list_map_size(actual) + 1));
 	if (!map)
-		return (write_error(ERR_MALLOC, "map", NULL, 1));
+		return (write_err(ERR_MALLOC, "map", NULL, 1));
 	while (actual)
 	{
 		map[i] = ft_strdup(actual->content);
 		if (!map[i])
 		{
 			free_split(map, i); // Check that plz
-			return (write_error(ERR_MALLOC, "map", NULL, 1));
+			return (write_err(ERR_MALLOC, "map", NULL, 1));
 		}
 		i++;
 		actual = actual->next;

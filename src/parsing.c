@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 13:42:41 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:19:40 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ int	parsing(char *path, t_data *data)
 
 	init_parsing(&pars);
 	if (is_valid_file_format(path) == false)
-		return (write_error("Invalid filename ", path, NULL, 1));
+		return (write_err("Invalid filename ", path, NULL, 1));
 	pars.fd = open(path, O_RDONLY);
 	if (pars.fd == -1)
-		return (write_error("Could not open file ", path, NULL, 1));
+		return (write_err("Could not open file ", path, NULL, 1));
 	if (fill_file(&pars) != 0)
-		return (write_error(ERR_MALLOC, NULL, NULL, 1));
+		return (write_err(ERR_MALLOC, NULL, NULL, 1));
 	close(pars.fd);
 	if (fill_file_content(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
@@ -120,7 +120,7 @@ int	parsing(char *path, t_data *data)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	if (init_mlx(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
-	write_elem(data, &pars); //
+	// write_elem(data, &pars); //
 	ft_lstclear(&pars.lst_file, free);
 	return (0);
 }

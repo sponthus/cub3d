@@ -6,13 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:00:33 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:05:32 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:06:12 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	write_error(char *error, char *target, char *obj, int errno)
+int	write_err(char *error, char *target, char *obj, int errno)
 {
 	write(2, "Error\n", 6);
 	if (error)
