@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 17:00:04 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 12:13:02 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	open_image(void *mlx, t_img *img, char *path, int *size)
 	img->img = mlx_xpm_file_to_image(mlx, path, size, size);
 	if (img->img == NULL)
 	{
-		return (write_error("Could not open texture", path, false));
+		return (write_error("Could not open texture", path, NULL, false));
 	}
 	return (true);
 }
@@ -27,10 +27,10 @@ bool	init_mlx(t_data *data, t_pars *pars)
 {
 	data->mlx = mlx_init(); // secu
 	if (!data->mlx)
-		return (write_error("Failed to init mlx", NULL, 1));
+		return (write_error(ERR_INIT, NULL, "mlx", 1));
 	data->win = mlx_new_window(data->mlx, data->win_width , data->win_height, "cub3d");
 	if (!data->win)
-		return (write_error("Failed to init window", NULL, 1));
+		return (write_error(ERR_INIT, NULL, "window", 1));
 	init_game(data);
 	mlx_hook(data->win, 2, 1L<<0, key_press, data);
 	mlx_hook(data->win, 3, 1L<<1, key_release, data);
@@ -47,10 +47,10 @@ bool	init_mlx(t_data *data, t_pars *pars)
 
 	// data->sprites.so.img = mlx_xpm_file_to_image(data->mlx, pars->so, &data->sprites.size, &data->sprites.size);
 	// if (data->sprites.so.img == NULL)
-	// 	return (write_error("Could not open texture", pars->so, false));
+	// 	return (write_error("Could not open texture", pars->soNULL, false));
 	// data->sprites.ea.img = mlx_xpm_file_to_image(data->mlx, pars->ea, &data->sprites.size, &data->sprites.size);
 	// if (data->sprites.ea.img == NULL)
-	// 	return (write_error("Could not open texture", pars->ea, false));
+	// 	return (write_error("Could not open texture", pars->eaNULL, false));
 	// data->sprites.we.img = mlx_xpm_file_to_image(data->mlx, pars->we, &data->sprites.size, &data->sprites.size);
 	// if (data->sprites.we.img == NULL)
-	// 	return (write_error("Could not open texture", pars->we, false));
+	// 	return (write_error("Could not open texture", pars->weNULL, false));

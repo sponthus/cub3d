@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 16:45:03 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 11:29:01 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,10 @@ void	free_data(t_data *data);
 int		fill_map(t_data *data, t_list *actual);
 bool	is_valid_map(t_data *data);
 bool	char_to_color(t_data *data, char *color, char *what);
+
+int	map_length(t_data *data);
+int	map_size(t_data *data);
+
+bool	valid_color(char *floor_color);
 
 #endif

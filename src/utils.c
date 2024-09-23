@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:01:20 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 15:43:09 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 11:40:49 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,18 @@ int	ft_isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (n > 0)
+	{
+		*ptr = c;
+		ptr++;
+		n--;
+	}
+	return (s);
 }

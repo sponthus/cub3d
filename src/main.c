@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 16:35:58 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 12:11:33 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		return (write_error("Wrong number of arguments", "expected only file.cub", 1));
+		return (write_error("Wrong number of arguments", "expected only file.cub", NULL, 1));
 	
 	// Coucou c'est Sarah, j'ai init la MLX dans le parsing, tu trouveras l'init dans init_mlx
 	// Bisous 1

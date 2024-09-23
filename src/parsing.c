@@ -6,13 +6,15 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/19 14:54:02 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:12:11 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 bool	init_mlx(t_data *data, t_pars *pars);
+bool	valid_data(t_data *data, t_pars *pars);
+bool	fill_file_content(t_data *data, t_pars *pars);
 
 void	init_data(t_data *data)
 {
@@ -65,31 +67,6 @@ int	fill_file(t_pars *pars)
 	return (0);
 }
 
-bool	is_valid_file_content(t_data *data, t_pars *pars)
-{
-	t_list	*actual;
-
-	actual = pars->lst_file;
-	while (actual)
-	{
-		if (what_is_it(actual) == true)
-		{
-			if (actual->map)
-				break ;
-			if (actual->empty == false && resize_content(actual) != 0)
-				return (false);
-			if (fill_element(pars, actual) != 0)
-				return (false); // check si double et met erreur specifique
-			actual = actual->next;
-		}
-		else
-			return (false);
-	}
-	if (fill_map(data, actual) != 0)
-		return (false);
-	return (true);
-}
-
 bool	is_valid_file_format(char *path)
 {
 	int	j;
@@ -107,7 +84,7 @@ void	write_elem(t_data *data, t_pars *pars) // to suppress
 {
 	int	i;
 
-	i = 0;	
+	i = 0;
 	printf("no = %s\n", pars->no);
 	printf("so = %s\n", pars->so);
 	printf("we = %s\n", pars->ea);
@@ -126,35 +103,24 @@ void	write_elem(t_data *data, t_pars *pars) // to suppress
 	printf("%d - %d - %d\n", ((data->sprites.ceiling >> 16) & 0xFF), ((data->sprites.ceiling >> 8) & 0xFF), (data->sprites.ceiling & 0xFF));
 }
 
-bool	valid_elements(t_data *data, t_pars *pars)
-{
-	if (valid_color(pars->floor_color)
-		&& char_to_color(data, pars->floor_color, "floor") == false)
-		return (false);
-	if (valid_color(pars->ceiling_color)
-		&& char_to_color(data, pars->ceiling_color, "ceiling") == false)
-		return (false);
-	return (true);
-}
-
 int	parsing(char *path, t_data *data)
 {
-	t_pars	pars; 
+	t_pars	pars;
 
 	init_parsing(&pars);
 	if (is_valid_file_format(path) == false)
-		return (write_error("Invalid filename ", path, 1));
+		return (write_error("Invalid filename ", path, NULL, 1));
 	pars.fd = open(path, O_RDONLY);
 	if (pars.fd == -1)
-		return (write_error("Could not open file ", path, 1));
+		return (write_error("Could not open file ", path, NULL, 1));
 	if (fill_file(&pars) != 0)
-		return (write_error("Malloc error", NULL, 1));
+		return (write_error(ERR_MALLOC, NULL, NULL, 1));
 	close(pars.fd);
-	if (is_valid_file_content(data, &pars) == false)
+	if (fill_file_content(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	if (is_valid_map(data) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
-	if (valid_elements(data, &pars) == false)
+	if (valid_data(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	if (init_mlx(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);

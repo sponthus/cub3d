@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_map.c                                     :+:      :+:    :+:   */
+/*   map_is_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/19 14:54:04 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:14:11 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	only_one_map(t_data *data)
 			while (data->map[i])
 			{
 				if (empty_mapline(data->map[i]) == false)
-					return (write_error("More than 1 map detected", NULL, false));
+					return (write_error("More than 1 map detected", NULL, NULL, false));
 				i++;
 			}
 			if (!data->map[i])
@@ -56,7 +56,7 @@ bool	only_one_player(t_data *data)
 			if (is_charset(data->map[i][j], "NSEW"))
 			{
 				if (player == true)
-					return (write_error("More than 1 player detected", NULL, false));
+					return (write_error("More than 1 player detected", NULL, NULL, false));
 				else
 				 	player = true;
 			}
@@ -65,25 +65,8 @@ bool	only_one_player(t_data *data)
 		i++;
 	}
 	if (player == false)
-		return (write_error("No player detected", NULL, false));
+		return (write_error(ERR_NO_ELEM, "player", NULL, false));
 	return (true);
-}
-
-int	map_size(t_data *data)
-{
-	int		i;
-
-	i = 0;
-	while (data->map[i])
-	{
-		if (empty_mapline(data->map[i]))
-		{
-			break ;
-		}
-		i++;
-	}
-	printf("map size is %d\n", i);
-	return (i);
 }
 
 bool	closed_map(t_data *data, int map_size)
@@ -122,6 +105,6 @@ bool	is_valid_map(t_data *data)
 	if (only_one_player(data) == false)
 		return (false);
 	if (closed_map(data, i) == false)
-		return (write_error("Map is not closed", NULL, false));
+		return (write_error("Map is not closed", NULL, NULL, false));
 	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_element_utils.c                               :+:      :+:    :+:   */
+/*   fill_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:29:55 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/17 12:02:24 by sponthus         ###   ########lyon.fr   */
+/*   Updated: 2024/09/23 12:14:49 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	fill_no(t_pars *pars, t_list *actual)
 			// pars->no = ft_strdup(actual->content);
 			// if (!pars->no)
 			// {
-			// 	return (write_error("Malloc error", actual->content, 1));
+			// 	return (write_error(ERR_MALLOC, actual->content, 1));
 			// } // SI BESOIN DE MALLOC POUR FREE LA LISTE
 			printf("Valid NO element registered %s\n", actual->content);
 		}
 		else
 		{
 			printf("actual = %s\n", pars->no);
-			return (write_error("NO redefined", actual->content, 1));
+			return (write_error(ERR_RED, actual->content, "NO",1));
 		}
 	}
 	return (0);
@@ -46,7 +46,7 @@ int	fill_so(t_pars *pars, t_list *actual)
 		}
 		else
 		{
-			return (write_error("SO redefined", actual->content, 1));
+			return (write_error(ERR_RED, actual->content, "SO", 1));
 		}
 	}
 	return (0);
@@ -63,7 +63,7 @@ int	fill_we(t_pars *pars, t_list *actual)
 		}
 		else
 		{
-			return (write_error("WE redefined", actual->content, 1));
+			return (write_error(ERR_RED, actual->content, "WE", 1));
 		}
 	}
 	return (0);
@@ -80,7 +80,7 @@ int	fill_ea(t_pars *pars, t_list *actual)
 		}
 		else
 		{
-			return (write_error("EA redefined", actual->content, 1));
+			return (write_error(ERR_RED, actual->content, "EA", 1));
 		}
 	}
 	return (0);
@@ -96,7 +96,7 @@ int	fill_colors(t_pars *pars, t_list *actual)
 			printf("Valid floor element registered %s\n", actual->content); //
 		}
 		else
-		 	return (write_error("F color redefined", actual->content, 1));
+			return (write_error(ERR_RED, actual->content, "F", 1));
 	}
 	if (ft_strncmp(actual->id, "C", 1) == 0)
 	{
@@ -106,7 +106,7 @@ int	fill_colors(t_pars *pars, t_list *actual)
 			printf("Valid ceiling element registered %s\n", actual->content); //
 		}
 		else
-		 	return (write_error("C color redefined", actual->content, 1));
+			return (write_error(ERR_RED, actual->content, "C", 1));
 	}
 	return (0);
 }

@@ -1,35 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   map_measure.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 17:00:33 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 12:05:32 by sponthus         ###   ########.fr       */
+/*   Created: 2024/09/23 11:09:26 by sponthus          #+#    #+#             */
+/*   Updated: 2024/09/23 11:27:40 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "cub3d.h"
 
-int	write_error(char *error, char *target, char *obj, int errno)
+int	map_length(t_data *data)
 {
-	write(2, "Error\n", 6);
-	if (error)
+	int	i;
+	int	max;
+	int	len;
+
+	max = 0;
+	len = 0;
+	i = 0;
+	while (data->map[i])
 	{
-		write(2, error, ft_strlen(error));
-		if (obj)
+		len = ft_strlen(data->map[i]);
+		if (len > max)
 		{
-			write(2, " ", 1);
-			write(2, obj, ft_strlen(obj));
-			write(2, " ", 1);
+			max = len;
 		}
-		if (target)
-		{
-			write(2, " : ", 3);
-			write(2, target, ft_strlen(target));
-		}
+		i++;
 	}
-	write(2, "\n", 1);
-	return (errno);
+	return (max);
+}
+
+int	map_size(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (data->map[i])
+	{
+		if (empty_mapline(data->map[i]))
+		{
+			break ;
+		}
+		i++;
+	}
+	return (i);
 }
