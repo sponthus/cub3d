@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/30 18:40:44 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/01 00:30:51 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_keysit(t_data *data)
 	}
 	else if (!data->key.space)
 	{
-		data->key.c = 0;	
+		data->key.c = 0;
 		data->player.posz = 0;
 	}
 }
@@ -104,8 +104,6 @@ int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 	{
-		if (data->display.ptr2.img)
-			mlx_destroy_image(data->mlx, data->display.ptr2.img);
 		if (data->display.ptr1.img)
 			mlx_destroy_image(data->mlx, data->display.ptr1.img);
 		// mlx_destroy_window(data->mlx, data->win);

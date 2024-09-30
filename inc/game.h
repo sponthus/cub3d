@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/13 19:06:25 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/30 21:36:38 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_move
 	double					posz;
 	double					pitch;
 	double					horizon;
+	double						fov;
 	double					dirx;
 	double					diry;
 	double					olddirx;
@@ -42,10 +43,10 @@ typedef struct s_move
 	double					planey;
 	double					oldplanex;
 	double					oldplaney;
-	double				time;
-	double				old_time;
-	double				frame;
-	double				ticktock;
+	double					time;
+	double					old_time;
+	double					frame;
+	double					ticktock;
 	double					speed;
 	double					movespeed;
 	double					rotspeed;
@@ -93,8 +94,8 @@ void		init_game(struct s_data  *data);
 int			move(struct s_data  *data);
 void		player_move(struct s_data *data, double dirx, double diry);
 /*				display			*/
-void		init_img(struct s_data* data, int *ptr);
-void		destroy_img(struct s_data *data, int *ptr);
+void		init_img(struct s_data* data);
+void		destroy_img(struct s_data *data);
 void		put_pixel_background(struct s_data *data, struct s_img *dis);
 
 /*				math			*/

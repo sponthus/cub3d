@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/30 20:11:56 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/01 00:25:46 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 			hit = 1;
 	}
 }
-void	draw_line(t_data *data, t_raycast *ray, int x, int ptr, int side)
+void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	/*					set color 			*/
 	unsigned int 	color = 0;
@@ -73,44 +73,39 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int ptr, int side)
 	unsigned int  	green = 0x0093db8a;
 	unsigned int 	pink = 0x00cc3dd6;
 	unsigned int 	red = 0x00bd1155;
-	//unsigned int 	yellow = 0x00dfd565;
-	//if (data->map[ray->mapx][ray->mapy]
-	//	&& data->map[ray->mapx][ray->mapy] == '1')
-	//	color = pink;
-	//else if (data->map[ray->mapx][ray->mapy]
-	//	&& data->map[ray->mapx][ray->mapy] == '2')
-	//	color = green;
-	//else if (data->map[ray->mapx][ray->mapy]
-	//	&& data->map[ray->mapx][ray->mapy] == '3')
-	//	color = pink;
-	//else if (data->map[ray->mapx][ray->mapy]
-	//	&& data->map[ray->mapx][ray->mapy] == '4')
-	//	color = red;
+	int				hitx = 0;
 	if (side == 0 && ray->stepx < 0)
+	{
+		hitx = data->player.posx + ray->perpwalldist * ray->raydirx;
 		color = pink;
+	}
 	if (side == 0 && ray->stepx > 0)
+	{
+		hitx = data->player.posx + ray->perpwalldist * ray->raydirx;
 		color = blue;
+	}
 	if (side == 1 && ray->stepy > 0)
+	{
+		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
 		color = red;
+	}
 	else if (side == 1 && ray->stepy < 0)
+	{
+		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
 		color = green;
+	}
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
-	if (ptr == 1)
+	int		y = 0;
+	while (y <= data->win_height)
 	{
-		while (ray->drawstart <= ray->drawend)
-		{
-			my_mlx_pixel_put(&data->display.ptr1, x, ray->drawstart, color);
-			ray->drawstart++;
-		}
-	}
-	else
-	{
-		while (ray->drawstart <= ray->drawend)
-		{
-			my_mlx_pixel_put(&data->display.ptr2, x, ray->drawstart, color);
-			ray->drawstart++;
-		}
+		if (y >= ray->drawstart && y <= ray->drawend)
+			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
+		else if (y < ray->drawstart)
+			my_mlx_pixel_put(&data->display.ptr1, x, y, 0x00f3aeae);
+		else if (y > ray->drawend)
+			my_mlx_pixel_put(&data->display.ptr1, x, y, 0x00aef3da);
+		y++;
 	}
 }
 
@@ -152,21 +147,20 @@ void	raycasting(t_data *data)
 {
 	t_raycast	ray;
 	int			x = 0;
-	int			ptr = 0;
 	int			side = 0;
 
-	init_img(data, &ptr);
-	memset(&ray, 0, sizeof(t_raycast));
+	init_img(data);
+	ft_memset(&ray, 0, sizeof(t_raycast));
 	while(x < data->win_width)
 	{
 		init_raycast(data, &ray, x);
 		dda_algorithme(data, &ray);
 		find_hit_point(data, &ray, &side);
 		set_drawline(data, &ray, side);
-		draw_line(data, &ray, x, ptr, side);
+		draw_line(data, &ray, x, side);
 		x++;
 	}
-	destroy_img(data, &ptr);
+	destroy_img(data);
 	data->player.old_time = data->player.time;
 	data->player.time = my_get_time();
 	if (data->player.time != data->player.old_time)
@@ -189,25 +183,25 @@ bool	is_player_init_pos(char c, t_move *player)
 	if (c == 'N')
 	{
 		player->dirx = -1;
-		player->planey = 0.66;
+		player->planey = player->fov / 90;
 		return (true);
 	}
 	else if (c == 'S')
 	{
 		player->dirx = 1;
-		player->planey = -0.66;
+		player->planey = -player->fov / 90;
 		return (true);
 	}
 	else if (c == 'E')
 	{
 		player->diry = 1;
-		player->planex = 0.66;
+		player->planex = player->fov / 90;
 		return (true);
 	}
 	else if (c == 'W')
 	{
 		player->diry = -1;
-		player->planex = -0.66;
+		player->planex = -player->fov / 90;
 		return (true);
 	}
 	return (false);
@@ -238,6 +232,7 @@ void	init_player(char **map, t_move *player)
 void	init_game(t_data *data)
 {
 	ft_memset(&data->player, 0, sizeof(t_move));
+	data->player.fov = 60;
 	init_player(data->map, &data->player);
 	data->player.gravity = 0.05;
 	data->player.speed = 0.02;

@@ -6,12 +6,11 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/13 15:46:40 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/01 00:33:15 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	put_pixel_background(t_data *data, t_img *dis)
 {
@@ -47,47 +46,23 @@ void	put_pixel_background(t_data *data, t_img *dis)
 	}
 }
 
-void	init_img(t_data *data, int *ptr)
+void	init_img(t_data *data)
 {
-	if (data->display.ptr1.img)
+	data->display.ptr1.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
+	if (!data->display.ptr1.img)
 	{
-		data->display.ptr2.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
-		data->display.ptr2.addr = mlx_get_data_addr(data->display.ptr2.img,
-		&data->display.ptr2.bpp, &data->display.ptr2.line_length,
-								&data->display.ptr2.endian);
-		put_pixel_background(data, &data->display.ptr2);
-		(*ptr) = 2;
+		printf("error : mlx_new_image failed\n");
+		exit(42); // free and exit
 	}
-	else
-	{
-		data->display.ptr1.img = mlx_new_image(data->mlx, data->win_width, data->win_height);
-		if (!data->display.ptr1.img)
-		{
-			printf("error : mlx_new_image failed\n");
-			exit(42);
-		}
-		data->display.ptr1.addr = mlx_get_data_addr(data->display.ptr1.img,
-		&data->display.ptr1.bpp, &data->display.ptr1.line_length,
-								&data->display.ptr1.endian);
-		put_pixel_background(data, &data->display.ptr1);
-		(*ptr) = 1;
-	}
+	data->display.ptr1.addr = mlx_get_data_addr(data->display.ptr1.img,
+	&data->display.ptr1.bpp, &data->display.ptr1.line_length,
+							&data->display.ptr1.endian);
 }
 
-void	destroy_img(t_data *data, int *ptr)
+void	destroy_img(t_data *data)
 {
-	if ((*ptr) == 1)
-	{
-		mlx_put_image_to_window(data->mlx, data->win, data->display.ptr1.img, 0, 0);
-		if (data && data->display.ptr2.img)
-			mlx_destroy_image(data->mlx, data->display.ptr2.img);
-		data->display.ptr2.img = NULL;
-	}
-	else if ((*ptr) == 2)
-	{
-		mlx_put_image_to_window(data->mlx, data->win, data->display.ptr2.img, 0, 0);
-		if (data && data->display.ptr1.img)
-			mlx_destroy_image(data->mlx, data->display.ptr1.img);	
-		data->display.ptr1.img = NULL;
-	}
+	mlx_put_image_to_window(data->mlx, data->win, data->display.ptr1.img, 0, 0); // protect mlx
+	if (data->display.ptr1.img)
+		mlx_destroy_image(data->mlx, data->display.ptr1.img);
+	data->display.ptr1.img = NULL;
 }
