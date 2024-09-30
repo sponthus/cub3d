@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/23 14:18:59 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:40:44 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	set_keysit(t_data *data)
 {
-	if (data->player.posz == 0)
+	if (data->player.posz == 0 && !data->key.space)
 	{
 		data->key.c = 1;
-		data->player.posz = data->win_height/4;
-		data->player.movespeed = data->player.speed/2;
+		data->player.posz = data->win_height / 4;
+		data->player.movespeed = data->player.speed / 2;
 	}
-	else
+	else if (!data->key.space)
 	{
 		data->key.c = 0;	
 		data->player.posz = 0;
@@ -32,7 +32,7 @@ void	set_keyjump(t_data *data)
 	if (!data->key.space)
 	{
 		data->key.space = 1;
-		data->player.jump_speed = -7;
+		data->player.jump_speed = -4;
 		data->player.initz = data->player.posz;
 	}
 }
@@ -112,7 +112,7 @@ int	key_press(int keycode, t_data *data)
 		// mlx_destroy_display(data->mlx);
 		// free_data(data);
 		free_data(data);
-		exit (EXIT_SUCCESS); // A modif proprement Sarah stp
+		exit (EXIT_SUCCESS);
 	}
 	set_keyplayer(keycode, data);
 	set_keycam(keycode, data);

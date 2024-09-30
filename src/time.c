@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:05:07 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/23 14:24:39 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:54:49 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ticktock(t_time *tv)
 	if (fd < 0)
 		exit (42); // free and exit
 	line = get_next_line(fd);
-	//printf("poc time = %s\n", line);
 	tv->tv_usec = milisecond(line);
 	tv->tv_sec = second(line)  - (tv->tv_sec * 1000.0);
 	//printf("atood sec = %f, usec = %f\n",tv->tv_sec,tv->tv_usec);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:28:14 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:16:34 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,13 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write_err(ERR_COUNT, EXP_CUB, "arguments", 1));
-	
-	// Coucou c'est Sarah, j'ai init la MLX dans le parsing, tu trouveras l'init dans init_mlx
-	// Bisous 1
-	
-	// data.mlx = mlx_init(); // secu
-	// if (!data.mlx)
-	// 	return (write_err("Failed to init mlx", NULL, 1));
-	// data.win = mlx_new_window(data.mlx, data.win_width , data.win_height, "cub3d");
-	// if (!data.win)
-	// 	return (write_err("Failed to init window", NULL, 1));
-	// init_game(&data);
-	// mlx_hook(data.win, 2, 1L<<0, key_press, &data);
-	// mlx_hook(data.win, 3, 1L<<1, key_release, &data);
-
-	// Ca je l'ai laisse la jsp ca me disait bien
+	// coucou Sarah tu j'ai initialiser le jeux en fonction de la pos et la direction du player
+	// j'ai aussi fais des couleurs en fonctions de la direction du mur pour me reperer
+	// tu verras aussi j'ai eloigner la distance qui separe le player du mur pour que ça soit plus visible
+	// actuellement je met en place les sprite que tu as init
+	// des bisous <3
+	mlx_hook(data.win, 2, 1L<<0, key_press, &data);
+	mlx_hook(data.win, 3, 1L<<1, key_release, &data);
 	mlx_loop_hook(data.mlx, move, &data);
 	mlx_loop(data.mlx);
 	return (0);

@@ -6,11 +6,26 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/13 17:57:31 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/09/30 18:34:02 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	player_move(t_data *data, double dirx, double diry)
+{
+	double		newx;
+	double		newy;
+
+	newx = data->player.posx + dirx * data->player.movespeed;
+	newy = data->player.posy + diry * data->player.movespeed;
+	if (data->map[(int)(data->player.posx)][(int)(newy)]
+		&& data->map[(int)(newx)][(int)(data->player.posy)] == '0')
+		data->player.posx = newx;
+	if (data->map[(int)(data->player.posx)][(int)(newy)]
+		&& data->map[(int)(data->player.posx)][(int)(newy)] == '0')
+		data->player.posy = newy;
+}
 
 void	cam_rotate(t_data *data, double rotspeed , int flag)
 {
@@ -57,7 +72,7 @@ void	find_keyplayer_move(t_data *data)
 		}
 	}
 	if (data->key.tab && !data->key.c)
-		data->player.movespeed = data->player.speed * 2;
+		data->player.movespeed = data->player.speed * 3;
 }
 
 void	find_keycam_move(t_data *data)
@@ -70,7 +85,6 @@ void	find_keycam_move(t_data *data)
 		cam_rotate(data, -data->player.rotspeed, 'h');
 	if (data->key.down)
 		cam_rotate(data, data->player.rotspeed, 'h');
-	
 }
 
 int	move(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/23 14:20:25 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:11:56 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,6 @@
 #include <X11/keysym.h>
 #include <string.h>
 #include <sys/time.h>
-
-int map[24][24]=
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
 
 
 void	update_frame_data(t_data *data)
@@ -56,9 +27,9 @@ void	update_frame_data(t_data *data)
 void	set_drawline(t_data *data ,t_raycast *ray, int side)
 {
 	if (side == 0)
-		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
+		ray->perpwalldist = (ray->sidedistx - ray->deltadistx) * 4;
 	else
-		ray->perpwalldist = (ray->sidedisty - ray->deltadisty);
+		ray->perpwalldist = (ray->sidedisty - ray->deltadisty) * 4;
 	data->player.horizon = data->player.pitch * data->win_height;
 	ray->lineheight = (int)((data->win_height * data->player.wallheight) / ray->perpwalldist);
 	ray->drawstart = (((ray->lineheight / 2) * -1) + (data->win_height / 2)) - data->player.horizon ;
@@ -70,7 +41,7 @@ void	set_drawline(t_data *data ,t_raycast *ray, int side)
 	if (ray->drawend >= data->win_height)
 		ray->drawend = data->win_height - 1;
 }
-void	find_hit_point(t_raycast *ray, int *side)
+void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 {
 	int 	hit;
 
@@ -89,7 +60,8 @@ void	find_hit_point(t_raycast *ray, int *side)
 			ray->mapy += ray->stepy;
 			(*side) = 1;
 		}
-		if (map[ray->mapx][ray->mapy] > 0)
+		if (data->map[ray->mapx][ray->mapy]
+			&& data->map[ray->mapx][ray->mapy] > '0')
 			hit = 1;
 	}
 }
@@ -101,19 +73,27 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int ptr, int side)
 	unsigned int  	green = 0x0093db8a;
 	unsigned int 	pink = 0x00cc3dd6;
 	unsigned int 	red = 0x00bd1155;
-	unsigned int 	yellow = 0x00dfd565;
-	if (map[ray->mapx][ray->mapy] == 1)
-		color = blue;
-	else if (map[ray->mapx][ray->mapy] == 2)
-		color = green;
-	else if (map[ray->mapx][ray->mapy] == 3)
+	//unsigned int 	yellow = 0x00dfd565;
+	//if (data->map[ray->mapx][ray->mapy]
+	//	&& data->map[ray->mapx][ray->mapy] == '1')
+	//	color = pink;
+	//else if (data->map[ray->mapx][ray->mapy]
+	//	&& data->map[ray->mapx][ray->mapy] == '2')
+	//	color = green;
+	//else if (data->map[ray->mapx][ray->mapy]
+	//	&& data->map[ray->mapx][ray->mapy] == '3')
+	//	color = pink;
+	//else if (data->map[ray->mapx][ray->mapy]
+	//	&& data->map[ray->mapx][ray->mapy] == '4')
+	//	color = red;
+	if (side == 0 && ray->stepx < 0)
 		color = pink;
-	else if (map[ray->mapx][ray->mapy] == 4)
+	if (side == 0 && ray->stepx > 0)
+		color = blue;
+	if (side == 1 && ray->stepy > 0)
 		color = red;
-	else
-		color = yellow;
-	if (side == 1)
-		color = color / 2;
+	else if (side == 1 && ray->stepy < 0)
+		color = green;
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
 	if (ptr == 1)
@@ -181,7 +161,7 @@ void	raycasting(t_data *data)
 	{
 		init_raycast(data, &ray, x);
 		dda_algorithme(data, &ray);
-		find_hit_point(&ray, &side);
+		find_hit_point(data, &ray, &side);
 		set_drawline(data, &ray, side);
 		draw_line(data, &ray, x, ptr, side);
 		x++;
@@ -195,29 +175,70 @@ void	raycasting(t_data *data)
 		data->player.frame = 0;
 	if (data->player.frame != 0)
 	{
-		data->player.speed = data->player.frame * 3;
+		data->player.speed = data->player.frame * 0.9;
+		if (data->key.tab)
+			data->player.speed *= 2;
 		data->player.movespeed = data->player.speed;
-		data->player.rotspeed = data->player.frame * 2;
-		// printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", 1/data->player.frame, data->player.movespeed, data->player.rotspeed);
+		data->player.rotspeed = data->player.frame * 0.7;
+		//printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", 1/data->player.frame, data->player.movespeed, data->player.rotspeed);
 	}
 }
 
+bool	is_player_init_pos(char c, t_move *player)
+{
+	if (c == 'N')
+	{
+		player->dirx = -1;
+		player->planey = 0.66;
+		return (true);
+	}
+	else if (c == 'S')
+	{
+		player->dirx = 1;
+		player->planey = -0.66;
+		return (true);
+	}
+	else if (c == 'E')
+	{
+		player->diry = 1;
+		player->planex = 0.66;
+		return (true);
+	}
+	else if (c == 'W')
+	{
+		player->diry = -1;
+		player->planex = -0.66;
+		return (true);
+	}
+	return (false);
+}
 
+void	init_player(char **map, t_move *player)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_player_init_pos(map[i][j], player))
+			{
+				player->posx = i;
+				player->posy = j;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 void	init_game(t_data *data)
 {
-	/* the inital value for calculate racasting */ 
-	data->player.posx = 22; // vecteur du player (pos sur la map)
-	data->player.posy = 11.5;
-	data->player.posz = 0;
-	data->player.pitch = 0.0;
-	data->player.dirx = -1; // vecteur direction du player (direction de depard n,s,e,w)
-	data->player.diry = 0;
-	data->player.planex = 0;	// niveau de la camera (angle)
-	data->player.planey = 0.66;
-	data->player.time = 0; // current frame
-	data->player.old_time = 0; // old frame
-	data->player.frame = 0;
+	ft_memset(&data->player, 0, sizeof(t_move));
+	init_player(data->map, &data->player);
 	data->player.gravity = 0.05;
 	data->player.speed = 0.02;
 	data->player.movespeed = data->player.speed;
@@ -226,16 +247,3 @@ void	init_game(t_data *data)
 	raycasting(data);
 }
 
-void	player_move(t_data *data, double dirx, double diry)
-{
-	double		newx;
-	double		newy;
-
-	newx = data->player.posx + dirx * data->player.movespeed;
-	newy = data->player.posy + diry * data->player.movespeed;
-	if (map[(int)(newx)][(int)(data->player.posy)] == 0)
-		data->player.posx = newx;
-	if (map[(int)(data->player.posx)][(int)(newy)] == 0)
-		data->player.posy = newy;
-
-}
