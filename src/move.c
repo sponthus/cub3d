@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/30 18:34:02 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/01 10:23:54 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	cam_rotate(t_data *data, double rotspeed , int flag)
 
 void	find_keyplayer_move(t_data *data)
 {
-	if (data->key.z)
+	if (data->key.w)
 		player_move(data, data->player.dirx, data->player.diry);
 	if (data->key.s)
 		player_move(data, -data->player.dirx, -data->player.diry);
-	if (data->key.q)
+	if (data->key.a)
 		player_move(data, -data->player.diry, data->player.dirx);
 	if (data->key.d)
 		player_move(data, data->player.diry, -data->player.dirx);
