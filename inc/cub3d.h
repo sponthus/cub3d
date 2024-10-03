@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:11:05 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:20:40 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@
 # define WIN_HEIGHT 800
 # define WIN_WIDTH 800
 
+# define TEXTURE_SIZE 64
+
 typedef struct s_img
 {
 	void				*img;
 	char				*addr;
 	int					bpp;
-	int					line_length;
+	int					ll;
 	int					endian;
 }	t_img;
 

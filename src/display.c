@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/01 00:33:15 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/03 10:23:44 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init_img(t_data *data)
 		exit(42); // free and exit
 	}
 	data->display.ptr1.addr = mlx_get_data_addr(data->display.ptr1.img,
-	&data->display.ptr1.bpp, &data->display.ptr1.line_length,
+	&data->display.ptr1.bpp, &data->display.ptr1.ll,
 							&data->display.ptr1.endian);
 }
 

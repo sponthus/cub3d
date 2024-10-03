@@ -1,7 +1,7 @@
-NO      inc/purple_stone.xpm
-SO   inc/round_stone.xpm
-WE        inc/rustic_stone.xpm
-EA inc/small_stone.xpm
+NO      inc/64x/bookshelf.xpm
+SO   inc/64x/Bricks.xpm
+WE        inc/64x/bricksx64.xpm
+EA inc/64x/Planks.xpm
 
 F     220,100,0
  

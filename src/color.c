@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:42:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/13 11:49:53 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/03 10:23:44 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 //       x = 0;
 //        while (x < 800)
 //		{
-//			index = y * background->line_length + x * (background->bpp / 8);
+//			index = y * background->ll + x * (background->bpp / 8);
 //			color = *(unsigned int *)(face->addr + index);
 //			if (color != 0)
 //			    *(unsigned int *)(background->addr + index) = color;

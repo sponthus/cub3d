@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:10:21 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 10:57:33 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_pars
 	char	*so;
 	char	*we;
 	char	*ea;
+	int		size;
 	char	*floor_color;
 	char	*ceiling_color;
 
