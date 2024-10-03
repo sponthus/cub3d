@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/03 14:34:58 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:42:03 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,13 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	{
 		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
 		color = red;
-		dir = WEST; // TO CHECK
+		dir = EAST; // TO CHECK
 	}
 	else if (side == 1 && ray->stepy < 0)
 	{
 		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
 		color = green;
-		dir = EAST;
+		dir = WEST;
 	}
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
@@ -136,8 +136,8 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
 		{
-			color = chose_color(data, x, y, dir);
-			color = calculate_shaded_color(color, ray->perpwalldist);
+			// color = chose_color(data, hitx, y, dir);
+			// color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
 		else if (y < ray->drawstart)
