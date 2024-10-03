@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/03 14:52:54 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:02:43 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,8 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
 		{
-			hity = ((y - ray->drawstart) / w_height) * data->sprites.no.height; // A adapter a la height de chaque texture, jpense que avec lui on est good
+			if (w_height != 0)
+				hity = ((y - ray->drawstart) / w_height) * data->sprites.no.height; // A adapter a la height de chaque texture,
 			color = chose_color(data, hitx, hity, dir);
 			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
