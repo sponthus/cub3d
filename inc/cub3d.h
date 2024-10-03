@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/03 14:11:33 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:28:18 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 # define WIN_HEIGHT 800
 # define WIN_WIDTH 800
 
-# define TEXTURE_SIZE 64
+# define NORTH 1
+# define SOUTH 2
+# define WEST 3
+# define EAST 4
 
 typedef struct s_img
 {

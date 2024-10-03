@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/01 00:25:46 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/03 14:34:58 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,32 @@ void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 			hit = 1;
 	}
 }
+
+// tex->width represente la largeur de la texturem idem height
+// x et y representent en pixel la correspondance, de 0 a tex->width/height
+// Donc pourcentage deja applique
+
+int	find_color_in_tex(t_img *img, int y, int x)
+{
+	if (x >= 0 && x < img->width && y >= 0 && y < img->height)
+		return (*(int *)(img->addr + (img->ll * y) + (x * img->bpp / 8)));
+	return (0x0);
+}
+
+int	chose_color(t_data *data, int x, int y, int dir)
+{
+	if (dir == NORTH)
+		return (find_color_in_tex(&data->sprites.no, x, y));
+	else if (dir == SOUTH)
+		return (find_color_in_tex(&data->sprites.so, x, y));
+	else if (dir == WEST)
+		return (find_color_in_tex(&data->sprites.we, x, y));
+	else if (dir == EAST)
+		return (find_color_in_tex(&data->sprites.ea, x, y));
+	return (0x0);
+}
+
+
 void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	/*					set color 			*/
@@ -74,33 +100,46 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	unsigned int 	pink = 0x00cc3dd6;
 	unsigned int 	red = 0x00bd1155;
 	int				hitx = 0;
+	int				dir = 0;
+
 	if (side == 0 && ray->stepx < 0)
 	{
 		hitx = data->player.posx + ray->perpwalldist * ray->raydirx;
+		dir = NORTH; // To check
 		color = pink;
 	}
 	if (side == 0 && ray->stepx > 0)
 	{
 		hitx = data->player.posx + ray->perpwalldist * ray->raydirx;
+		dir = SOUTH; // To check
 		color = blue;
 	}
 	if (side == 1 && ray->stepy > 0)
 	{
 		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
 		color = red;
+		dir = WEST; // TO CHECK
 	}
 	else if (side == 1 && ray->stepy < 0)
 	{
 		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
 		color = green;
+		dir = EAST;
 	}
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
 	int		y = 0;
+	// Reste a transformer x et y en hitx et hity 
+	// Representant le pixel, de 0 a img->height/width
+	// Donc pourcentage touche de la texture rapporte a img->height/width
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
+		{
+			color = chose_color(data, x, y, dir);
+			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
+		}
 		else if (y < ray->drawstart)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, 0x00f3aeae);
 		else if (y > ray->drawend)
