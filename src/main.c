@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/30 20:16:34 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/03 10:18:53 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write_err(ERR_COUNT, EXP_CUB, "arguments", 1));
-	// coucou Sarah tu j'ai initialiser le jeux en fonction de la pos et la direction du player
-	// j'ai aussi fais des couleurs en fonctions de la direction du mur pour me reperer
-	// tu verras aussi j'ai eloigner la distance qui separe le player du mur pour que ça soit plus visible
-	// actuellement je met en place les sprite que tu as init
-	// des bisous <3
+	// coucou Emma!!
+	// Je me penche +++ sur la gestion des textures, je tiens un truc pour recuperer les couleurs des pixels
+	// on croise les doigts de pieds
 	mlx_hook(data.win, 2, 1L<<0, key_press, &data);
 	mlx_hook(data.win, 3, 1L<<1, key_release, &data);
 	mlx_loop_hook(data.mlx, move, &data);
