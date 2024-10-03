@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/03 14:42:03 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:45:39 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,12 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	// Reste a transformer x et y en hitx et hity 
 	// Representant le pixel, de 0 a img->height/width
 	// Donc pourcentage touche de la texture rapporte a img->height/width
+
+	unsigned int	ceiling;
+	unsigned int	floor;
+
+	ceiling = data->sprites.ceiling;
+	floor = data->sprites.floor;
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
@@ -141,9 +147,9 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
 		else if (y < ray->drawstart)
-			my_mlx_pixel_put(&data->display.ptr1, x, y, 0x00f3aeae);
+			my_mlx_pixel_put(&data->display.ptr1, x, y, ceiling);
 		else if (y > ray->drawend)
-			my_mlx_pixel_put(&data->display.ptr1, x, y, 0x00aef3da);
+			my_mlx_pixel_put(&data->display.ptr1, x, y, floor);
 		y++;
 	}
 }
