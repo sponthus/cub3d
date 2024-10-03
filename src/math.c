@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/03 14:45:39 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:52:54 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,21 +129,26 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
 	int		y = 0;
-	// Reste a transformer x et y en hitx et hity 
-	// Representant le pixel, de 0 a img->height/width
-	// Donc pourcentage touche de la texture rapporte a img->height/width
+	// Reste a transformer x hitx
+	// Representant le pixel, de 0 a img->width
+	// Donc pourcentage touche de la texture rapporte a img->width
 
 	unsigned int	ceiling;
 	unsigned int	floor;
 
 	ceiling = data->sprites.ceiling;
 	floor = data->sprites.floor;
+	
+	int	w_height = ray->drawend - ray->drawstart;
+	int	hity;
+
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
 		{
-			// color = chose_color(data, hitx, y, dir);
-			// color = calculate_shaded_color(color, ray->perpwalldist);
+			hity = ((y - ray->drawstart) / w_height) * data->sprites.no.height; // A adapter a la height de chaque texture, jpense que avec lui on est good
+			color = chose_color(data, hitx, hity, dir);
+			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
 		else if (y < ray->drawstart)
