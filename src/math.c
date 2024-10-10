@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/03 15:02:43 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:50:06 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	update_frame_data(t_data *data)
 void	set_drawline(t_data *data ,t_raycast *ray, int side)
 {
 	if (side == 0)
-		ray->perpwalldist = (ray->sidedistx - ray->deltadistx) * 4;
+		ray->perpwalldist = (ray->sidedistx - ray->deltadistx) * 6;
 	else
-		ray->perpwalldist = (ray->sidedisty - ray->deltadisty) * 4;
+		ray->perpwalldist = (ray->sidedisty - ray->deltadisty) * 6;
 	data->player.horizon = data->player.pitch * data->win_height;
 	ray->lineheight = (int)((data->win_height * data->player.wallheight) / ray->perpwalldist);
 	ray->drawstart = (((ray->lineheight / 2) * -1) + (data->win_height / 2)) - data->player.horizon ;
@@ -72,8 +72,17 @@ void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 
 int	find_color_in_tex(t_img *img, int y, int x)
 {
-	if (x >= 0 && x < img->width && y >= 0 && y < img->height)
-		return (*(int *)(img->addr + (img->ll * y) + (x * img->bpp / 8)));
+	int pixx;
+
+	pixx = (x % img->width);
+	
+	int pixy;
+
+	pixy = (y * img->height) * 0.01;
+
+	// printf("x %d - y %d\n", pixx, pixy);
+	if (pixx >= 0 && pixx < img->width && pixy >= 0 && pixy < img->height)
+		return (*(int *)(img->addr + (img->ll * pixy) + (pixx * img->bpp / 8)));
 	return (0x0);
 }
 
@@ -95,36 +104,22 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	/*					set color 			*/
 	unsigned int 	color = 0;
-	unsigned int 	blue = 0x004c51a7;
-	unsigned int  	green = 0x0093db8a;
-	unsigned int 	pink = 0x00cc3dd6;
-	unsigned int 	red = 0x00bd1155;
+	// unsigned int 	blue = 0x004c51a7;
+	// unsigned int  	green = 0x0093db8a;
+	// unsigned int 	pink = 0x00cc3dd6;
+	// unsigned int 	red = 0x00bd1155;
 	int				hitx = 0;
 	int				dir = 0;
 
-	if (side == 0 && ray->stepx < 0)
+	if (side == 0) // Mur nord ou sud
 	{
-		hitx = data->player.posx + ray->perpwalldist * ray->raydirx;
-		dir = NORTH; // To check
-		color = pink;
+		hitx = x;
+		dir = (ray->stepx < 0) ? NORTH : SOUTH;
 	}
-	if (side == 0 && ray->stepx > 0)
+	else // Mur est ou ouest
 	{
-		hitx = data->player.posx + ray->perpwalldist * ray->raydirx;
-		dir = SOUTH; // To check
-		color = blue;
-	}
-	if (side == 1 && ray->stepy > 0)
-	{
-		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
-		color = red;
-		dir = EAST; // TO CHECK
-	}
-	else if (side == 1 && ray->stepy < 0)
-	{
-		hitx = data->player.posy + ray->perpwalldist * ray->raydiry;
-		color = green;
-		dir = WEST;
+		hitx = x;
+		dir = (ray->stepy < 0) ? WEST : EAST;
 	}
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
@@ -136,19 +131,21 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	unsigned int	ceiling;
 	unsigned int	floor;
 
-	ceiling = data->sprites.ceiling;
+	ceiling = data->sprites.ceiling; 
 	floor = data->sprites.floor;
-	
-	int	w_height = ray->drawend - ray->drawstart;
-	int	hity;
 
+	int	w_height = ray->lineheight;
+
+	// printf("%f hitx\n", hitx);
+	// printf("%d\n", w_height);
+	int	heighty = 0;
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
 		{
-			if (w_height != 0)
-				hity = ((y - ray->drawstart) / w_height) * data->sprites.no.height; // A adapter a la height de chaque texture,
-			color = chose_color(data, hitx, hity, dir);
+			heighty = (((y - ray->drawstart) * 100 / (w_height)));
+			// printf("heighty = %d / y = %d / w_height = %d / ray->drawstart = %d\n", heighty, y, w_height, ray->drawstart);
+			color = chose_color(data, heighty, hitx, dir);
 			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
@@ -218,15 +215,15 @@ void	raycasting(t_data *data)
 		data->player.frame = (data->player.time - data->player.old_time) / 10000;
 	else
 		data->player.frame = 0;
-	if (data->player.frame != 0)
-	{
-		data->player.speed = data->player.frame * 0.9;
-		if (data->key.tab)
-			data->player.speed *= 2;
-		data->player.movespeed = data->player.speed;
-		data->player.rotspeed = data->player.frame * 0.7;
-		//printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", 1/data->player.frame, data->player.movespeed, data->player.rotspeed);
-	}
+	// if (data->player.frame != 0)
+	// {
+	// 	data->player.speed = data->player.frame * 0.9;
+	// 	if (data->key.tab)
+	// 		data->player.speed *= 2;
+	// 	data->player.movespeed = data->player.speed;
+	// 	data->player.rotspeed = data->player.frame * 0.7;
+	// 	//printf("FPS : %f\nmovespeed : %f\nrotspeed : %f\n", 1/data->player.frame, data->player.movespeed, data->player.rotspeed);
+	// }
 }
 
 bool	is_player_init_pos(char c, t_move *player)

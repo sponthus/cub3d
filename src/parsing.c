@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:19:40 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:58:02 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int	parsing(char *path, t_data *data)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	if (valid_data(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
+	printf("entering init mlx \n");
 	if (init_mlx(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	// write_elem(data, &pars); //

@@ -3,9 +3,9 @@ SO   inc/64x/Bricks.xpm
 WE        inc/64x/bricksx64.xpm
 EA inc/64x/Planks.xpm
 
-F     220,100,0
+F     0,0,33
  
-C 225,30,0    
+C 255,255,204    
 
 
         11111111111111111111111111
