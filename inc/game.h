@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/30 21:36:38 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/10 13:21:26 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_raycast
 	double		raydiry;
 	double		perpwalldist;
 	int			lineheight;
+	int			linestart;
 	int			drawstart;
 	int			drawend;
 	

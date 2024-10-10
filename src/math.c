@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/10 11:01:29 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:21:21 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	set_drawline(t_data *data ,t_raycast *ray, int side)
 	ray->lineheight = (int)((data->win_height * data->player.wallheight) / ray->perpwalldist);
 	ray->drawstart = (((ray->lineheight / 2) * -1) + (data->win_height / 2)) - data->player.horizon ;
 	ray->drawstart -=  data->player.posz;
+	ray->linestart = ray->drawstart;
 	if (ray->drawstart < 0)
 		ray->drawstart = 0;
 	ray->drawend = (ray->lineheight / 2 + (data->win_height / 2)) - data->player.horizon;
-	ray->drawend -=  data->player.posz; 
+	ray->drawend -=  data->player.posz;
 	if (ray->drawend >= data->win_height)
 		ray->drawend = data->win_height - 1;
 }
@@ -134,7 +135,8 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	ceiling = data->sprites.ceiling; 
 	floor = data->sprites.floor;
 
-	int	w_height = ray->lineheight;
+	// int	draw_height = ray->drawend - ray->drawstart;
+	int	tot_height = ray->lineheight;
 
 	// printf("%f hitx\n", hitx);
 	// printf("%d\n", w_height);
@@ -143,8 +145,12 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
 		{
-			heighty = (((y - ray->drawstart) * 100 / (w_height)));
-			// printf("heighty = %d / y = %d / w_height = %d / ray->drawstart = %d\n", heighty, y, w_height, ray->drawstart);
+			// if (ray->drawstart + ray->lineheight > data->win_height) // condition OK
+			// 	heighty = (((y - ray->drawstart) * 100 / tot_height));
+			// else
+			// 	heighty = (((y + ray->lineheight - ray->drawend) * 100 / tot_height));
+			// // printf("heighty = %d / y = %d / w_height = %d / ray->drawstart = %d\n", heighty, y, w_height, ray->drawstart);
+			heighty = (y - ray->linestart) * 100 / tot_height;
 			color = chose_color(data, heighty, hitx, dir);
 			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
