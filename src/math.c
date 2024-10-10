@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/10 13:31:57 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/10 14:09:23 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	chose_color(t_data *data, int x, int y, int dir)
 	return (0x0);
 }
 
-
 void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	/*					set color 			*/
@@ -114,17 +113,18 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 
 	if (side == 0) // Mur nord ou sud
 	{
-		hitx = (double)data->player.posy + ray->perpwalldist * ray->raydiry;
+		hitx = ray->mapy + ray->perpwalldist * ray->raydiry;
 		dir = (ray->stepx < 0) ? NORTH : SOUTH;
 	}
 	else // Mur est ou ouest
 	{
-		hitx = (double)data->player.posx + ray->perpwalldist * ray->raydirx;
+		hitx =  ray->mapy + ray->perpwalldist * ray->raydirx;
 		dir = (ray->stepy < 0) ? WEST : EAST;
 	}
 	color = calculate_shaded_color(color, ray->perpwalldist);
 	/*					draw_line			*/
 	int		y = 0;
+	hitx -= floor(hitx);
 	// Reste a transformer x hitx
 	// Representant le pixel, de 0 a img->width
 	// Donc pourcentage touche de la texture rapporte a img->width
@@ -134,14 +134,13 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 
 	ceiling = data->sprites.ceiling; 
 	floor = data->sprites.floor;
-
 	// int	draw_height = ray->drawend - ray->drawstart;
 	int	tot_height = ray->lineheight;
 
 	// printf("%f hitx\n", hitx);
 	// printf("%d\n", w_height);
 	int	heighty = 0;
-	double heightx = fabs(fmod(hitx, 1) * 100);
+	double heightx =  fabs(fmod(hitx, 1) * 100);
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
