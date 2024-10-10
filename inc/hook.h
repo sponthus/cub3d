@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/01 10:23:31 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/02 14:06:03 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef	struct s_keypress
 
 int	key_release(int keycode, struct s_data *data);
 int	key_press(int keycode, struct s_data *data);
+int mouse_hook(int x, int y, struct s_data *data);
 
 #endif
 

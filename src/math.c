@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/10 13:21:21 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:31:57 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	find_color_in_tex(t_img *img, int y, int x)
 {
 	int pixx;
 
-	pixx = (x % img->width);
+	pixx = (x * img->width) * 0.01;
 	
 	int pixy;
 
@@ -109,17 +109,17 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	// unsigned int  	green = 0x0093db8a;
 	// unsigned int 	pink = 0x00cc3dd6;
 	// unsigned int 	red = 0x00bd1155;
-	int				hitx = 0;
-	int				dir = 0;
+	double				hitx = 0;
+	int					dir = 0;
 
 	if (side == 0) // Mur nord ou sud
 	{
-		hitx = x;
+		hitx = (double)data->player.posy + ray->perpwalldist * ray->raydiry;
 		dir = (ray->stepx < 0) ? NORTH : SOUTH;
 	}
 	else // Mur est ou ouest
 	{
-		hitx = x;
+		hitx = (double)data->player.posx + ray->perpwalldist * ray->raydirx;
 		dir = (ray->stepy < 0) ? WEST : EAST;
 	}
 	color = calculate_shaded_color(color, ray->perpwalldist);
@@ -141,6 +141,7 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	// printf("%f hitx\n", hitx);
 	// printf("%d\n", w_height);
 	int	heighty = 0;
+	double heightx = fabs(fmod(hitx, 1) * 100);
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
@@ -151,7 +152,7 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 			// 	heighty = (((y + ray->lineheight - ray->drawend) * 100 / tot_height));
 			// // printf("heighty = %d / y = %d / w_height = %d / ray->drawstart = %d\n", heighty, y, w_height, ray->drawstart);
 			heighty = (y - ray->linestart) * 100 / tot_height;
-			color = chose_color(data, heighty, hitx, dir);
+			color = chose_color(data, heighty, heightx, dir);
 			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}

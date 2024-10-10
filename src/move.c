@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/01 10:23:54 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/09 14:27:28 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,48 @@ void	find_keycam_move(t_data *data)
 		cam_rotate(data, data->player.rotspeed, 'h');
 }
 
+int mouse_hook(int x, int y, t_data *data)
+{
+	printf("%d %d %d\n", x, y, data->win_width);
+	if (x < data->win_width * 0.5)
+	{
+		data->player.rotspeed = x / data->win_width;
+		cam_rotate(data, -data->player.rotspeed, 'w');
+	}
+	if (x > data->win_width * 0.5)
+	{
+		printf("salut\n");
+		data->player.rotspeed =( x / data->win_width) * 100;
+		cam_rotate(data, data->player.rotspeed, 'w');
+	}
+	if (y > data->win_height * 0.5)
+	{
+		data->player.rotspeed = x / data->win_height;
+		cam_rotate(data, -data->player.rotspeed, 'h');
+	}
+	if (y < data->win_height * 0.5)
+	{
+		data->player.rotspeed = x / data->win_height;
+		cam_rotate(data, -data->player.rotspeed, 'h');
+	}
+	return (0);
+}
+
+void	mouse_setting(t_data *data)
+{
+	int		x;
+	int		y;
+
+	mlx_mouse_hide(data->mlx, data->win);
+	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
+	mouse_hook(x, y, data);
+	mlx_mouse_move(data->mlx, data->win, data->win_width * 0.5, data->win_height * 0.5);
+}
 int	move(t_data *data)
 {
 	find_keyplayer_move(data);
 	find_keycam_move(data);
+	// mouse_setting(data);
 	//data->player.wallheight += 0.002;
 	raycasting(data);
 	return (0);
