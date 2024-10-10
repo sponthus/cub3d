@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/10 14:09:23 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/10 16:30:07 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void	update_frame_data(t_data *data)
 {
 	data->player.old_time = data->player.time;
 	data->player.time = data->player.ticktock * 10;
-	data->player.frame = (data->player.time - data->player.old_time)/1000;
+	data->player.frame = (data->player.time - data->player.old_time) / 1000;
 	data->player.movespeed = data->player.frame * 0.005;
 	data->player.rotspeed = data->player.frame * 0.003;
 }
+
 void	set_drawline(t_data *data ,t_raycast *ray, int side)
 {
 	if (side == 0)
@@ -42,9 +43,10 @@ void	set_drawline(t_data *data ,t_raycast *ray, int side)
 	if (ray->drawend >= data->win_height)
 		ray->drawend = data->win_height - 1;
 }
+
 void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 {
-	int 	hit;
+	int	hit;
 
 	hit = 0;
 	while (hit == 0)
@@ -67,100 +69,163 @@ void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 	}
 }
 
-// tex->width represente la largeur de la texturem idem height
-// x et y representent en pixel la correspondance, de 0 a tex->width/height
-// Donc pourcentage deja applique
-
-int	find_color_in_tex(t_img *img, int y, int x)
+int	tex_find_color(t_img *img, int y, int x)
 {
-	int pixx;
-
-	pixx = (x * img->width) * 0.01;
-	
-	int pixy;
+	int	pixy;
 
 	pixy = (y * img->height) * 0.01;
-
-	// printf("x %d - y %d\n", pixx, pixy);
-	if (pixx >= 0 && pixx < img->width && pixy >= 0 && pixy < img->height)
-		return (*(int *)(img->addr + (img->ll * pixy) + (pixx * img->bpp / 8)));
+	if (x >= 0 && x < img->width && pixy >= 0 && pixy < img->height)
+		return (*(int *)(img->addr + (img->ll * pixy) + (x * img->bpp / 8)));
 	return (0x0);
 }
 
-int	chose_color(t_data *data, int x, int y, int dir)
+int	tex_chose_color(t_data *data, int x, int y, int dir)
 {
 	if (dir == NORTH)
-		return (find_color_in_tex(&data->sprites.no, x, y));
+		return (tex_find_color(&data->sprites.no, x, y));
 	else if (dir == SOUTH)
-		return (find_color_in_tex(&data->sprites.so, x, y));
+		return (tex_find_color(&data->sprites.so, x, y));
 	else if (dir == WEST)
-		return (find_color_in_tex(&data->sprites.we, x, y));
+		return (tex_find_color(&data->sprites.we, x, y));
 	else if (dir == EAST)
-		return (find_color_in_tex(&data->sprites.ea, x, y));
+		return (tex_find_color(&data->sprites.ea, x, y));
 	return (0x0);
 }
 
-void	draw_line(t_data *data, t_raycast *ray, int x, int side)
+int	chose_dir(int side, t_raycast *ray)
 {
-	/*					set color 			*/
-	unsigned int 	color = 0;
-	// unsigned int 	blue = 0x004c51a7;
-	// unsigned int  	green = 0x0093db8a;
-	// unsigned int 	pink = 0x00cc3dd6;
-	// unsigned int 	red = 0x00bd1155;
-	double				hitx = 0;
-	int					dir = 0;
-
-	if (side == 0) // Mur nord ou sud
+	if (side == 0)
 	{
-		hitx = ray->mapy + ray->perpwalldist * ray->raydiry;
-		dir = (ray->stepx < 0) ? NORTH : SOUTH;
+		if (ray->stepx < 0)
+			return (NORTH);
+		else
+			return (SOUTH);
 	}
-	else // Mur est ou ouest
+	else
 	{
-		hitx =  ray->mapy + ray->perpwalldist * ray->raydirx;
-		dir = (ray->stepy < 0) ? WEST : EAST;
+		if (ray->stepy < 0)
+			return (WEST);
+		else
+			return (EAST);
 	}
-	color = calculate_shaded_color(color, ray->perpwalldist);
-	/*					draw_line			*/
-	int		y = 0;
-	hitx -= floor(hitx);
-	// Reste a transformer x hitx
-	// Representant le pixel, de 0 a img->width
-	// Donc pourcentage touche de la texture rapporte a img->width
+}
 
-	unsigned int	ceiling;
-	unsigned int	floor;
+// Nom pas fou mais je pense que le + approprie derait draw_line
+void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texX)
+{
+	unsigned int	color;
+	int				y;
+	int				pery;
 
-	ceiling = data->sprites.ceiling; 
-	floor = data->sprites.floor;
-	// int	draw_height = ray->drawend - ray->drawstart;
-	int	tot_height = ray->lineheight;
-
-	// printf("%f hitx\n", hitx);
-	// printf("%d\n", w_height);
-	int	heighty = 0;
-	double heightx =  fabs(fmod(hitx, 1) * 100);
+	color = 0;
+	y = 0;
+	pery = 0;
 	while (y <= data->win_height)
 	{
 		if (y >= ray->drawstart && y <= ray->drawend)
 		{
-			// if (ray->drawstart + ray->lineheight > data->win_height) // condition OK
-			// 	heighty = (((y - ray->drawstart) * 100 / tot_height));
-			// else
-			// 	heighty = (((y + ray->lineheight - ray->drawend) * 100 / tot_height));
-			// // printf("heighty = %d / y = %d / w_height = %d / ray->drawstart = %d\n", heighty, y, w_height, ray->drawstart);
-			heighty = (y - ray->linestart) * 100 / tot_height;
-			color = chose_color(data, heighty, heightx, dir);
+			pery = (y - ray->linestart) * 100 / ray->lineheight;
+			color = tex_chose_color(data, pery, texX, ray->dir);
 			color = calculate_shaded_color(color, ray->perpwalldist);
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
 		else if (y < ray->drawstart)
-			my_mlx_pixel_put(&data->display.ptr1, x, y, ceiling);
+			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.ceiling);
 		else if (y > ray->drawend)
-			my_mlx_pixel_put(&data->display.ptr1, x, y, floor);
+			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.floor);
 		y++;
 	}
+}
+
+int	calc_texx_x(t_data *data, t_raycast *ray)
+{
+	double	hitx;
+	int		texX;
+
+	texX = 0;
+	hitx = (data->player.posx + (ray->perpwalldist / 6) * ray->raydirx);
+	hitx -= floor(hitx);
+	if (ray->dir == WEST)
+	{
+		texX = (int)((hitx) * (double)(data->sprites.we.width));
+		if (ray->raydiry < 0) // optionnel a priori ce if
+			texX = (data->sprites.we.width) - texX - 1;
+	}
+	if (ray->dir == EAST)
+	{
+		texX = (int)((hitx) * (double)(data->sprites.ea.width));
+		if (ray->raydiry < 0)
+			texX = (data->sprites.ea.width) - texX - 1;
+	}
+	return (texX);
+}
+
+int	calc_texx_y(t_data *data, t_raycast *ray)
+{
+	double	hitx;
+	int		texX;
+
+	texX = 0;
+	hitx = (data->player.posy + (ray->perpwalldist / 6) * ray->raydiry);
+	hitx -= floor(hitx);
+	if (ray->dir == NORTH)
+	{
+		texX = (int)((hitx) * (double)(data->sprites.no.width));
+		if (ray->raydirx > 0)
+			texX = data->sprites.no.width - texX - 1;
+	}
+	else if (ray->dir == SOUTH)
+	{
+		texX = (int)((hitx) * (double)(data->sprites.so.width));
+		if (ray->raydirx > 0)
+			texX = data->sprites.so.width - texX - 1;
+	}
+	return (texX);
+}
+
+/*  FONCTIONNE MAIS A SYNTHETISER */
+void	draw_line(t_data *data, t_raycast *ray, int x, int side)
+{
+	int		texX;
+
+	ray->dir = chose_dir(side, ray);
+	texX = 0;
+	if (side == 0) // Mur nord ou sud
+	{
+		texX = calc_texx_y(data, ray);
+		// hitx = (data->player.posy + (ray->perpwalldist / 6) * ray->raydiry);
+		// hitx -= floor(hitx);
+		// if (ray->dir == NORTH)
+		// {
+		// 	texX = (int)((hitx) * (double)(data->sprites.no.width));
+		// 	if (ray->raydirx > 0)
+		// 		texX = data->sprites.no.width - texX - 1;
+		// }
+		// else if (ray->dir == SOUTH)
+		// {
+		// 	texX = (int)((hitx) * (double)(data->sprites.so.width));
+		// 	if (ray->raydirx > 0)
+		// 		texX = data->sprites.so.width - texX - 1;
+		// }
+	}
+	else
+	{
+		texX = calc_texx_x(data, ray);
+	// 	hitx = (data->player.posx + (ray->perpwalldist / 6) * ray->raydirx);
+	// 	hitx -= floor(hitx);
+	// 	if (ray->dir == WEST)
+	// 	{
+	// 		texX = (int)((hitx) * (double)(data->sprites.we.width));
+	// 		// if (ray->raydiry < 0)
+	// 			texX = (data->sprites.we.width) - texX - 1;
+	// 	}
+	// 	if (ray->dir == EAST)
+	// 	{
+	// 		texX = (int)((hitx) * (double)(data->sprites.ea.width));
+	// 		// if (ray->raydiry < 0)
+	// 			texX = (data->sprites.ea.width) - texX - 1;
+	}
+	draw_line_pixel(data, ray, x, texX);
 }
 
 void	dda_algorithme(t_data *data, t_raycast *ray)
@@ -190,13 +255,14 @@ void	init_raycast(t_data *data, t_raycast *ray, int x)
 	ray->camx = 2 * x / (double)data->win_width - 1;
 	ray->raydirx = data->player.dirx + data->player.planex * ray->camx;
 	ray->raydiry = data->player.diry + data->player.planey * ray->camx;
-	ray->mapx = (int)data->player.posx; //current pos of in the map
+	ray->mapx = (int)data->player.posx;
 	ray->mapy = (int)data->player.posy;
 	ray->deltadistx = 1e30;
 	ray->deltadisty = 1e30;
 	ray->stepy = 1;
 	ray->stepx = 1;
 }
+
 void	raycasting(t_data *data)
 {
 	t_raycast	ray;
@@ -205,7 +271,7 @@ void	raycasting(t_data *data)
 
 	init_img(data);
 	ft_memset(&ray, 0, sizeof(t_raycast));
-	while(x < data->win_width)
+	while (x < data->win_width)
 	{
 		init_raycast(data, &ray, x);
 		dda_algorithme(data, &ray);
@@ -218,7 +284,7 @@ void	raycasting(t_data *data)
 	data->player.old_time = data->player.time;
 	data->player.time = my_get_time();
 	if (data->player.time != data->player.old_time)
-		data->player.frame = (data->player.time - data->player.old_time) / 10000;
+		data->player.frame = (data->player.time - data->player.old_time) * 0.00001; // 10000;
 	else
 		data->player.frame = 0;
 	// if (data->player.frame != 0)
