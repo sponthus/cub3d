@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/10 10:50:06 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:01:29 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,31 +228,21 @@ void	raycasting(t_data *data)
 
 bool	is_player_init_pos(char c, t_move *player)
 {
-	if (c == 'N')
-	{
-		player->dirx = -1;
+	if (c == 'N' || c == 'E')
 		player->planey = player->fov / 90;
-		return (true);
-	}
-	else if (c == 'S')
-	{
-		player->dirx = 1;
+	else if (c == 'S' || c == 'W')
 		player->planey = -player->fov / 90;
-		return (true);
-	}
+	else
+		return (false);
+	if (c == 'N')
+		player->dirx = -1;
+	else if (c == 'S')
+		player->dirx = 1;
 	else if (c == 'E')
-	{
 		player->diry = 1;
-		player->planex = player->fov / 90;
-		return (true);
-	}
 	else if (c == 'W')
-	{
 		player->diry = -1;
-		player->planex = -player->fov / 90;
-		return (true);
-	}
-	return (false);
+	return (true);
 }
 
 void	init_player(char **map, t_move *player)
