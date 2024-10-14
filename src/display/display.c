@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:48:46 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:51:20 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	pause_game(t_data *data)
 }
 
 int	display_game(t_data *data)
-{	
+{
 	if (data->statement == PLAY)
 		move(data);
 	else if (data->key.tab && data->statement == PAUSE)
