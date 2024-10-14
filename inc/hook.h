@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/02 14:06:03 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 11:40:03 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef	struct s_keypress
 	int		left;
 	int		up;
 	int		down;
-	int		tab;
+	int		shift_l;
 	int		esc;
 	int		space;
 }	t_keypress;

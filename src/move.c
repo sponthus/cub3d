@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/09 14:27:28 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 11:40:11 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	find_keyplayer_move(t_data *data)
 		player_move(data, -data->player.diry, data->player.dirx);
 	if (data->key.d)
 		player_move(data, data->player.diry, -data->player.dirx);
-	else if (!data->key.tab && !data->key.c)
+	else if (!data->key.shift_l && !data->key.c)
 		data->player.movespeed = data->player.speed;
 	if (data->key.space)
 	{
@@ -71,7 +71,7 @@ void	find_keyplayer_move(t_data *data)
 			data->player.jump_speed  = 0;
 		}
 	}
-	if (data->key.tab && !data->key.c)
+	if (data->key.shift_l && !data->key.c)
 		data->player.movespeed = data->player.speed * 3;
 }
 
@@ -84,33 +84,22 @@ void	find_keycam_move(t_data *data)
 	if (data->key.up)
 		cam_rotate(data, -data->player.rotspeed, 'h');
 	if (data->key.down)
-		cam_rotate(data, data->player.rotspeed, 'h');
+		cam_rotate(data, data->player.rotspeed, 'h');	
 }
 
 int mouse_hook(int x, int y, t_data *data)
 {
+	double	dx;
+	double	dy;
+
+	dx = x - (data->win_width * 0.5);
+	dy = y - (data->win_height * 0.5);
 	printf("%d %d %d\n", x, y, data->win_width);
-	if (x < data->win_width * 0.5)
-	{
-		data->player.rotspeed = x / data->win_width;
-		cam_rotate(data, -data->player.rotspeed, 'w');
-	}
-	if (x > data->win_width * 0.5)
-	{
-		printf("salut\n");
-		data->player.rotspeed =( x / data->win_width) * 100;
-		cam_rotate(data, data->player.rotspeed, 'w');
-	}
-	if (y > data->win_height * 0.5)
-	{
-		data->player.rotspeed = x / data->win_height;
-		cam_rotate(data, -data->player.rotspeed, 'h');
-	}
-	if (y < data->win_height * 0.5)
-	{
-		data->player.rotspeed = x / data->win_height;
-		cam_rotate(data, -data->player.rotspeed, 'h');
-	}
+	if (dx != 0)
+		cam_rotate(data, -dx * 0.003, 'w');
+	if (dy != 0)
+		cam_rotate(data, dy * 0.003, 'h');
+	mlx_mouse_move(data->mlx, data->win, data->win_width * 0.5, data->win_height * 0.5);
 	return (0);
 }
 
@@ -122,13 +111,12 @@ void	mouse_setting(t_data *data)
 	mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
 	mouse_hook(x, y, data);
-	mlx_mouse_move(data->mlx, data->win, data->win_width * 0.5, data->win_height * 0.5);
 }
 int	move(t_data *data)
 {
 	find_keyplayer_move(data);
 	find_keycam_move(data);
-	// mouse_setting(data);
+	mouse_setting(data);
 	//data->player.wallheight += 0.002;
 	raycasting(data);
 	return (0);

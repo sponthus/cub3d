@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/02 15:24:25 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 11:40:28 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ void	set_keyjump(t_data *data)
 
 void	set_keyplayer(int keycode, t_data *data)
 {
-	if (keycode == XK_w)
+	if (keycode == XK_z)
 		data->key.w = 1;
 	if (keycode == XK_s)
 		data->key.s = 1;
-	if (keycode == XK_a)
+	if (keycode == XK_q)
 		data->key.a = 1;
 	if (keycode == XK_d)
 		data->key.d = 1;
 	if (keycode == XK_Shift_L)
-		data->key.tab = 1;
+		data->key.shift_l = 1;
 }
 
 void	set_keycam(int keycode, t_data *data)
@@ -69,16 +69,16 @@ void	set_keycam(int keycode, t_data *data)
 
 void	unset_keyplayer(int keycode, t_data *data)
 {
-	if (keycode == XK_w)
+	if (keycode == XK_z)
 		data->key.w = 0;
 	if (keycode == XK_s)
 		data->key.s = 0;
-	if (keycode == XK_a)
+	if (keycode == XK_q)
 		data->key.a = 0;
 	if (keycode == XK_d)
 		data->key.d = 0;
 	if (keycode == XK_Shift_L)
-		data->key.tab = 0;
+		data->key.shift_l = 0;
 }
 
 void	unset_keycam(int keycode, t_data *data)
