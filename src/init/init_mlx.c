@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 14:52:01 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:33:49 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool	init_mlx(t_data *data, t_pars *pars)
 		return (write_err(ERR_INIT, NULL, "window", 1));
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
+	mlx_hook(data->win, 17, 0, destroy_game, data);
 	if (open_image(data, &data->sprites.no, pars->no) == false)
 		return (false);
 	if (open_image(data, &data->sprites.so, pars->so) == false)

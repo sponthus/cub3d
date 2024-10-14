@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 15:26:50 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:31:50 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 typedef enum	e_statement
 {
-	PAUSE,
+	PAUSE = 0,
 	PLAY,
 	MENU
 } t_statement;
@@ -84,5 +84,6 @@ int		main(int argc, char **argv);
 int		parsing(char *path, t_data *data);
 void	init_data(t_data *data);
 void	free_data(t_data *data);
+int		destroy_game(t_data *data);
 
 #endif

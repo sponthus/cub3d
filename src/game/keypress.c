@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:41:29 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:31:19 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ void	set_keycam(int keycode, t_data *data)
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
+		destroy_game(data);
+	if (keycode == XK_Tab)
 	{
-		if (data->display.ptr1.img)
-			mlx_destroy_image(data->mlx, data->display.ptr1.img);
-		free_data(data);
-		exit (EXIT_SUCCESS);
+		if (data->statement == PLAY)
+			data->statement = PAUSE;
+		else if (data->statement == PAUSE)
+			data->statement = PLAY;
 	}
 	set_keyplayer(keycode, data);
 	set_keycam(keycode, data);

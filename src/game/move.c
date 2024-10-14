@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:37:14 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:33:14 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,11 @@ void	find_keycam_move(t_data *data)
 		cam_rotate(data, data->player.rotspeed, 'h');
 }
 
-int	move(t_data *data)
+void	move(t_data *data)
 {
 	find_keyplayer_move(data);
 	find_keycam_move(data);
 	mouse_setting(data);
 	//data->player.wallheight += 0.002;
 	raycasting(data);
-	return (0);
 }

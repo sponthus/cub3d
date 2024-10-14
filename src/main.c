@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 15:38:27 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:31:32 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 
 #include <string.h>
 
+int	destroy_game(t_data *data)
+{
+	if (data->display.ptr1.img)
+		mlx_destroy_image(data->mlx, data->display.ptr1.img);
+	data->display.ptr1.img = NULL;
+	free_data(data);
+	exit (EXIT_SUCCESS);
+}
 void	free_data(t_data *data)
 {
 	if (data->map)
