@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:35:35 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:48:46 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	pause_game(t_data *data)
 {
-	if (data->display.ptr1.img)
-		mlx_destroy_image(data->mlx, data->display.ptr1.img);
-	data->display.ptr1.img = NULL;
 	mlx_string_put(data->mlx, data->win, data->win_width * 0.5,
 		data->win_height * 0.5 , 0x0fdf9411, "PAUSE");
+	mlx_mouse_move(data->mlx, data->win, data->win_width * 0.5,
+		data->win_height * 0.5);
+	data->key.tab = 0;
 }
 
 int	display_game(t_data *data)
 {	
 	if (data->statement == PLAY)
 		move(data);
-	else if (data->statement == PAUSE)
+	else if (data->key.tab && data->statement == PAUSE)
 		pause_game(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:31:19 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 16:48:30 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == XK_Tab)
 	{
 		if (data->statement == PLAY)
+		{
+			data->key.tab = 1;
 			data->statement = PAUSE;
+		}
 		else if (data->statement == PAUSE)
 			data->statement = PLAY;
 	}
