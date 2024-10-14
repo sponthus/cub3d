@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   what_is_this.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:07:18 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:48:31 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	resize_content(t_list *lst)
 	int	i;
 
 	i = ft_strlen(lst->id);
-	while (lst->content[i] && (lst->content[i] == ' ' || lst->content[i] == '\n'
+	while (lst->content[i] && (lst->content[i] == ' '
+			|| lst->content[i] == '\n'
 			|| lst->content[i] == '\t' || lst->content[i] == '\v'
 			|| lst->content[i] == '\f' || lst->content[i] == '\r'))
 		i++;
@@ -96,7 +97,6 @@ bool	is_element(t_list *lst, char *id)
 		}
 	}
 	return (false);
-
 }
 
 bool	what_is_it(t_list *actual)

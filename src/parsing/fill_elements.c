@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:29:55 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:06:12 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:48:56 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_no(t_pars *pars, t_list *actual)
 		else
 		{
 			printf("actual = %s\n", pars->no);
-			return (write_err(ERR_RED, actual->content, "NO",1));
+			return (write_err(ERR_RED, actual->content, "NO", 1));
 		}
 	}
 	return (0);

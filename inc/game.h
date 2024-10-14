@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/10 16:15:48 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:40:39 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_move
 	double					posz;
 	double					pitch;
 	double					horizon;
-	double						fov;
+	double					fov;
 	double					dirx;
 	double					diry;
 	double					olddirx;
@@ -95,20 +95,31 @@ typedef struct s_shadow
 void		init_game(struct s_data  *data);
 int			move(struct s_data  *data);
 void		player_move(struct s_data *data, double dirx, double diry);
+void		cam_rotate(struct s_data *data, double rotspeed, int flag);
+void		mouse_setting(struct s_data *data);
+
 /*				display			*/
 void		init_img(struct s_data* data);
 void		destroy_img(struct s_data *data);
 void		put_pixel_background(struct s_data *data, struct s_img *dis);
+void		draw_line(struct s_data *data, t_raycast *ray, int x, int side);
 
 /*				math			*/
 void		raycasting(struct s_data  *data);
+
+/*				textures		*/
+int			calc_texx_x(struct s_data *data, t_raycast *ray);
+int			calc_texx_y(struct s_data *data, t_raycast *ray);
+int			chose_dir(int side, t_raycast *ray);
+int			tex_chose_color(struct s_data *data, int x, int y, int dir);
+int			tex_find_color(struct s_img *img, int y, int x);
 
 /*				color 			*/
 unsigned int calculate_shaded_color(unsigned int color, double distance);
 
 /*				mlx_utils		*/
 void		my_mlx_pixel_put(struct s_img *data, int x, int y, int color);
-
-double	my_get_time(void);
-
+void		update_frame_data(struct s_data *data);
+double		my_get_time(void);
+char		*ft_itoa(int n);
 #endif

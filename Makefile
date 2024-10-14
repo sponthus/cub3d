@@ -10,7 +10,7 @@ INC_DIR = ./inc/
 LIB_DIR = ./mlx_linux/
 LIB_REPO = https://github.com/42Paris/minilibx-linux
 
-SRC = $(wildcard $(SRC_DIR)*.c)
+SRC = $(shell find $(SRC_DIR) -name "*.c")
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 HEADER = $(wildcard $(INC_DIR)*.h)
 LIB = $(LIB_DIR)libmlx.a
@@ -33,7 +33,7 @@ $(NAME): $(OBJ)
 	@echo "$(NAME) done"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER) $(LIB)
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIB):

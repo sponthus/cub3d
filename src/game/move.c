@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 11:40:11 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 14:37:14 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	player_move(t_data *data, double dirx, double diry)
 		data->player.posy = newy;
 }
 
-void	cam_rotate(t_data *data, double rotspeed , int flag)
+void	cam_rotate(t_data *data, double rotspeed, int flag)
 {
 	double		olddirx;
 	double		oldplanex;
@@ -35,15 +35,20 @@ void	cam_rotate(t_data *data, double rotspeed , int flag)
 	if (flag == 'w')
 	{
 		olddirx = data->player.dirx;
-		data->player.dirx = data->player.dirx * cos(rotspeed) - data->player.diry * sin(rotspeed);
-		data->player.diry = olddirx * sin(rotspeed) + data->player.diry * cos(rotspeed);
+		data->player.dirx *= cos(rotspeed);
+		data->player.dirx -= data->player.diry * sin(rotspeed);
+		data->player.diry = olddirx * sin(rotspeed)
+			+ data->player.diry * cos(rotspeed);
 		oldplanex = data->player.planex;
-		data->player.planex = data->player.planex * cos(rotspeed) - data->player.planey * sin(rotspeed);
-		data->player.planey = oldplanex * sin(rotspeed) + data->player.planey * cos(rotspeed);
+		data->player.planex *= cos(rotspeed);
+		data->player.planex -= data->player.planey * sin(rotspeed);
+		data->player.planey = oldplanex * sin(rotspeed)
+			+ data->player.planey * cos(rotspeed);
 	}
 	else if (flag == 'h')
 	{
-		if (data->player.pitch + rotspeed < 0.8 && data->player.pitch + rotspeed > -0.7)
+		if (data->player.pitch + rotspeed < 0.8
+			&& data->player.pitch + rotspeed > -0.7)
 			data->player.pitch += rotspeed;
 	}
 }
@@ -63,12 +68,12 @@ void	find_keyplayer_move(t_data *data)
 	if (data->key.space)
 	{
 		data->player.posz += data->player.jump_speed;
-        data->player.jump_speed += data->player.gravity;
+		data->player.jump_speed += data->player.gravity;
 		if (data->player.posz >= data->player.initz)
 		{
 			data->player.posz = data->player.initz;
 			data->key.space = 0;
-			data->player.jump_speed  = 0;
+			data->player.jump_speed = 0;
 		}
 	}
 	if (data->key.shift_l && !data->key.c)
@@ -77,41 +82,16 @@ void	find_keyplayer_move(t_data *data)
 
 void	find_keycam_move(t_data *data)
 {
-	if (data->key.right) 
+	if (data->key.right)
 		cam_rotate(data, -data->player.rotspeed, 'w');
-	if (data->key.left) 
+	if (data->key.left)
 		cam_rotate(data, data->player.rotspeed, 'w');
 	if (data->key.up)
 		cam_rotate(data, -data->player.rotspeed, 'h');
 	if (data->key.down)
-		cam_rotate(data, data->player.rotspeed, 'h');	
+		cam_rotate(data, data->player.rotspeed, 'h');
 }
 
-int mouse_hook(int x, int y, t_data *data)
-{
-	double	dx;
-	double	dy;
-
-	dx = x - (data->win_width * 0.5);
-	dy = y - (data->win_height * 0.5);
-	printf("%d %d %d\n", x, y, data->win_width);
-	if (dx != 0)
-		cam_rotate(data, -dx * 0.003, 'w');
-	if (dy != 0)
-		cam_rotate(data, dy * 0.003, 'h');
-	mlx_mouse_move(data->mlx, data->win, data->win_width * 0.5, data->win_height * 0.5);
-	return (0);
-}
-
-void	mouse_setting(t_data *data)
-{
-	int		x;
-	int		y;
-
-	mlx_mouse_hide(data->mlx, data->win);
-	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-	mouse_hook(x, y, data);
-}
 int	move(t_data *data)
 {
 	find_keyplayer_move(data);

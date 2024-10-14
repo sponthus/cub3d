@@ -6,32 +6,28 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:05:07 by endoliam          #+#    #+#             */
-/*   Updated: 2024/09/30 16:54:49 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 15:14:17 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double		ft_atod(char *s)
+double	ft_atod(char *s)
 {
-	double		nbr;
+	double	nbr;
 	double	fraction;
 	double	divisor;
 
 	nbr = 0;
 	fraction = 0;
-	divisor	= 1;
-	if (!s)
-		return (0);
-	while ((*s == 32) || (*s >= 9 && *s <= 13))
-		s++;
+	divisor = 1;
 	while (*s != '.')
 	{
-		nbr = nbr *10 + (*s - '0');
+		nbr = nbr * 10 + (*s - '0');
 		s++;
 	}
 	s++;
-	while(*s && *s != ' ')
+	while (*s && *s != ' ')
 	{
 		fraction = fraction * 10 + *s - '0';
 		divisor *= 10;
@@ -51,21 +47,19 @@ double	milisecond(char *line)
 	tmp = line;
 	while (tmp[i] && tmp[i] != ' ')
 		i++;
-	if (tmp[i] == ' ')
-		i++;
+	i++;
 	return (ft_atod(tmp + i) * 1000);
 }
-double 	second(char *line)
+
+double	second(char *line)
 {
 	int		i;
-	char	*tmp;
 
 	i = 0;
-	tmp = line;
-	while (tmp[i] != ' ')
+	while (line[i] != ' ')
 		i++;
-	tmp[i] = '\0';
-	return (ft_atod(tmp));
+	line[i] = '\0';
+	return (ft_atod(line));
 }
 
 void	ticktock(t_time *tv)
@@ -75,13 +69,17 @@ void	ticktock(t_time *tv)
 
 	fd = open("/proc/uptime", O_RDONLY, 0);
 	if (fd < 0)
-		exit (42); // free and exit
+	{
+		tv->tv_usec = 0;
+		tv->tv_sec = 0;
+		return ;
+	}
 	line = get_next_line(fd);
 	tv->tv_usec = milisecond(line);
-	tv->tv_sec = second(line)  - (tv->tv_sec * 1000.0);
-	//printf("atood sec = %f, usec = %f\n",tv->tv_sec,tv->tv_usec);
+	tv->tv_sec = second(line) - (tv->tv_sec * 1000.0);
 	free(line);
 	close(fd);
+	return ;
 }
 
 double	my_get_time(void)

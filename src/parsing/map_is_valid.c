@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_is_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:06:12 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:47:50 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ bool	only_one_player(t_data *data)
 				if (player == true)
 					return (write_err(ERR_COUNT, EXP_1, "player", false));
 				else
-				 	player = true;
+					player = true;
 			}
 			j++;
 		}
@@ -80,14 +80,15 @@ bool	closed_map(t_data *data, int map_size)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == '0')
+			if (data->map[i][j] == '0')  // ATTENTION segfault possible si map qui dep en haut a DT ?
 			{
-				if (i == 0 || j == 0 || j == ft_strlen(data->map[i]) || i == map_size)
+				if (i == 0 || j == 0 || j == ft_strlen(data->map[i])
+					|| i == map_size)
 					return (false);
 				if (data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' '
 					|| data->map[i][j + 1] == ' ' || data->map[i][j + 1] == ' ')
 					return (false);
-			} // ATTENTION segfault possible si map qui dep en haut a DT ?
+			}
 			j++;
 		}
 		i++;

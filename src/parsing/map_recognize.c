@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_recognize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:07:46 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:49:17 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ bool	handle_map_elements(t_list *lst)
 			{
 				if (is_map_element(a) == false)
 				{
-					return (write_err(ERR_UNEX, a->content, "after map", false));
+					return (write_err(ERR_UNEX, a->content,
+							"after map", false));
 				}
 				a->map = true;
 				a = a->next;
