@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:40:39 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 15:38:55 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void		init_img(struct s_data* data);
 void		destroy_img(struct s_data *data);
 void		put_pixel_background(struct s_data *data, struct s_img *dis);
 void		draw_line(struct s_data *data, t_raycast *ray, int x, int side);
+void		display_game(struct s_data *data);
 
 /*				math			*/
 void		raycasting(struct s_data  *data);

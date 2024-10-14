@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/03 14:28:18 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:26:50 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 # define SOUTH 2
 # define WEST 3
 # define EAST 4
+
+typedef enum	e_statement
+{
+	PAUSE,
+	PLAY,
+	MENU
+} t_statement;
 
 typedef struct s_img
 {
@@ -70,6 +77,7 @@ typedef struct s_data
 	t_move				player;
 	t_display			display;
 	t_keypress			key;
+	t_statement			statement;
 }	t_data;
 
 int		main(int argc, char **argv);

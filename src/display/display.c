@@ -6,11 +6,19 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:58:01 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 15:47:04 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	display_game(t_data *data)
+{
+	if (data->statement = PLAY)
+		move(data);
+	else if (data->statement = PAUSE)
+		return ; // add pause fonction
+}
 
 void	init_img(t_data *data)
 {

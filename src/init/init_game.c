@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:27 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:52:45 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 15:43:46 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void	init_game(t_data *data)
 	data->player.movespeed = data->player.speed;
 	data->player.rotspeed = 0.01;
 	data->player.wallheight = 5;
-	raycasting(data);
+	data->statement = PLAY;
 }

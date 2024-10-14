@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/03 10:18:53 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:38:27 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int	main(int argc, char **argv)
 	// coucou Emma!!
 	// Je me penche +++ sur la gestion des textures, je tiens un truc pour recuperer les couleurs des pixels
 	// on croise les doigts de pieds
-	mlx_hook(data.win, 2, 1L<<0, key_press, &data);
-	mlx_hook(data.win, 3, 1L<<1, key_release, &data);
-	mlx_loop_hook(data.mlx, move, &data);
+	mlx_loop_hook(data.mlx, display_game, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

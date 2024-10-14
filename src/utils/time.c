@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:05:07 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 15:14:17 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 15:41:31 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ double	ft_atod(char *s)
 		divisor *= 10;
 		s++;
 	}
-	fraction /= divisor;
+	fraction *= 1 / divisor;
 	nbr += fraction;
 	return (nbr);
 }
