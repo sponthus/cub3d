@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_is_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 14:47:50 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 15:31:04 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,25 @@ bool	closed_map(t_data *data, int map_size)
 	return (true);
 }
 
+void	replace_spaces(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == ' ' || data->map[i][j] == '\n')
+				data->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
+
 bool	is_valid_map(t_data *data)
 {
 	int	i;
@@ -107,5 +126,6 @@ bool	is_valid_map(t_data *data)
 		return (false);
 	if (closed_map(data, i) == false)
 		return (write_err("Map is not closed", NULL, NULL, false));
+	replace_spaces(data);
 	return (true);
 }

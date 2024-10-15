@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 16:33:49 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 13:21:08 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parsing.h"
-
-// Init valide, manque utilisation
 
 bool	open_image(t_data *data, t_img *img, char *path)
 {
@@ -26,6 +24,28 @@ bool	open_image(t_data *data, t_img *img, char *path)
 		return (write_err(ERR_OP_TEX, path, NULL, false));
 	printf("img %s / img width = %d / height = %d\n", path, img->width, img->height);
 	return (true);
+}
+
+void	init_data(t_data *data)
+{
+	data->win_height = WIN_HEIGHT;
+	data->win_width = WIN_WIDTH;
+	data->map = NULL;
+	data->mlx = NULL;
+	data->win = NULL;
+}
+
+void	init_parsing(t_pars *pars)
+{
+	pars->no = NULL;
+	pars->so = NULL;
+	pars->we = NULL;
+	pars->ea = NULL;
+	pars->floor_color = NULL;
+	pars->ceiling_color = NULL;
+	pars->fd = -1;
+	pars->file = NULL;
+	pars->lst_file = NULL;
 }
 
 bool	init_mlx(t_data *data, t_pars *pars)

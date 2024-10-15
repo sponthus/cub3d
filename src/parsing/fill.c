@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:21:15 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:56:52 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ bool	fill_file_content(t_data *data, t_pars *pars)
 			if (actual->empty == false && resize_content(actual) != 0)
 				return (false);
 			if (fill_element(pars, actual) != 0)
-				return (false); // check si double et met erreur specifique
+				return (false);
 			actual = actual->next;
 		}
 		else

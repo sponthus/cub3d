@@ -30,7 +30,7 @@ bool	check_rgb(char **rgb, char *color)
 	else
 		return (write_err(ERR_MIS_RGB, "G", NULL, false));
 	if (rgb[2])
-		b = color_atoi(rgb[1]);
+		b = color_atoi(rgb[2]);
 	else
 		return (write_err(ERR_MIS_RGB, "B", NULL, false));
 	if (rgb[3])
@@ -83,16 +83,14 @@ bool	valid_color(char *color)
 			color[i] = '\0';
 			break ;
 		}
-		if (color[i] != ',' && ft_isdigit(color[i]) == 0)
-		{
+		if ((color[i] != ',') && ft_isdigit(color[i]) == 0)
 			return (write_err(ERR_RGB_RAN, color, NULL, false));
-		}
 		if (color[i] == ',')
 			count++;
 		i++;
 	}
 	if (count != 2)
-		return (write_err(ERR_RGB_FOR, color, NULL, false));
+		return (write_err(ERR_RGB_RAN, color, NULL, false));
 	return (true);
 }
 
@@ -102,11 +100,11 @@ bool	valid_data(t_data *data, t_pars *pars)
 		return (write_err(ERR_MIS_COL, "F", NULL, false));
 	if (!pars->ceiling_color)
 		return (write_err(ERR_MIS_COL, "C", NULL, false));
-	if (valid_color(pars->floor_color)
-		&& char_to_color(data, pars->floor_color, "floor") == false)
+	if (valid_color(pars->floor_color) == false
+		|| char_to_color(data, pars->floor_color, "floor") == false)
 		return (false);
-	if (valid_color(pars->ceiling_color)
-		&& char_to_color(data, pars->ceiling_color, "ceiling") == false)
+	if (valid_color(pars->ceiling_color) == false
+		|| char_to_color(data, pars->ceiling_color, "ceiling") == false)
 		return (false);
 	if (!pars->no)
 		return (write_err(ERR_MIS_TEX, "NO", NULL, false));

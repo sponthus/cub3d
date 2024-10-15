@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:00:33 by sponthus          #+#    #+#             */
-/*   Updated: 2024/09/23 14:06:12 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:26:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	write_err(char *error, char *target, char *obj, int errno)
 		{
 			write(2, " ", 1);
 			write(2, obj, ft_strlen(obj));
-			write(2, " ", 1);
 		}
 		if (target)
 		{

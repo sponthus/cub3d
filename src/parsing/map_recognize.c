@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_recognize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 14:49:17 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 15:19:38 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_map_element(t_list *lst)
 	i = 0;
 	while (lst->content[i])
 	{
-		if (is_charset(lst->content[i], " \n\t\v\f\r01NSEW"))
+		if (is_charset(lst->content[i], CHAR_MAP))
 			i++;
 		else
 		{
@@ -55,7 +55,7 @@ bool	empty_mapline(char *str)
 		return (true);
 	while (str[i])
 	{
-		if (str[i] == ' ')
+		if (str[i] == ' ' || str[i] == '\n')
 			i++;
 		else
 			return (false);
