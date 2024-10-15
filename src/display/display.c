@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 17:02:15 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 15:56:04 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	pause_game(t_data *data)
 {
 	mlx_string_put(data->mlx, data->win, data->win_width * 0.5,
-		data->win_height * 0.5 , 0x0fdf9411, "PAUSE");
+		data->win_height * 0.5, 0x0fdf9411, "PAUSE");
 	mlx_mouse_show(data->mlx, data->win);
 	data->key.tab = 0;
 }
@@ -35,8 +35,9 @@ void	init_img(t_data *data)
 			data->win_height);
 	if (!data->display.ptr1.img)
 	{
-		printf("error : mlx_new_image failed\n");
-		exit(42); // free and exit
+		write_err("mlx_new_image failed", NULL, NULL, false);
+		free_data(data);
+		exit(42);
 	}
 	data->display.ptr1.addr = mlx_get_data_addr(data->display.ptr1.img,
 			&data->display.ptr1.bpp, &data->display.ptr1.ll,
@@ -79,7 +80,6 @@ void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 	}
 }
 
-/*  FONCTIONNE MAIS A SYNTHETISER */
 void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	int		texx;

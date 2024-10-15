@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 16:31:32 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 15:49:46 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	destroy_game(t_data *data)
 	free_data(data);
 	exit (EXIT_SUCCESS);
 }
+
 void	free_data(t_data *data)
 {
 	if (data->map)
@@ -69,9 +70,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write_err(ERR_COUNT, EXP_CUB, "arguments", 1));
-	// coucou Emma!!
-	// Je me penche +++ sur la gestion des textures, je tiens un truc pour recuperer les couleurs des pixels
-	// on croise les doigts de pieds
 	mlx_loop_hook(data.mlx, display_game, &data);
 	mlx_loop(data.mlx);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 16:31:50 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 15:54:49 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int		parsing(char *path, t_data *data);
 void	init_data(t_data *data);
 void	free_data(t_data *data);
 int		destroy_game(t_data *data);
+int		write_err(char *error, char *target, char *obj, int errno);
 
 #endif
