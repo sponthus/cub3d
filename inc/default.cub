@@ -1,7 +1,7 @@
-NO      inc/64x/bookshelf.xpm
-                    SO                  inc/64x/WaterF1.xpm
-           W                   inc/purple_stone.xpm   
-EA inc/64x/Planks.xpm
+NO      textures/64x/bookshelf.xpm
+                    SO                  textures/64x/WaterF1.xpm
+           W                   textures/purple_stone.xpm   
+EA textures/64x/Planks.xpm
 
 F     0,0,33
                  

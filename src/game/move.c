@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:33:14 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/17 11:50:01 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	player_move(t_data *data, double dirx, double diry)
 	newx = data->player.posx + dirx * data->player.movespeed;
 	newy = data->player.posy + diry * data->player.movespeed;
 	if (data->map[(int)(data->player.posx)][(int)(newy)]
-		&& data->map[(int)(newx)][(int)(data->player.posy)] == '0')
+		&& data->map[(int)(newx)][(int)(data->player.posy)] == '0') // Normal qu'on ait pas la meme chose dans la verif et dans le test ?
 		data->player.posx = newx;
-	if (data->map[(int)(data->player.posx)][(int)(newy)]
+	if (data->map[(int)(data->player.posx)][(int)(newy)] // J'ai un soucis quand on va ful contre un mur sans pivoter on rentre dans le mur
 		&& data->map[(int)(data->player.posx)][(int)(newy)] == '0')
 		data->player.posy = newy;
 }
@@ -96,7 +96,5 @@ void	move(t_data *data)
 {
 	find_keyplayer_move(data);
 	find_keycam_move(data);
-	mouse_setting(data);
-	//data->player.wallheight += 0.002;
 	raycasting(data);
 }

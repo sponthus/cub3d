@@ -6,28 +6,11 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/15 15:59:52 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:35:33 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	pause_game(t_data *data)
-{
-	mlx_string_put(data->mlx, data->win, data->win_width * 0.5,
-		data->win_height * 0.5, 0x0fdf9411, "PAUSE");
-	mlx_mouse_show(data->mlx, data->win);
-	data->key.tab = 0;
-}
-
-int	display_game(t_data *data)
-{
-	if (data->statement == PLAY)
-		move(data);
-	else if (data->key.tab && data->statement == PAUSE)
-		pause_game(data);
-	return (0);
-}
 
 void	init_img(t_data *data)
 {

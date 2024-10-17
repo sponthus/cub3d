@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/15 15:49:46 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:34:33 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write_err(ERR_COUNT, EXP_CUB, "arguments", 1));
-	mlx_loop_hook(data.mlx, display_game, &data);
+	mlx_loop_hook(data.mlx, move, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
