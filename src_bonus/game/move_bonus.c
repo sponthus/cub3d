@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:30 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:49:14 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ void	player_move(t_data *data, double dirx, double diry)
 {
 	double		newx;
 	double		newy;
+	double verifx = data->player.posx + dirx * (data->player.movespeed * 2);
+	double verify = data->player.posy + diry * (data->player.movespeed * 2);
 
 	newx = data->player.posx + dirx * data->player.movespeed;
 	newy = data->player.posy + diry * data->player.movespeed;
-	if (data->map[(int)(data->player.posx)][(int)(newy)]
-		&& data->map[(int)(newx)][(int)(data->player.posy)] == '0')
+	if (data->map[(int)(verifx)][(int)(data->player.posy)]
+		&& data->map[(int)(verifx)][(int)(data->player.posy)] == '0')
 		data->player.posx = newx;
-	if (data->map[(int)(data->player.posx)][(int)(newy)]
-		&& data->map[(int)(data->player.posx)][(int)(newy)] == '0')
+	if (data->map[(int)(data->player.posx)][(int)(verify)]
+		&& data->map[(int)(data->player.posx)][(int)(verify)] == '0')
 		data->player.posy = newy;
 }
 

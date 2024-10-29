@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:58 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:03:50 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,37 @@
 
 #include <string.h>
 
+void	destoy_frames(t_data *data ,t_frame *frame)
+{
+	t_frame		*to_free;
+
+	if (frame->index != 0)
+	{
+		while (frame && frame->prev)
+			frame = frame->prev;
+	}
+	while (frame)
+		{
+			to_free = frame;
+			frame = frame->next;
+			mlx_destroy_image(data->mlx, to_free->frame.img);
+			free(to_free);
+		}
+}
+void	free_animation(t_data *data)
+{
+	destoy_frames(data, data->menu.background.anim);
+	destoy_frames(data, data->menu.icone.anim);
+	destoy_frames(data, data->menu.resume.anim);
+	destoy_frames(data, data->menu.setting.anim);
+	destoy_frames(data, data->menu.exit.anim);
+}
 int	destroy_game(t_data *data)
 {
 	if (data->display.ptr1.img)
 		mlx_destroy_image(data->mlx, data->display.ptr1.img);
 	data->display.ptr1.img = NULL;
+	free_animation(data);
 	free_data(data);
 	exit (EXIT_SUCCESS);
 }

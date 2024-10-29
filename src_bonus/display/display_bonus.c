@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:14 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:00:51 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	pause_game(t_data *data)
-{
-	mlx_string_put(data->mlx, data->win, data->win_width * 0.5,
-		data->win_height * 0.5, 0x0fdf9411, "PAUSE");
-	mlx_mouse_show(data->mlx, data->win);
-	data->key.tab = 0;
-}
+void	set_sky(t_data *data, t_raycast *ray, int x, int y);
 
 int	display_game(t_data *data)
 {
 	if (data->statement == PLAY)
+	{
+		data->menu.background.y = data->win_height;
+		data->menu.state_menu = RESUME;	
 		move(data);
-	else if (data->key.tab && data->statement == PAUSE)
+	}
+	else if (data->statement == PAUSE)
 		pause_game(data);
 	return (0);
 }
@@ -44,10 +42,11 @@ void	init_img(t_data *data)
 			&data->display.ptr1.endian);
 }
 
-void	destroy_img(t_data *data)
+
+void	destroy_img(struct s_data *data, int x, int y)
 {
 	mlx_put_image_to_window(data->mlx, data->win,
-		data->display.ptr1.img, 0, 0); // protect mlx
+		data->display.ptr1.img, x, y); // protect mlx
 	if (data->display.ptr1.img)
 		mlx_destroy_image(data->mlx, data->display.ptr1.img);
 	data->display.ptr1.img = NULL;
@@ -73,7 +72,7 @@ void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
 		else if (y < ray->drawstart)
-			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.ceiling);
+			set_sky(data, ray, x, y);
 		else if (y > ray->drawend)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.floor);
 		y++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_0_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:01:20 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:39 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:25:31 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,25 @@ int	is_charset(char c, char	*charset)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*result;
+	size_t	i;
+	size_t	j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!result)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		result[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		result[i + j] = s2[j];
+	result[i + j] = '\0';
+	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:33 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:48:43 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	raycasting(t_data *data)
 		draw_line(data, &ray, x, side);
 		x++;
 	}
-	destroy_img(data);
+	destroy_img(data, 0, 0);
 	update_frame_data(data);
+	update_frame(data, &data->menu.background, 30);
 }

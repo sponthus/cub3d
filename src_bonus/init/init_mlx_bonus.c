@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:41 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:04:23 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ bool	open_image(t_data *data, t_img *img, char *path)
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->ll, &img->endian);
 	if (!img->addr)
 		return (write_err(ERR_OP_TEX, path, NULL, false));
-	printf("img %s / img width = %d / height = %d\n", path, img->width, img->height);
 	return (true);
 }
 
@@ -48,6 +47,31 @@ void	init_parsing(t_pars *pars)
 	pars->lst_file = NULL;
 }
 
+void	init_menu(t_data *data)
+{
+	init_animation(data, &data->menu.background, "inc_bonus/background/", 66);
+	init_animation(data, &data->menu.setting, "inc_bonus/menu/setting/", 30);
+	init_animation(data, &data->menu.resume, "inc_bonus/menu/resume/", 29);
+	init_animation(data, &data->menu.exit, "inc_bonus/menu/exit/", 31);
+	init_animation(data, &data->menu.icone, "inc_bonus/menu/icone/", 10);
+	data->menu.resume.scale_x = data->win_width / 1920.0;
+	data->menu.resume.scale_y = data->win_height / 1080.0;
+	data->menu.resume.x = data->win_width  - data->win_width * 0.7;
+	data->menu.resume.y = data->win_height  - data->win_height * 0.4;
+	data->menu.setting.scale_x = data->menu.resume.scale_x;
+	data->menu.setting.scale_y = data->menu.resume.scale_y;
+	data->menu.setting.x = data->win_width  - data->win_width * 0.3;
+	data->menu.setting.y = data->win_height  - data->win_height * 0.3;
+	data->menu.exit.scale_x = data->menu.resume.scale_x;
+	data->menu.exit.scale_y = data->menu.resume.scale_y;
+	data->menu.exit.x = data->win_width  - data->win_width * 0.7;
+	data->menu.exit.y = data->win_height  - data->win_height * 0.2;
+	data->menu.background.x = 0;
+	data->menu.background.y = data->win_height;
+	data->menu.icone.scale_x = data->menu.resume.scale_x;
+	data->menu.icone.scale_y = data->menu.resume.scale_y;
+}
+
 bool	init_mlx(t_data *data, t_pars *pars)
 {
 	data->mlx = mlx_init();
@@ -69,5 +93,6 @@ bool	init_mlx(t_data *data, t_pars *pars)
 	if (open_image(data, &data->sprites.ea, pars->ea) == false)
 		return (false);
 	init_game(data);
+	init_menu(data);
 	return (true);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   hook_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 15:46:17 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/17 13:15:45 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-#define HOOK_H
+#ifndef HOOK_BONUS_H
+# define HOOK_BONUS_H
 
 # include <X11/keysym.h>
 

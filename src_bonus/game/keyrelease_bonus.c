@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyrelease_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:19:31 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:23 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:45:54 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	unset_keyplayer(int keycode, t_data *data)
 {
-	if (keycode == XK_z)
+	if (keycode == XK_w)
 		data->key.w = 0;
 	if (keycode == XK_s)
 		data->key.s = 0;
-	if (keycode == XK_q)
+	if (keycode == XK_a)
 		data->key.a = 0;
 	if (keycode == XK_d)
 		data->key.d = 0;

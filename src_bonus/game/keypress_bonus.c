@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:20 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:33:57 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	set_keyjump(t_data *data)
 
 void	set_keyplayer(int keycode, t_data *data)
 {
-	if (keycode == XK_z)
+	if (keycode == XK_w)
 		data->key.w = 1;
 	if (keycode == XK_s)
 		data->key.s = 1;
-	if (keycode == XK_q)
+	if (keycode == XK_a)
 		data->key.a = 1;
 	if (keycode == XK_d)
 		data->key.d = 1;
@@ -81,7 +81,30 @@ int	key_press(int keycode, t_data *data)
 		else if (data->statement == PAUSE)
 			data->statement = PLAY;
 	}
-	set_keyplayer(keycode, data);
-	set_keycam(keycode, data);
+	if (data->statement == PLAY)
+	{
+		set_keyplayer(keycode, data);
+		set_keycam(keycode, data);
+	}
+	if (data->statement == PAUSE)
+	{
+		if (keycode == XK_KP_Enter || keycode == XK_Return)
+		{
+			if (data->menu.state_menu == RESUME)
+				data->statement = PLAY;
+			if (data->menu.state_menu == EXIT)
+				destroy_game(data);
+		}
+		if (keycode == XK_Up)
+		{
+			if (data->menu.state_menu != RESUME)
+				data->menu.state_menu--;
+		}
+		if (keycode == XK_Down)
+		{
+			if (data->menu.state_menu != EXIT)
+				data->menu.state_menu++;
+		}
+	}
 	return (0);
 }

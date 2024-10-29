@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   game_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:32:53 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/17 13:16:58 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_H
-#define RAYCAST_H
+#ifndef GAME_BONUS_H
+# define GAME_BONUS_H
 
 # include <math.h>
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 
 struct s_data;
 struct s_img;
@@ -54,6 +54,8 @@ typedef struct s_move
 	double					initz;
 	double 					jump_speed;
 	double					gravity;
+	int						size_mapx;
+	int						size_mapy;
 } t_move;
 
 typedef struct s_raycast
@@ -99,11 +101,9 @@ void		cam_rotate(struct s_data *data, double rotspeed, int flag);
 void		mouse_setting(struct s_data *data);
 
 /*				display			*/
-void		init_img(struct s_data* data);
-void		destroy_img(struct s_data *data);
 void		put_pixel_background(struct s_data *data, struct s_img *dis);
 void		draw_line(struct s_data *data, t_raycast *ray, int x, int side);
-int		display_game(struct s_data *data);
+int			display_game(struct s_data *data);
 
 /*				math			*/
 void		raycasting(struct s_data  *data);
@@ -123,4 +123,5 @@ void		my_mlx_pixel_put(struct s_img *data, int x, int y, int color);
 void		update_frame_data(struct s_data *data);
 double		my_get_time(void);
 char		*ft_itoa(int n);
+
 #endif
