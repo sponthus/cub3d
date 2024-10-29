@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 16:00:51 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/29 16:18:41 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,3 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 	draw_line_pixel(data, ray, x, texx);
 }
 
-void	update_frame_data(t_data *data)
-{
-	char		*fps;
-
-	data->player.old_time = data->player.time;
-	data->player.time = my_get_time();
-	if (data->player.time != data->player.old_time)
-		data->player.frame = (data->player.time - data->player.old_time)
-			* 0.0001;
-	else
-		data->player.frame = 0;
-	fps = ft_itoa(1 / data->player.frame);
-	mlx_string_put(data->mlx, data->win, 0,
-		data->win_height - 5, 0x0fdf9411, "FPS : ");
-	mlx_string_put(data->mlx, data->win, 40,
-		data->win_height - 5, 0x0fdf9411, fps);
-	free(fps);
-}

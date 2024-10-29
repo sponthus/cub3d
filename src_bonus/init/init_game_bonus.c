@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:27 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:35 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:23:58 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	init_game(t_data *data)
 	ft_memset(&data->player, 0, sizeof(t_move));
 	data->player.fov = 60;
 	init_player(data->map, &data->player);
-	data->player.gravity = 0.05;
-	data->player.speed = 0.02;
+	data->player.gravity = 0.5;
+	data->player.speed = 0.05;
 	data->player.movespeed = data->player.speed;
 	data->player.rotspeed = 0.01;
 	data->player.wallheight = 5;

@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 16:00:25 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/29 16:35:06 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	add_to_background(t_data *data, t_anim element)
 		while (y <= element.anim->frame.height)
 		{
 			bgy = element.y + y;
-			index = (bgy * data->display.ptr1.ll) + (bgx * (data->display.ptr1.bpp / 8));
-			color = get_pixel_color((&element.anim->frame), y / element.scale_y, x / element.scale_x);
+			index = (bgy * data->display.ptr1.ll)
+					+ (bgx * (data->display.ptr1.bpp / 8));
+			color = get_pixel_color((&element.anim->frame),
+					y / element.scale_y, x / element.scale_x);
 			if (color != 0 && (color & 0x00FFFFFF) != 0x00000000)
 				*(unsigned int *)(data->display.ptr1.addr + index) = color;
 			y++;
@@ -63,7 +65,8 @@ void	put_button(t_data *data, t_anim *element, int flag)
 			element->animspeed = 0;
 			element->anim = element->anim->next;
 		}
-		data->menu.icone.x = element->x - (element->anim->frame.width * element->scale_x);
+		data->menu.icone.x = element->x
+			- (element->anim->frame.width * element->scale_x);
 		data->menu.icone.y = element->y;
 	}
 	else
@@ -90,7 +93,9 @@ void	put_background(t_data *data, t_anim *element)
 		while (y <= data->win_height)
 		{
 			bgy = (y * element->anim->frame.height)  / data->win_height;
-			color = *(int *)(element->anim->frame.addr + (element->anim->frame.ll * bgy) + (bgx * element->anim->frame.bpp / 8));
+			color = *(int *)(element->anim->frame.addr
+					+ (element->anim->frame.ll * bgy)
+					+ (bgx * element->anim->frame.bpp / 8));
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 			y++;
 		}
@@ -111,7 +116,7 @@ void	pause_game(t_data *data)
 	update_frame(data, &data->menu.icone, 15);
 	destroy_img(data, data->menu.background.x, data->menu.background.y);
 	if (data->menu.background.y > 0)
-		data->menu.background.y -= data->player.frame * 7000;
+		data->menu.background.y -= data->win_height / 20;
 	update_frame_data(data);
 }
 
