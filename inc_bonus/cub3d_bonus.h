@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 10:43:09 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:54:53 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define SOUTH 2
 # define WEST 3
 # define EAST 4
+# define DOOR 5
 
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT data->win_height / 6

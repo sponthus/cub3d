@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 10:42:09 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:05:29 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	destroy_game(t_data *data, int exit_status)
 	data->display.ptr1.img = NULL;
 	free_animation(data);
 	free_data(data);
-	exit (exit_status);
+	exit(exit_status);
 }
 
 void	free_data(t_data *data)
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 	}
 	else if (argc == 1) // Ca va partir en version finale
 	{
-		if (parsing("inc/default.cub", &data) == 1)
+		if (parsing("inc_bonus/default.cub", &data) == 1)
 		{
 			free_data(&data);
 			return (1);

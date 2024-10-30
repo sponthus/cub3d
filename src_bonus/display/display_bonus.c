@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 16:18:41 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:58:32 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	destroy_img(struct s_data *data, int x, int y)
 	data->display.ptr1.img = NULL;
 }
 
-// Nom pas fou mais je pense que le + approprie derait draw_line
 void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 {
 	unsigned int	color;
@@ -79,13 +78,14 @@ void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 	}
 }
 
+// Side = 0 -> Mur nord ou sud
 void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	int		texx;
 
 	ray->dir = chose_dir(side, ray);
 	texx = 0;
-	if (side == 0) // Mur nord ou sud
+	if (side == 0)
 		texx = calc_texx_y(data, ray);
 	else
 		texx = calc_texx_x(data, ray);

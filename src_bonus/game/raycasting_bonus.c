@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:40:08 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:48:31 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ void	set_drawline(t_data *data, t_raycast *ray, int side)
 
 void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 {
-	int	hit;
-
-	hit = 0;
-	while (hit == 0)
+	ray->door = 0;
+	while (42)
 	{
 		if (ray->sidedistx < ray->sidedisty)
 		{
@@ -54,8 +52,13 @@ void	find_hit_point(t_data *data, t_raycast *ray, int *side)
 			(*side) = 1;
 		}
 		if (data->map[ray->mapx][ray->mapy]
-			&& data->map[ray->mapx][ray->mapy] > '0')
-			hit = 1;
+			&& data->map[ray->mapx][ray->mapy] != '0')
+		{
+			if (data->map[ray->mapx][ray->mapy] == 'D')
+				ray->door = 1;
+			if (data->map[ray->mapx][ray->mapy] != 'O')
+				break ;
+		}
 	}
 }
 

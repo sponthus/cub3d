@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:02:36 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 13:30:01 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:50:33 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 #  define BUFFER_SIZE 42
 # endif
 
+// Map is on when map is found
+// Empty is basically positive until proven otherwise
 typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
 	int				size;
 	char			*id;
-	bool			map; // Is on when map is found
-	bool			empty; // Basically positive until proven otherwise
+	bool			map;
+	bool			empty;
 }	t_list;
 
 int	ft_strlen(char *str);
