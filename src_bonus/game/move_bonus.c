@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 14:49:14 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 10:41:00 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	player_move(t_data *data, double dirx, double diry)
 {
 	double		newx;
 	double		newy;
-	double verifx = data->player.posx + dirx * (data->player.movespeed * 2);
-	double verify = data->player.posy + diry * (data->player.movespeed * 2);
+	double		verifx;
+	double		verify;
 
+	verifx = data->player.posx + dirx * (data->player.movespeed * 2);
+	verify = data->player.posy + diry * (data->player.movespeed * 2);
 	newx = data->player.posx + dirx * data->player.movespeed;
 	newy = data->player.posy + diry * data->player.movespeed;
 	if (data->map[(int)(verifx)][(int)(data->player.posy)]

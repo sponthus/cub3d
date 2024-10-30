@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 13:48:43 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 10:40:08 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	set_drawline(t_data *data, t_raycast *ray, int side)
 	data->player.horizon = data->player.pitch * data->win_height;
 	ray->lineheight = (int)((data->win_height * data->player.wallheight)
 			/ ray->perpwalldist);
-	ray->drawstart = (((ray->lineheight / 2) * -1) + (data->win_height / 2))
+	ray->drawstart = (((ray->lineheight * 0.5) * -1) + (data->win_height * 0.5))
 		- data->player.horizon ;
 	ray->drawstart -= data->player.posz;
 	ray->linestart = ray->drawstart;
 	if (ray->drawstart < 0)
 		ray->drawstart = 0;
-	ray->drawend = (ray->lineheight / 2 + (data->win_height / 2))
+	ray->drawend = (ray->lineheight * 0.5 + (data->win_height * 0.5))
 		- data->player.horizon;
 	ray->drawend -= data->player.posz;
 	if (ray->drawend >= data->win_height)
@@ -113,6 +113,7 @@ void	raycasting(t_data *data)
 		draw_line(data, &ray, x, side);
 		x++;
 	}
+	draw_minimap(data);
 	destroy_img(data, 0, 0);
 	update_frame_data(data);
 	update_frame(data, &data->menu.background, 30);

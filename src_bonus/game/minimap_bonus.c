@@ -6,15 +6,11 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:51:49 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/23 16:57:27 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:37:27 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-# define TILE_SIZE 7
-# define MINIMAP_HEIGHT data->win_height / 6
-# define MINIMAP_WIDTH data->win_width / 6
 
 unsigned int	chose_minimap_color(t_data *data, int x, int y)
 {
@@ -23,8 +19,8 @@ unsigned int	chose_minimap_color(t_data *data, int x, int y)
 	int		map_x;
 	int		map_y;
 
-	beg_x = data->player.posx - ((double)MINIMAP_HEIGHT / 2) / TILE_SIZE;
-	beg_y = data->player.posy - ((double)MINIMAP_WIDTH / 2) / TILE_SIZE;
+	beg_x = data->player.posx - ((double)MINIMAP_HEIGHT * 0.5) / TILE_SIZE;
+	beg_y = data->player.posy - ((double)MINIMAP_WIDTH * 0.5) / TILE_SIZE;
 	map_x = (int)(beg_x + (double)x / (double)TILE_SIZE);
 	map_y = (int)(beg_y + (double)y / (double)TILE_SIZE);
 	if (map_x >= 0 && map_x < map_size(data) && map_y >= 0
@@ -64,14 +60,16 @@ void	draw_contours(t_data *data, int basex, int basey)
 	while (x <= MINIMAP_WIDTH)
 	{
 		my_mlx_pixel_put(&data->display.ptr1, basex, basey + x, 0xFFE0);
-		my_mlx_pixel_put(&data->display.ptr1, basex + MINIMAP_HEIGHT, basey + x, 0xFFE0);
+		my_mlx_pixel_put(&data->display.ptr1, basex + MINIMAP_HEIGHT, basey + x, \
+			0xFFE0);
 		x++;
 	}
 	x = 0;
 	while (x <= MINIMAP_HEIGHT)
 	{
 		my_mlx_pixel_put(&data->display.ptr1, basex + x, basey, 0xFFE0);
-		my_mlx_pixel_put(&data->display.ptr1, basex + x, basey + MINIMAP_WIDTH, 0xFFE0);
+		my_mlx_pixel_put(&data->display.ptr1, basex + x, basey + MINIMAP_WIDTH, \
+			0xFFE0);
 		x++;
 	}
 }
@@ -84,6 +82,8 @@ void	draw_minimap(t_data *data)
 	int	basey;
 	unsigned int	color;
 
+	if (MINIMAP_HEIGHT >= WIN_HEIGHT - 15 || MINIMAP_WIDTH >= WIN_WIDTH - 15)
+		return ;
 	x = 0;
 	basex = 15;
 	basey = 15;

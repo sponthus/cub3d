@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 15:33:57 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 10:43:46 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	set_keycam(int keycode, t_data *data)
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
-		destroy_game(data);
+		destroy_game(data, EXIT_SUCCESS);
 	if (keycode == XK_Tab)
 	{
 		if (data->statement == PLAY)
@@ -93,7 +93,7 @@ int	key_press(int keycode, t_data *data)
 			if (data->menu.state_menu == RESUME)
 				data->statement = PLAY;
 			if (data->menu.state_menu == EXIT)
-				destroy_game(data);
+				destroy_game(data, EXIT_SUCCESS);
 		}
 		if (keycode == XK_Up)
 		{
