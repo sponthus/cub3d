@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 12:54:53 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:34:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void	free_data(t_data *data);
 int		destroy_game(t_data *data, int exit_status);
 bool	open_image(t_data *data, t_img *img, char *path);
 void	draw_minimap(t_data *data);
+void	doors(t_data *data);
 
 #endif

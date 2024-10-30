@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:43:46 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:33:37 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	set_keyplayer(int keycode, t_data *data)
 		data->key.d = 1;
 	if (keycode == XK_Shift_L)
 		data->key.shift_l = 1;
+	if (keycode == XK_o)
+		doors(data);
 }
 
 void	set_keycam(int keycode, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:41:00 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:43:08 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	player_move(t_data *data, double dirx, double diry)
 	newx = data->player.posx + dirx * data->player.movespeed;
 	newy = data->player.posy + diry * data->player.movespeed;
 	if (data->map[(int)(verifx)][(int)(data->player.posy)]
-		&& data->map[(int)(verifx)][(int)(data->player.posy)] == '0')
+		&& (data->map[(int)(verifx)][(int)(data->player.posy)] == '0'
+		|| data->map[(int)(verifx)][(int)(data->player.posy)] == 'O'))
 		data->player.posx = newx;
 	if (data->map[(int)(data->player.posx)][(int)(verify)]
-		&& data->map[(int)(data->player.posx)][(int)(verify)] == '0')
+		&& (data->map[(int)(data->player.posx)][(int)(verify)] == '0'
+		|| data->map[(int)(data->player.posx)][(int)(verify)] == 'O'))
 		data->player.posy = newy;
 }
 

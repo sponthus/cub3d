@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:51:49 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 10:49:26 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:54:07 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	draw_player(t_data *data, int basex, int basey)
 		y = 0;
 		while (y < 5)
 		{
-			my_mlx_pixel_put(&data->display.ptr1, basex
-				+ MINIMAP_HEIGHT * 0.5 + x, basey + MINIMAP_WIDTH * 0.5
+			my_mlx_pixel_put(&data->display.ptr1, basex - 2
+				+ MINIMAP_HEIGHT * 0.5 + x, basey - 2 + MINIMAP_WIDTH * 0.5
 				+ y, 0xFFE0);
 			y++;
 		}
