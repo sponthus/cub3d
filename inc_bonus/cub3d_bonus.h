@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 15:19:52 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 23:27:09 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include <stddef.h>
 
 # include "parsing_bonus.h"
 # include "utils_bonus.h"
@@ -27,6 +28,17 @@
 # include "menu_bonus.h"
 # include "display_bonus.h"
 # include "animation_bonus.h"
+
+# define DOOR_MSG "Press O to open/close door"
+
+// Colors to personalize according to your vibe
+# define COL_BACK 0x000000
+# define COL_EMPTY 0xFFFFFF
+# define COL_DOOR 0x1034A6
+# define COL_OPEN 0xAFEEEE
+# define COL_PLAYER 0xFFE0
+# define COL_CONT 0xFFE0
+# define COL_MSG 0x0fdf9411
 
 # define WIN_HEIGHT 1020
 # define WIN_WIDTH 1920

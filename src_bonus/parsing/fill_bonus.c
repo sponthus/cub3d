@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   fill_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:51 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 23:29:45 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_bonus.h"
+
 
 int	fill_element(t_pars *pars, t_list *actual)
 {
