@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 12:49:20 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 14:55:39 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_pixel_color(t_img *img, int y, int x)
 	return (0x0);
 }
 
-void	add_to_background(t_data *data, t_anim element)
+void	add_to_background(t_data *data, t_anim *element)
 {
 	int				x;
 	int				y;
@@ -33,17 +33,17 @@ void	add_to_background(t_data *data, t_anim element)
 	int				index;
 
 	x = 0;
-	while(x <= element.anim->frame.width)
+	while(x <= element->anim->frame.width)
 	{
 		y = 0;
-		bgx = element.x + x;
-		while (y <= element.anim->frame.height)
+		bgx = element->x + x;
+		while (y <= element->anim->frame.height)
 		{
-			bgy = element.y + y;
+			bgy = element->y + y;
 			index = (bgy * data->display.ptr1.ll)
 					+ (bgx * (data->display.ptr1.bpp / 8));
-			color = get_pixel_color((&element.anim->frame),
-					y / element.scale_y, x / element.scale_x);
+			color = get_pixel_color((&element->anim->frame),
+					y / element->scale_y, x / element->scale_x);
 			if (color != 0 && (color & 0x00FFFFFF) != 0x00000000)
 				*(unsigned int *)(data->display.ptr1.addr + index) = color;
 			y++;
@@ -54,7 +54,7 @@ void	add_to_background(t_data *data, t_anim element)
 
 void	put_button(t_data *data, t_anim *element, int flag)
 {
-	add_to_background(data, *element);
+	add_to_background(data, element);
 	element->animspeed += data->player.frame * 70;
 	if ((data->menu.state_menu == RESUME && flag == RESUME_ANIMATION)
 		|| (data->menu.state_menu == SETTING && flag == SETTING_ANIMATION)
@@ -112,8 +112,8 @@ void	pause_game(t_data *data)
 	put_button(data, &data->menu.resume, RESUME_ANIMATION);
 	put_button(data, &data->menu.setting, SETTING_ANIMATION);
 	put_button(data, &data->menu.exit, EXIT_ANIMATION);
-	add_to_background(data, *&data->menu.icone);
-	update_frame(data, &data->menu.icone, 15);
+	add_to_background(data, &data->menu.icone);
+	update_frame(data, &data->menu.icone, 10);
 	destroy_img(data, data->menu.background.x, data->menu.background.y);
 	if (data->menu.background.y > 0)
 		data->menu.background.y -= data->win_height * 0.05;
@@ -125,13 +125,13 @@ void	setting_menu(t_data *data)
 	init_img(data);
 	mlx_mouse_show(data->mlx, data->win);
 	put_background(data, &data->menu.background);
-	// put_button(data, &data->menu.resume, RESUME_ANIMATION);
-	// put_button(data, &data->menu.setting, SETTING_ANIMATION);
-	// put_button(data, &data->menu.exit, EXIT_ANIMATION);
-	// add_to_background(data, *&data->menu.icone);
+	put_button(data, &data->menu.speed, RESUME_ANIMATION);
+	mlx_string_put(data->mlx, data->win, data->menu.speed.x, data->)
+	put_button(data, &data->menu.cam, RESUME_ANIMATION);
+	put_button(data, &data->menu.color, RESUME_ANIMATION);
 	update_frame(data, &data->menu.icone, 15);
 	destroy_img(data, data->menu.background.x, data->menu.background.y);
 	if (data->menu.background.y > 0)
 		data->menu.background.y -= data->win_height * 0.05;
-	update_frame_data(data);
+	// update_frame_data(data);
 }
