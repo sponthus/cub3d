@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 15:07:48 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 15:48:06 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void	setting_menu(t_data *data)
 	mlx_mouse_show(data->mlx, data->win);
 	put_background(data, &data->menu.background);
 	put_button(data, &data->menu.speed, RESUME_ANIMATION);
-	mlx_string_put(data->mlx, data->win, data->menu.speed.x, data->menu.speed.y + 1024,  0x0fdf9411, " : hello");
 	put_button(data, &data->menu.cam, RESUME_ANIMATION);
 	put_button(data, &data->menu.color, RESUME_ANIMATION);
 	update_frame(data, &data->menu.icone, 15);
