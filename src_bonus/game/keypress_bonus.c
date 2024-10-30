@@ -6,13 +6,10 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/30 12:44:08 by endoliam         ###   ########lyon.fr   */
-=======
-/*   Updated: 2024/10/30 13:33:37 by sponthus         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/10/30 15:22:13 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d_bonus.h" 
 
