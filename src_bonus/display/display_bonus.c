@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 16:18:41 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:30:15 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, color);
 		}
 		else if (y < ray->drawstart)
-			set_sky(data, ray, x, y);
+			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.ceiling);
+			// set_sky(data, ray, x, y);
 		else if (y > ray->drawend)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.floor);
 		y++;
