@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:27:57 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:21 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:57:24 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,3 @@ char	*ft_itoa(int n)
 	res = convertchar(num, res, neg);
 	return (res);
 }
-
-//int		main(int argc, char **argv)
-//{
-//	(void) argc;
-//	printf("%s\n", ft_itoa(ft_atoi(argv[1])));
-//}

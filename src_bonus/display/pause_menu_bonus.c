@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause_menu_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 16:35:06 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 10:48:58 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ void	put_button(t_data *data, t_anim *element, int flag)
 	else
 	{
 		if (element->animspeed > 1 && element->anim->index != 0)
-				element->anim = element->anim->prev;
+			element->anim = element->anim->prev;
 	}
 }
 
 void	put_background(t_data *data, t_anim *element)
 {
-	int				x = 0;
-	int				y = 0;
+	int				x;
+	int				y;
 	int				bgx;
 	int				bgy;
 	unsigned int	color;
@@ -116,7 +116,7 @@ void	pause_game(t_data *data)
 	update_frame(data, &data->menu.icone, 15);
 	destroy_img(data, data->menu.background.x, data->menu.background.y);
 	if (data->menu.background.y > 0)
-		data->menu.background.y -= data->win_height / 20;
+		data->menu.background.y -= data->win_height * 0.05;
 	update_frame_data(data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/15 15:31:04 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:56:27 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ bool	closed_map(t_data *data, int map_size)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == '0')  // ATTENTION segfault possible si map qui dep en haut a DT ?
+			if (data->map[i][j] == '0')
 			{
 				if (i == 0 || j == 0 || j == ft_strlen(data->map[i])
 					|| i == map_size)
