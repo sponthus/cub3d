@@ -6,14 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 12:30:54 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:30:08 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_BONUS_H
 # define PARSING_BONUS_H
 
-# include "cub3d_bonus.h"
 # include "utils_bonus.h"
 # include <sys/types.h>
 # include <sys/stat.h>

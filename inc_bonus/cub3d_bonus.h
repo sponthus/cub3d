@@ -6,10 +6,9 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 16:24:59 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:40:12 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H

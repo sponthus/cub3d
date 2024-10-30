@@ -3,7 +3,7 @@ NAME = cub3d
 BONUS = cub3d_bonus
 
 CC = cc
-CFLAGS = -g -Wall -Wextra  -I/usr/include -Iinc -Iinc_bonus -Imlx_linux -O3 #-Werror
+CFLAGS = -MMD -MP -g -Wall -Wextra  -I/usr/include -Iinc -Iinc_bonus -Imlx_linux -O3 #-Werror
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
 
 SRC_DIR = ./src/
@@ -19,6 +19,8 @@ SRC = $(shell find $(SRC_DIR) -name "*.c")
 SRC_BON = $(shell find $(SRC_BON_DIR) -name "*.c")
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 OBJ_BON = $(patsubst $(SRC_BON_DIR)%.c, $(OBJ_BON_DIR)%.o, $(SRC_BON))
+DEP = $(OBJ:%.o=%.d)
+DEP_BON = $(OBJ_BON:%.o=%.d)
 
 HEADER = $(wildcard $(INC_DIR)*.h)
 HEADER_BON = $(wildcard $(INC_BON_DIR)*.h)
