@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 15:22:13 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 16:41:45 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
