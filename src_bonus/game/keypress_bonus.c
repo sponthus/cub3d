@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:43:46 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:44:08 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	key_press(int keycode, t_data *data)
 				data->statement = PLAY;
 			if (data->menu.state_menu == EXIT)
 				destroy_game(data, EXIT_SUCCESS);
+			if (data->menu.state_menu == SETTING)
+				data->statement = SETTING_MENU;
 		}
 		if (keycode == XK_Up)
 		{

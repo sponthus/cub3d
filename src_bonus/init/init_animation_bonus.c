@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_animation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:45:32 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:13:09 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

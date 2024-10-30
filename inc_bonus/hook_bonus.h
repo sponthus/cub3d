@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 13:15:45 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:47:14 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef	struct s_keypress
 	int		esc;
 	int		space;
 	int		tab;
+	int		enter;
 }	t_keypress;
 
 int		key_release(int keycode, struct s_data *data);

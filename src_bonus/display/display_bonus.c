@@ -6,13 +6,13 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 12:30:15 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:44:49 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	set_sky(t_data *data, t_raycast *ray, int x, int y);
+void	setting_menu(t_data *data);
 
 int	display_game(t_data *data)
 {
@@ -24,6 +24,10 @@ int	display_game(t_data *data)
 	}
 	else if (data->statement == PAUSE)
 		pause_game(data);
+	else if (data->statement == SETTING)
+		setting_menu(data);
+	// else if (data->statement == MENU)
+	// 	main_menu(data);
 	return (0);
 }
 

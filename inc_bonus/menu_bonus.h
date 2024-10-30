@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 15:38:26 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 13:14:04 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum	e_setting_state
 {
 	COLOR_SKY = 1,
 	COLOR_FLOOR,
-	SPEED
+	MOVESPEED,
+	ROTSPEED
 }	t_setting_state;
 
 typedef struct s_menu
@@ -40,6 +41,9 @@ typedef struct s_menu
 	struct s_anim		resume;
 	struct s_anim		exit;
 	struct s_anim		icone;
+	struct s_anim		speed;
+	struct s_anim		cam;
+	struct s_anim		color;
 	t_menu_state		state_menu;
 } t_menu;
 

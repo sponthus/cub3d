@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:32:53 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:38:13 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_shadow
 
 /*				game			*/
 void		init_game(struct s_data  *data);
-void		move(struct s_data  *data);
+int		move(struct s_data  *data);
 void		player_move(struct s_data *data, double dirx, double diry);
 void		cam_rotate(struct s_data *data, double rotspeed, int flag);
 void		mouse_setting(struct s_data *data);

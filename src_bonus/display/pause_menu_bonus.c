@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause_menu_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:48:58 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:49:20 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,69 +120,18 @@ void	pause_game(t_data *data)
 	update_frame_data(data);
 }
 
-void adapt_color(unsigned int original_color, unsigned int target_color, unsigned int *result_color) 
+void	setting_menu(t_data *data)
 {
-    int r_orig = (original_color >> 16) & 0xFF;
-    int g_orig = (original_color >> 8) & 0xFF;
-    int b_orig = original_color & 0xFF;
-    int brightness_orig = (r_orig * 299 + g_orig * 587 + b_orig * 114) / 1000;
-    int r_target = (target_color >> 16) & 0xFF;
-    int g_target = (target_color >> 8) & 0xFF;
-    int b_target = target_color & 0xFF;
-    float factor = (brightness_orig / 255.0) * 5;
-    r_target = (int)(r_target * ( factor));
-    g_target = (int)(g_target * ( factor));
-    b_target = (int)(b_target * ( factor));
-    r_target = r_target < 0 ? 0 : r_target > 255 ? 255 : r_target;
-    g_target = g_target < 0 ? 0 : g_target > 255 ? 255 : g_target;
-    b_target = b_target < 0 ? 0 : b_target > 255 ? 255 : b_target;
-    *result_color = (r_target << 16) | (g_target << 8) | b_target;
-}
-
-void	set_sky(t_data *data, t_raycast *ray, int x, int y)
-{
-	int			hit;
-	t_raycast	sky_ray;
-
-	hit = 0;
-	sky_ray.sidedistx = ray->sidedistx;
-	sky_ray.sidedisty = ray->sidedisty;
-	sky_ray.deltadistx = ray->deltadistx;
-	sky_ray.deltadisty = ray->deltadisty;
-	sky_ray.raydirx = ray->raydirx;
-	sky_ray.raydiry = ray->raydiry;
-	if (ray->sidedistx < ray->sidedisty)
-		sky_ray.perpwalldist = (sky_ray.sidedistx - sky_ray.deltadistx) * 6;
-	else
-		sky_ray.perpwalldist = (sky_ray.sidedisty - sky_ray.deltadisty) * 6;
-	sky_ray.lineheight = (int)((data->win_height * 0.5));
-	sky_ray.linestart = sky_ray.lineheight;
-	int		texx, texy;
-	double	hity;
-	if (sky_ray.raydirx < 0)
-		hity = (data->player.posy + sky_ray.perpwalldist * sky_ray.raydiry);
-	else 
-		hity = (data->player.posy - sky_ray.perpwalldist * sky_ray.raydiry);
-	hity -= floor(hity);
-	double ray_angle = atan2(sky_ray.raydiry, sky_ray.raydirx);
-	texx = (int)((ray_angle / (2.0 * M_PI)) * (data->menu.background.anim->frame.width));
-	if (texx < 0)
-		texx += (data->menu.background.anim->frame.width);
-	texy = (int)(hity * (data->menu.background.anim->frame.height * 0.5));
-	texy = (int)((data->player.horizon + (y - sky_ray.lineheight)) * (data->menu.background.anim->frame.height * 0.5) / data->win_height);
-	if (texy < 0)
-		texy *= -1;
-	texy = abs(texy);
-	unsigned int color = *(int *)(data->menu.background.anim->frame.addr + (data->menu.background.anim->frame.ll * texy) + (texx * data->menu.background.anim->frame.bpp / 8));
-	int		r = (color >> 16) & 0xFF;
-	int		g = (color >> 8) & 0xFF;
-	int		b = color & 0xFF;
-	if ((r <= 255 && r >= 33) || (g <= 110 && g >= 20) || (b <= 219 && b >= 68))
-	{
-		unsigned int adapted_color;
-    	adapt_color(color, data->sprites.ceiling, &adapted_color);
-		color = adapted_color;
-	}
-	if (color != 0)
-		my_mlx_pixel_put(&data->display.ptr1, x, y, color);
+	init_img(data);
+	mlx_mouse_show(data->mlx, data->win);
+	put_background(data, &data->menu.background);
+	// put_button(data, &data->menu.resume, RESUME_ANIMATION);
+	// put_button(data, &data->menu.setting, SETTING_ANIMATION);
+	// put_button(data, &data->menu.exit, EXIT_ANIMATION);
+	// add_to_background(data, *&data->menu.icone);
+	update_frame(data, &data->menu.icone, 15);
+	destroy_img(data, data->menu.background.x, data->menu.background.y);
+	if (data->menu.background.y > 0)
+		data->menu.background.y -= data->win_height * 0.05;
+	update_frame_data(data);
 }

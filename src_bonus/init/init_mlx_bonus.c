@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 10:53:22 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:14:56 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	init_menu(t_data *data)
 	init_animation(data, &data->menu.resume, "inc_bonus/menu/resume/", 29);
 	init_animation(data, &data->menu.exit, "inc_bonus/menu/exit/", 31);
 	init_animation(data, &data->menu.icone, "inc_bonus/menu/icone/", 10);
+	init_animation(data, &data->menu.icone, "inc_bonus/menu/cam/", 0);
+	init_animation(data, &data->menu.icone, "inc_bonus/menu/speed/", 0);
+	init_animation(data, &data->menu.icone, "inc_bonus/menu/color/", 0);
 	data->menu.resume.scale_x = data->win_width / 1920.0;
 	data->menu.resume.scale_y = data->win_height / 1080.0;
 	data->menu.resume.x = data->win_width  - data->win_width * 0.7;
