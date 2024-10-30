@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 13:43:08 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:58:20 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	player_move(t_data *data, double dirx, double diry)
 		&& (data->map[(int)(verifx)][(int)(data->player.posy)] == '0'
 		|| data->map[(int)(verifx)][(int)(data->player.posy)] == 'O'))
 		data->player.posx = newx;
-	if (data->map[(int)(data->player.posx)][(int)(verify)]
-		&& (data->map[(int)(data->player.posx)][(int)(verify)] == '0'
+	if ((data->map[(int)(data->player.posx)][(int)(verify)] == '0'
 		|| data->map[(int)(data->player.posx)][(int)(verify)] == 'O'))
 		data->player.posy = newy;
 }
@@ -69,8 +68,8 @@ void	find_keyplayer_move(t_data *data)
 		player_move(data, -data->player.diry, data->player.dirx);
 	if (data->key.d)
 		player_move(data, data->player.diry, -data->player.dirx);
-	else if (!data->key.shift_l && !data->key.c)
-		data->player.movespeed = data->player.speed;
+	//else if (!data->key.shift_l && !data->key.c)
+	//	data->player.movespeed = data->player.speed;
 	if (data->key.space)
 	{
 		data->player.posz += data->player.jump_speed;
@@ -82,8 +81,8 @@ void	find_keyplayer_move(t_data *data)
 			data->player.jump_speed = 0;
 		}
 	}
-	if (data->key.shift_l && !data->key.c)
-		data->player.movespeed = data->player.speed * 3;
+	//if (data->key.shift_l && !data->key.c)
+	//	data->player.movespeed = data->player.movespeed * 0.9;
 }
 
 void	find_keycam_move(t_data *data)

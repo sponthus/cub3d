@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 12:48:31 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:52:17 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	raycasting(t_data *data)
 	}
 	draw_minimap(data);
 	destroy_img(data, 0, 0);
+	doors_message(data);
 	update_frame_data(data);
 	update_frame(data, &data->menu.background, 30);
 }
