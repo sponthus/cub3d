@@ -6,9 +6,10 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 14:25:16 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 15:19:34 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d_bonus.h"
 #include "parsing_bonus.h"
@@ -111,6 +112,8 @@ bool	init_mlx(t_data *data, t_pars *pars)
 	if (open_image(data, &data->sprites.we, pars->we) == false)
 		return (false);
 	if (open_image(data, &data->sprites.ea, pars->ea) == false)
+		return (false);
+	if (open_image(data, &data->sprites.door, "textures/ananas.xpm") == false)
 		return (false);
 	init_game(data);
 	init_menu(data);

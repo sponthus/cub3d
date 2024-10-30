@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   what_is_this.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/14 14:48:31 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:35:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,26 @@ bool	prepare_element(t_list *lst)
 	return (true);
 }
 
+// ID is complete, is followed by at least 1 space
+// or ID is only 1 letter followed by space
 bool	is_element(t_list *lst, char *id)
 {
 	int	len;
 
 	len = ft_strlen(id);
-	if (ft_strncmp(lst->content, id, len) == 0) // J'ai mon ID complet
+	if (ft_strncmp(lst->content, id, len) == 0)
 	{
 		if (lst->size > len + 1
-			&& is_charset(lst->content[len], " \n\t\v\f\r")) // Suivi d'un espace
+			&& is_charset(lst->content[len], " \n\t\v\f\r"))
 		{
 			lst->id = id;
 			return (true);
 		}
 	}
-	else if (len == 2 && ft_strncmp(lst->content, id, 1) == 0) // J'ai la 1e lettre de l'ID
+	else if (len == 2 && ft_strncmp(lst->content, id, 1) == 0)
 	{
 		if (lst->size > 2
-			&& is_charset(lst->content[1], " \n\t\v\f\r")) // Suivie d'un espace
+			&& is_charset(lst->content[1], " \n\t\v\f\r"))
 		{
 			lst->id = id;
 			return (true);

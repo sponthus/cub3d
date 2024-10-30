@@ -6,7 +6,11 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/30 12:44:08 by endoliam         ###   ########lyon.fr   */
+=======
+/*   Updated: 2024/10/30 13:33:37 by sponthus         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +53,8 @@ void	set_keyplayer(int keycode, t_data *data)
 		data->key.d = 1;
 	if (keycode == XK_Shift_L)
 		data->key.shift_l = 1;
+	if (keycode == XK_o)
+		doors(data);
 }
 
 void	set_keycam(int keycode, t_data *data)

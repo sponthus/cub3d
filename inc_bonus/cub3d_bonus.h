@@ -6,9 +6,10 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 12:44:01 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 15:19:52 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
@@ -34,6 +35,7 @@
 # define SOUTH 2
 # define WEST 3
 # define EAST 4
+# define DOOR 5
 
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT data->win_height / 6
@@ -69,5 +71,6 @@ void	free_data(t_data *data);
 int		destroy_game(t_data *data, int exit_status);
 bool	open_image(t_data *data, t_img *img, char *path);
 void	draw_minimap(t_data *data);
+void	doors(t_data *data);
 
 #endif

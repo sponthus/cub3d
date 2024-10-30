@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:58:00 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 15:59:31 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:50:58 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_inc
 	t_img				ea;
 	t_img				we;
 	t_img				sky;
+	t_img				door;
 	unsigned int		floor;
 	unsigned int		ceiling;
 }	t_inc;

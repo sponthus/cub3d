@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:05 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 13:17:10 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 12:30:54 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_pars
 # define ERR_NO_ELEM "Element missing"
 # define ERR_UNEX "Unexpected element found"
 
-# define CHAR_MAP " \n\t\v\f\r01NSEW"
+# define CHAR_MAP " \n\t\v\f\r01NSEWD"
 
 // PARSING
 void	init_data(struct s_data *data);
