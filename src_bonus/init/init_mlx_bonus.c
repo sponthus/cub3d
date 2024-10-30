@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 15:47:54 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 23:22:03 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void	init_menu(t_data *data)
 	init_animation(data, &data->menu.resume, "inc_bonus/menu/resume/", 29);
 	init_animation(data, &data->menu.exit, "inc_bonus/menu/exit/", 31);
 	init_animation(data, &data->menu.icone, "inc_bonus/menu/icone/", 10);
-	init_animation(data, &data->menu.cam, "inc_bonus/menu/cam/", 0);
-	init_animation(data, &data->menu.speed, "inc_bonus/menu/speed/", 0);
-	init_animation(data, &data->menu.color, "inc_bonus/menu/color/", 0);
+	init_animation(data, &data->menu.setting_menu.cam, "inc_bonus/menu/cam/", 0);
+	init_animation(data, &data->menu.setting_menu.speed, "inc_bonus/menu/speed/", 0);
+	init_animation(data, &data->menu.setting_menu.color, "inc_bonus/menu/color/", 0);
+	init_animation(data, &data->menu.setting_menu.barre, "inc_bonus/menu/barre_setting/", 0);
+	init_animation(data, &data->menu.setting_menu.cursor, "inc_bonus/menu/cursor_setting/", 0);
 	data->menu.resume.scale_x = data->win_width / 1920.0;
 	data->menu.resume.scale_y = data->win_height / 1080.0;
 	data->menu.resume.x = data->win_width  - data->win_width * 0.7;
@@ -79,22 +81,24 @@ void	init_menu(t_data *data)
 	data->menu.background.y = data->win_height;
 	data->menu.icone.scale_x = data->menu.resume.scale_x;
 	data->menu.icone.scale_y = data->menu.resume.scale_y;
-	data->menu.speed.scale_x = data->menu.resume.scale_x * 0.6;
-	data->menu.speed.scale_y = data->menu.resume.scale_y * 0.6;
-	data->menu.speed.x = data->win_width;
-	data->menu.speed.y = data->win_height  - data->win_height * 0.9;
-	data->menu.cam.scale_x = data->menu.speed.scale_x;
-	data->menu.cam.scale_y = data->menu.speed.scale_y;
-	data->menu.cam.x = data->win_width;
-	data->menu.cam.y = data->menu.speed.y + 100;
-	data->menu.color.scale_x = data->menu.speed.scale_x;
-	data->menu.color.scale_y = data->menu.speed.scale_y;
-	data->menu.color.x = data->win_width;
-	data->menu.color.y = data->menu.cam.y + 100;
-	if (!open_image(data, &data->menu.barre, "inc_bonus/menu/barre.xpm"))
-		destroy_game(data, EXIT_FAILURE);
-	if (!open_image(data, &data->menu.point, "inc_bonus/menu/point.xpm"))
-		destroy_game(data, EXIT_FAILURE);
+	data->menu.setting_menu.speed.scale_x = data->menu.resume.scale_x;
+	data->menu.setting_menu.speed.scale_y = data->menu.resume.scale_y ;
+	data->menu.setting_menu.speed.x = data->win_width;
+	data->menu.setting_menu.speed.y = data->win_height  - data->win_height * 0.9;
+	data->menu.setting_menu.cam.scale_x = data->menu.resume.scale_x;
+	data->menu.setting_menu.cam.scale_y = data->menu.resume.scale_y ;
+	data->menu.setting_menu.cam.x = data->win_width;
+	data->menu.setting_menu.cam.y = data->menu.setting_menu.speed.y + 100;
+	data->menu.setting_menu.color.scale_x = data->menu.resume.scale_x;
+	data->menu.setting_menu.color.scale_y = data->menu.resume.scale_y ;
+	data->menu.setting_menu.color.x = data->win_width;
+	data->menu.setting_menu.color.y = data->menu.setting_menu.cam.y + 100;
+	data->menu.setting_menu.cursor.scale_x = data->menu.resume.scale_x * 0.8;
+	data->menu.setting_menu.cursor.scale_y = data->menu.resume.scale_y * 0.8;
+	data->menu.setting_menu.barre.scale_x = data->menu.resume.scale_x * 0.8;
+	data->menu.setting_menu.barre.scale_y = data->menu.resume.scale_y * 0.8;
+	data->menu.setting_menu.cursor_speed = 0;
+	data->menu.setting_menu.cursor_cam = 0;
 }
 
 bool	init_mlx(t_data *data, t_pars *pars)

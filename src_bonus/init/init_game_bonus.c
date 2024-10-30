@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:27 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/29 16:23:58 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/30 23:22:25 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	init_game(t_data *data)
 	data->player.fov = 60;
 	init_player(data->map, &data->player);
 	data->player.gravity = 0.5;
-	data->player.speed = 0.05;
-	data->player.movespeed = data->player.speed;
-	data->player.rotspeed = 0.01;
+	data->player.movespeed = 0.05;
+	//data->player.movespeed = data->player.speed;
+	data->player.rotspeed = 0.001;
 	data->player.wallheight = 5;
 	data->statement = PLAY;
 }
