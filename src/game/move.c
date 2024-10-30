@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:50:01 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:21:14 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ void	player_move(t_data *data, double dirx, double diry)
 {
 	double		newx;
 	double		newy;
+	double		verifx;
+	double		verify;
 
+	verifx = data->player.posx + dirx * (data->player.movespeed * 2);
+	verify = data->player.posy + diry * (data->player.movespeed * 2);
 	newx = data->player.posx + dirx * data->player.movespeed;
 	newy = data->player.posy + diry * data->player.movespeed;
-	if (data->map[(int)(data->player.posx)][(int)(newy)]
-		&& data->map[(int)(newx)][(int)(data->player.posy)] == '0') // Normal qu'on ait pas la meme chose dans la verif et dans le test ?
+	if (data->map[(int)(verifx)][(int)(data->player.posy)]
+		&& data->map[(int)(verifx)][(int)(data->player.posy)] == '0')
 		data->player.posx = newx;
-	if (data->map[(int)(data->player.posx)][(int)(newy)] // J'ai un soucis quand on va ful contre un mur sans pivoter on rentre dans le mur
-		&& data->map[(int)(data->player.posx)][(int)(newy)] == '0')
+	if (data->map[(int)(data->player.posx)][(int)(verify)]
+		&& data->map[(int)(data->player.posx)][(int)(verify)] == '0')
 		data->player.posy = newy;
 }
 
