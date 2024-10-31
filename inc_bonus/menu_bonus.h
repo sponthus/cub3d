@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 13:39:47 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 11:27:41 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,41 @@ typedef enum	e_menu_state
 
 typedef enum	e_setting_state
 {
-	COLOR_SKY = 1,
-	COLOR_FLOOR,
-	MOVESPEED,
-	ROTSPEED
+	MOVESPEED = 0,
+	ROTSPEED,
+	COLOR_SKY,
+	COLOR_FLOOR
 }	t_setting_state;
+
+typedef enum	e_color_state
+{
+	RED = 0,
+	GREEN,
+	BLUE
+}	t_color_state;
+
+typedef struct s_color
+{
+	int		r;
+	int		g;
+	int		b;
+} t_color;
+
+typedef struct s_setting
+{
+	struct s_anim		speed;
+	struct s_anim		cam;
+	struct s_anim		color;
+	struct s_anim		barre;
+	struct s_anim		cursor;
+	int					cursor_cam;
+	int					cursor_speed;
+	t_color				cursor_sky;
+	t_color				cursor_floor;
+	t_setting_state		setting_state;
+	t_color_state		color_state;
+	
+} t_setting;
 
 typedef struct s_menu
 {
@@ -41,9 +71,7 @@ typedef struct s_menu
 	struct s_anim		resume;
 	struct s_anim		exit;
 	struct s_anim		icone;
-	struct s_anim		speed;
-	struct s_anim		cam;
-	struct s_anim		color;
+	t_setting			setting_menu;
 	t_menu_state		state_menu;
 } t_menu;
 

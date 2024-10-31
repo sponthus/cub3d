@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 15:07:48 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 13:40:32 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,89 @@ void	pause_game(t_data *data)
 	update_frame_data(data);
 }
 
+void	put_color_cursor(t_data *data, int basex, int basey, t_color cursor)
+{
+	data->menu.setting_menu.barre.x = data->menu.setting_menu.speed.x 
+	+ basex;
+	data->menu.setting_menu.barre.y = basey;
+	put_button(data, &data->menu.setting_menu.barre, RESUME_ANIMATION);
+	data->menu.setting_menu.cursor.x = cursor.r 
+	+ data->menu.setting_menu.barre.x 
+	- (data->menu.setting_menu.barre.anim->frame.width * 0.5 * data->menu.setting_menu.barre.scale_x)
+	 - (30 * data->menu.setting_menu.cursor.scale_x);
+	data->menu.setting_menu.cursor.y = data->menu.setting_menu.barre.y;
+	put_button(data, &data->menu.setting_menu.cursor, RESUME_ANIMATION);
+	data->menu.setting_menu.barre.y = data->menu.setting_menu.barre.y + data->win_width * 0.05;
+	put_button(data, &data->menu.setting_menu.barre, RESUME_ANIMATION);
+	data->menu.setting_menu.cursor.x = cursor.g 
+	+ data->menu.setting_menu.barre.x 
+	- (data->menu.setting_menu.barre.anim->frame.width * 0.5 * data->menu.setting_menu.barre.scale_x)
+	 - (30 * data->menu.setting_menu.cursor.scale_x);
+	data->menu.setting_menu.cursor.y = data->menu.setting_menu.barre.y;
+	put_button(data, &data->menu.setting_menu.cursor, RESUME_ANIMATION);
+	data->menu.setting_menu.barre.y = data->menu.setting_menu.barre.y + data->win_width * 0.05;
+	put_button(data, &data->menu.setting_menu.barre, RESUME_ANIMATION);
+	data->menu.setting_menu.cursor.x = cursor.b
+	+ data->menu.setting_menu.barre.x 
+	- (data->menu.setting_menu.barre.anim->frame.width * 0.5 * data->menu.setting_menu.barre.scale_x)
+	 - (30 * data->menu.setting_menu.cursor.scale_x);
+	data->menu.setting_menu.cursor.y = data->menu.setting_menu.barre.y;
+	put_button(data, &data->menu.setting_menu.cursor, RESUME_ANIMATION);
+}
+void 	put_cursor(t_data *data, int basex, int basey, int cursor)
+{
+	data->menu.setting_menu.barre.x = basex;
+	data->menu.setting_menu.barre.y = basey;
+	put_button(data, &data->menu.setting_menu.barre, RESUME_ANIMATION);
+	data->menu.setting_menu.cursor.x = cursor +
+	+ data->menu.setting_menu.barre.x 
+	- (data->menu.setting_menu.barre.anim->frame.width * 0.5 * data->menu.setting_menu.barre.scale_x)
+	+ (50 * data->menu.setting_menu.cursor.scale_x);
+	data->menu.setting_menu.cursor.y = basey;
+	put_button(data, &data->menu.setting_menu.cursor, RESUME_ANIMATION);
+
+}
+void	add_color_setting(t_data *data, int basex, int basey, unsigned int color)
+{
+	int	x = 0;
+	int	y = 0;
+	while (x < data->win_width * 0.05)
+	{
+		y = 0;
+		while(y <  data->win_width * 0.05)
+		{
+			my_mlx_pixel_put(&data->display.ptr1, x + basex, y + basey, color);
+			y++;
+		}
+		x++;
+	}
+	if (color == data->sprites.ceiling)
+		put_color_cursor(data, basex, basey + y, data->menu.setting_menu.cursor_sky);
+	else 
+		put_color_cursor(data, basex, basey + y, data->menu.setting_menu.cursor_floor);
+}
+
 void	setting_menu(t_data *data)
 {
 	init_img(data);
-	mlx_mouse_show(data->mlx, data->win);
 	put_background(data, &data->menu.background);
-	put_button(data, &data->menu.speed, RESUME_ANIMATION);
-	mlx_string_put(data->mlx, data->win, data->menu.speed.x, data->menu.speed.y + 1024,  0x0fdf9411, " : hello");
-	put_button(data, &data->menu.cam, RESUME_ANIMATION);
-	put_button(data, &data->menu.color, RESUME_ANIMATION);
+	put_button(data, &data->menu.setting_menu.speed, RESUME_ANIMATION);
+	put_cursor(data, data->menu.setting_menu.speed.x 
+	+ (data->menu.setting_menu.speed.anim->frame.width * data->menu.setting_menu.speed.scale_x), data->menu.setting_menu.speed.y,
+	data->menu.setting_menu.cursor_speed  * data->menu.setting_menu.barre.scale_x);
+	put_button(data, &data->menu.setting_menu.cam, RESUME_ANIMATION);
+	put_cursor(data, data->menu.setting_menu.cam.x
+	+ (data->menu.setting_menu.cam.anim->frame.width * data->menu.setting_menu.cam.scale_x), data->menu.setting_menu.cam.y, 
+	data->menu.setting_menu.cursor_cam *  data->menu.setting_menu.barre.scale_x);
+	put_button(data, &data->menu.setting_menu.color, RESUME_ANIMATION);
+	int	basey = data->menu.setting_menu.color.y + data->win_height * 0.1;
+	add_color_setting(data, data->menu.setting_menu.color.x + data->win_width * 0.01
+	, basey, data->sprites.ceiling);
+	add_color_setting(data, data->menu.setting_menu.color.x 
+	+ data->menu.setting_menu.color.anim->frame.height * data->menu.setting_menu.color.scale_x,
+	basey, data->sprites.floor);
 	update_frame(data, &data->menu.icone, 15);
 	destroy_img(data, data->menu.background.x, data->menu.background.y);
 	if (data->menu.background.y > 0)
 		data->menu.background.y -= data->win_height * 0.05;
-	// update_frame_data(data);
 }
