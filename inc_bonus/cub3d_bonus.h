@@ -6,11 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/30 16:40:12 by sponthus         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/31 11:26:15 by endoliam         ###   ########lyon.fr   */
->>>>>>> origin/emma
+/*   Updated: 2024/10/31 14:52:04 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +51,6 @@
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT 200
 # define MINIMAP_WIDTH 250
-
-# define DOOR_MSG "Press O to open/close door"
-
-// Colors to personalize according to your vibe
-# define COL_BACK 0x000000
-# define COL_EMPTY 0xFFFFFF
-# define COL_DOOR 0x1034A6
-# define COL_OPEN 0xAFEEEE
-# define COL_PLAYER 0xFFE0
-# define COL_CONT 0xFFE0
-# define COL_MSG 0x0fdf9411
 
 typedef enum e_statement
 {

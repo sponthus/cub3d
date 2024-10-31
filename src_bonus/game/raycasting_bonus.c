@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/30 15:52:17 by sponthus         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/30 23:35:19 by endoliam         ###   ########lyon.fr   */
->>>>>>> origin/emma
+/*   Updated: 2024/10/31 14:52:37 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
