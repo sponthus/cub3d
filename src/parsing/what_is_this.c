@@ -6,21 +6,19 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:53:17 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 12:35:42 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:21:41 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "errors.h"
 
 int	resize_content(t_list *lst)
 {
 	int	i;
 
 	i = ft_strlen(lst->id);
-	while (lst->content[i] && (lst->content[i] == ' '
-			|| lst->content[i] == '\n'
-			|| lst->content[i] == '\t' || lst->content[i] == '\v'
-			|| lst->content[i] == '\f' || lst->content[i] == '\r'))
+	while (lst->content[i] && is_charset(lst->content[i], WHITESPACES))
 		i++;
 	if (i != lst->size)
 	{
@@ -45,9 +43,7 @@ bool	is_empty(t_list *lst)
 		return (true);
 	while (lst->content[i])
 	{
-		if (lst->content[i] == ' ' || lst->content[i] == '\n'
-			|| lst->content[i] == '\t' || lst->content[i] == '\v'
-			|| lst->content[i] == '\f' || lst->content[i] == '\r')
+		if (is_charset(lst->content[i], WHITESPACES))
 			i++;
 		else
 		{
@@ -62,7 +58,7 @@ bool	prepare_element(t_list *lst)
 {
 	char	*str;
 
-	str = ft_strtrim(lst->content, " \n\t\v\f\r");
+	str = ft_strtrim(lst->content, WHITESPACES);
 	if (!str)
 	{
 		return (write_err(ERR_MALLOC, NULL, NULL, false));
@@ -83,7 +79,7 @@ bool	is_element(t_list *lst, char *id)
 	if (ft_strncmp(lst->content, id, len) == 0)
 	{
 		if (lst->size > len + 1
-			&& is_charset(lst->content[len], " \n\t\v\f\r"))
+			&& is_charset(lst->content[len], WHITESPACES))
 		{
 			lst->id = id;
 			return (true);
@@ -92,7 +88,7 @@ bool	is_element(t_list *lst, char *id)
 	else if (len == 2 && ft_strncmp(lst->content, id, 1) == 0)
 	{
 		if (lst->size > 2
-			&& is_charset(lst->content[1], " \n\t\v\f\r"))
+			&& is_charset(lst->content[1], WHITESPACES))
 		{
 			lst->id = id;
 			return (true);

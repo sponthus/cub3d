@@ -6,23 +6,22 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:34:33 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:25:32 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "mlx.h"
 #include "cub3d.h"
+#include "utils.h"
+#include "errors.h"
 
-#include <string.h>
-
-int	destroy_game(t_data *data)
+int	destroy_game(t_data *data, int exit_code)
 {
 	if (data->display.ptr1.img)
 		mlx_destroy_image(data->mlx, data->display.ptr1.img);
 	data->display.ptr1.img = NULL;
 	free_data(data);
-	exit (EXIT_SUCCESS);
+	exit(exit_code);
 }
 
 void	free_data(t_data *data)
@@ -55,14 +54,6 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (parsing(argv[1], &data) == 1)
-		{
-			free_data(&data);
-			return (1);
-		}
-	}
-	else if (argc == 1) // Ca va partir en version finale
-	{
-		if (parsing("inc/default.cub", &data) == 1)
 		{
 			free_data(&data);
 			return (1);

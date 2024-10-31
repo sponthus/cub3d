@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 14:17:49 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:32:55 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-# include "parsing.h"
-# include "utils.h"
 # include "game.h"
-# include "mlx.h"
 # include "hook.h"
 
 # define WIN_HEIGHT 800
@@ -32,12 +29,14 @@
 # define WEST 3
 # define EAST 4
 
-typedef enum	e_statement
+# define FPS_COLOR 0x0fdf9411
+
+typedef enum e_statement
 {
 	PAUSE = 0,
 	PLAY,
 	MENU
-} t_statement;
+}	t_statement;
 
 typedef struct s_img
 {
@@ -84,7 +83,7 @@ int		main(int argc, char **argv);
 int		parsing(char *path, t_data *data);
 void	init_data(t_data *data);
 void	free_data(t_data *data);
-int		destroy_game(t_data *data);
+int		destroy_game(t_data *data, int exit_code);
 int		write_err(char *error, char *target, char *obj, int errno);
 
 #endif

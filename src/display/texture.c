@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:06:52 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:53:49 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 12:34:54 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,10 @@ int	calc_texx_x(t_data *data, t_raycast *ray)
 	if (ray->dir == WEST)
 	{
 		texx = (int)((hitx) * (double)(data->sprites.we.width));
-		if (ray->raydiry < 0) // optionnel a priori ce if
-			texx = (data->sprites.we.width) - texx - 1;
 	}
 	if (ray->dir == EAST)
 	{
 		texx = (int)((hitx) * (double)(data->sprites.ea.width));
-		if (ray->raydiry < 0)
-			texx = (data->sprites.ea.width) - texx - 1;
 	}
 	return (texx);
 }
@@ -46,14 +42,10 @@ int	calc_texx_y(t_data *data, t_raycast *ray)
 	if (ray->dir == NORTH)
 	{
 		texx = (int)((hitx) * (double)(data->sprites.no.width));
-		if (ray->raydirx > 0)
-			texx = data->sprites.no.width - texx - 1;
 	}
 	else if (ray->dir == SOUTH)
 	{
 		texx = (int)((hitx) * (double)(data->sprites.so.width));
-		if (ray->raydirx > 0)
-			texx = data->sprites.so.width - texx - 1;
 	}
 	return (texx);
 }

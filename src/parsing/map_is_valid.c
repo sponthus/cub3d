@@ -6,11 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 12:34:19 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:17:40 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parsing.h"
+#include "errors.h"
 
 bool	only_one_map(t_data *data)
 {
@@ -80,7 +82,7 @@ bool	closed_map(t_data *data, int map_size)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == '0' || data->map[i][j] == 'D')
+			if (data->map[i][j] != ' ' && data->map[i][j] != '1')
 			{
 				if (i == 0 || j == 0 || j == ft_strlen(data->map[i])
 					|| i == map_size)

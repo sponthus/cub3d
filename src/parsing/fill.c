@@ -6,11 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/15 13:56:52 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:18:36 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
 #include "parsing.h"
+#include "errors.h"
 
 int	fill_element(t_pars *pars, t_list *actual)
 {
@@ -82,7 +84,7 @@ int	fill_map(t_data *data, t_list *actual)
 		map[i] = ft_strdup(actual->content);
 		if (!map[i])
 		{
-			free_split(map, i); // Check that plz
+			free_split(map, i);
 			return (write_err(ERR_MALLOC, "map", NULL, 1));
 		}
 		i++;

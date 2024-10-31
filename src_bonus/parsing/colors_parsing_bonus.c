@@ -22,15 +22,15 @@ bool	check_rgb(char **rgb, char *color)
 	g = 0;
 	b = 0;
 	if (rgb[0])
-		r = color_atoi(rgb[0]);
+		r = color_atou(rgb[0]);
 	else
 		return (write_err(ERR_MIS_RGB, "R", NULL, false));
 	if (rgb[1])
-		g = color_atoi(rgb[1]);
+		g = color_atou(rgb[1]);
 	else
 		return (write_err(ERR_MIS_RGB, "G", NULL, false));
 	if (rgb[2])
-		b = color_atoi(rgb[2]);
+		b = color_atou(rgb[2]);
 	else
 		return (write_err(ERR_MIS_RGB, "B", NULL, false));
 	if (rgb[3])
@@ -58,9 +58,9 @@ bool	char_to_color(t_data *data, char *color, char *what)
 		free_full_split(rgb);
 		return (false);
 	}
-	r = color_atoi(rgb[0]);
-	g = color_atoi(rgb[1]);
-	b = color_atoi(rgb[2]);
+	r = color_atou(rgb[0]);
+	g = color_atou(rgb[1]);
+	b = color_atou(rgb[2]);
 	if (ft_strncmp(what, "floor", 5) == 0)
 		data->sprites.floor = (r << 16 | g << 8 | b);
 	else

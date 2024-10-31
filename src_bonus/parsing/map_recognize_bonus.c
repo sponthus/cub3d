@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:02 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:20:38 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	replace_whitespaces(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (is_charset(str[i], "\n\t\v\f\r"))
+		if (is_charset(str[i], " \n\t\v\f\r"))
 			str[i] = ' ';
 		i++;
 	}

@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:35:33 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:32:00 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx.h"
 
 void	init_img(t_data *data)
 {
@@ -29,14 +30,15 @@ void	init_img(t_data *data)
 
 void	destroy_img(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx, data->win,
-		data->display.ptr1.img, 0, 0); // protect mlx
 	if (data->display.ptr1.img)
+	{
+		mlx_put_image_to_window(data->mlx, data->win,
+			data->display.ptr1.img, 0, 0);
 		mlx_destroy_image(data->mlx, data->display.ptr1.img);
-	data->display.ptr1.img = NULL;
+		data->display.ptr1.img = NULL;
+	}
 }
 
-// Nom pas fou mais je pense que le + approprie derait draw_line
 void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 {
 	unsigned int	color;
@@ -63,13 +65,14 @@ void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 	}
 }
 
+// side = 0 -> mur nord ou sud
 void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	int		texx;
 
 	ray->dir = chose_dir(side, ray);
 	texx = 0;
-	if (side == 0) // Mur nord ou sud
+	if (side == 0)
 		texx = calc_texx_y(data, ray);
 	else
 		texx = calc_texx_x(data, ray);
@@ -89,8 +92,8 @@ void	update_frame_data(t_data *data)
 		data->player.frame = 0;
 	fps = ft_itoa(1 / data->player.frame);
 	mlx_string_put(data->mlx, data->win, 0,
-		data->win_height - 5, 0x0fdf9411, "FPS : ");
+		data->win_height - 5, FPS_COLOR, "FPS : ");
 	mlx_string_put(data->mlx, data->win, 40,
-		data->win_height - 5, 0x0fdf9411, fps);
+		data->win_height - 5, FPS_COLOR, fps);
 	free(fps);
 }

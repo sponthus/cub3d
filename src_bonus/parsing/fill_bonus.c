@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 16:35:25 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:26:00 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	fill_map(t_data *data, t_list *actual)
 		map[i] = ft_strdup(actual->content);
 		if (!map[i])
 		{
-			free_split(map, i); // Check that plz
+			free_split(map, i);
 			return (write_err(ERR_MALLOC, "map", NULL, 1));
 		}
 		i++;

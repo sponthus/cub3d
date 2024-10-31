@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 15:46:17 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 14:29:27 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOK_H
-#define HOOK_H
+# define HOOK_H
 
 # include <X11/keysym.h>
 
-struct s_data;
+struct	s_data;
 
-typedef	struct s_keypress
+typedef struct s_keypress
 {
 	int		w;
 	int		s;
@@ -39,4 +39,3 @@ int		key_press(int keycode, struct s_data *data);
 int		mouse_hook(int x, int y, struct s_data *data);
 
 #endif
-

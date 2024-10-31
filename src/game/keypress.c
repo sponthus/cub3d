@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:44:26 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:24:10 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	set_keycam(int keycode, t_data *data)
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
-		destroy_game(data);
+		destroy_game(data, EXIT_SUCCESS);
 	if (keycode == XK_Tab)
 	{
 		if (data->statement == PLAY)

@@ -6,11 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:29:55 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:46:30 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:16:22 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "errors.h"
+#include "parsing.h"
 
 int	fill_no(t_pars *pars, t_list *actual)
 {

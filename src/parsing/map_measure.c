@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:09:26 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/15 15:16:43 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:16:43 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parsing.h"
 
 int	map_length(t_data *data)
 {

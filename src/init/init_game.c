@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:27 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 16:13:03 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 14:25:28 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "utils.h"
 
 bool	is_player_init_pos(char c, t_move *player)
 {

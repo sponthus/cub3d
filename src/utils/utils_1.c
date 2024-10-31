@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:07:04 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/14 15:08:55 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 12:22:02 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-unsigned int	color_atoi(const char *nptr) // peut-etre plus ft_atoui ducoup ??
+unsigned int	color_atou(const char *nptr)
 {
 	unsigned int	nb;
 	int				i;
