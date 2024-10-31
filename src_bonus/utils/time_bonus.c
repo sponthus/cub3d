@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:05:07 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:36 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:44:47 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "utils_bonus.h"
 
 double	ft_atod(char *s)
 {

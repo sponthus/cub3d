@@ -6,12 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:28:16 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:47:29 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:47:14 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "game_bonus.h"
+#include "mlx.h"
 
 void	update_frame(t_data *data, t_anim *element, int v)
 {

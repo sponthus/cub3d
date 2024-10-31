@@ -6,11 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:04 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:39:14 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "parsing_bonus.h"
+#include "errors.h"
 
 int	fill_file(t_pars *pars)
 {

@@ -6,11 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:02:15 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 12:02:19 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:37:32 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "parsing.h"
+#include "errors.h"
 
 bool	only_one_map(t_data *data)
 {

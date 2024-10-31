@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 13:39:34 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 15:54:04 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d_bonus.h"
 #include "parsing_bonus.h"
+#include "errors_bonus.h"
+#include "mlx.h"
 
 bool	open_image(t_data *data, t_img *img, char *path)
 {
@@ -30,7 +31,7 @@ void	init_data(t_data *data)
 {
 	if (WIN_HEIGHT < 100 || WIN_WIDTH < 100)
 	{
-		write_err("Windows size is too small (expected > 100px)", NULL, NULL, 42);
+		write_err(ERR_WIN_SIZE, NULL, NULL, 42);
 		exit(EXIT_FAILURE);
 	}
 	data->win_height = WIN_HEIGHT;

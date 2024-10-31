@@ -6,13 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:07:04 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 12:22:11 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:53:12 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils_bonus.h"
 
-unsigned int	color_atou(const char *nptr) // peut-etre plus ft_atoui ducoup ??
+unsigned int	color_atou(const char *nptr)
 {
 	unsigned int	nb;
 	int				i;

@@ -6,15 +6,14 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 13:05:29 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:45:25 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "mlx.h"
 #include "cub3d_bonus.h"
-
-#include <string.h>
+#include "parsing_bonus.h"
+#include "errors_bonus.h"
 
 void	destoy_frames(t_data *data, t_frame *frame)
 {
@@ -65,6 +64,8 @@ void	free_data(t_data *data)
 		mlx_destroy_image(data->mlx, data->sprites.ea.img);
 	if (data->sprites.we.img)
 		mlx_destroy_image(data->mlx, data->sprites.we.img);
+	if (data->sprites.door.img)
+		mlx_destroy_image(data->mlx, data->sprites.door.img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)

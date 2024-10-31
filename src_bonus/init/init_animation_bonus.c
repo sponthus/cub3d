@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_animation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 13:13:09 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 15:46:52 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "game_bonus.h"
+#include "utils_bonus.h"
 
 void	add_stack(t_frame **anim, t_frame *element)
 {

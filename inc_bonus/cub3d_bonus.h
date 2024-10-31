@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 15:12:02 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:52:20 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,20 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# include "parsing_bonus.h"
-# include "utils_bonus.h"
 # include "game_bonus.h"
-# include "mlx.h"
 # include "hook_bonus.h"
 # include "menu_bonus.h"
 # include "display_bonus.h"
 # include "animation_bonus.h"
+
+# define WIN_HEIGHT 1020
+# define WIN_WIDTH 1920
+
+# define NORTH 1
+# define SOUTH 2
+# define WEST 3
+# define EAST 4
+# define DOOR 5
 
 # define DOOR_MSG "Press O to open/close door"
 
@@ -38,17 +44,7 @@
 # define COL_PLAYER 0xFFE0
 # define COL_CONT 0xFFE0
 # define COL_MSG 0x0fdf9411
-# define COL_OR 0x0fdf9411 // Orientation on minimap
 # define FPS_COLOR 0x0fdf9411
-
-# define WIN_HEIGHT 1020
-# define WIN_WIDTH 1920
-
-# define NORTH 1
-# define SOUTH 2
-# define WEST 3
-# define EAST 4
-# define DOOR 5
 
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT 200
@@ -86,5 +82,8 @@ bool	open_image(t_data *data, t_img *img, char *path);
 void	draw_minimap(t_data *data);
 void	doors(t_data *data);
 void	doors_message(t_data *data);
+int		write_err(char *error, char *target, char *obj, int errno);
+int		map_length(struct s_data *data);
+int		map_size(struct s_data *data);
 
 #endif

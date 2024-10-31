@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 14:52:37 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:51:19 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "utils.h"
 
 void	set_drawline(t_data *data, t_raycast *ray, int side)
 {

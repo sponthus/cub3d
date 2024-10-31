@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pause_menu_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 13:40:32 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 15:50:23 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "mlx.h"
 
-
-int		get_pixel_color(t_img *img, int y, int x)
+int	get_pixel_color(t_img *img, int y, int x)
 {
 	int	pixy;
 

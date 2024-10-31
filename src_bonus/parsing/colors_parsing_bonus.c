@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "parsing_bonus.h"
+#include "errors_bonus.h"
 
 bool	check_rgb(char **rgb, char *color)
 {

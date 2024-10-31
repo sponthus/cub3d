@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:25:34 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 14:20:38 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:38:16 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_bonus.h"
+#include "errors.h"
 
 bool	is_map_element(t_list *lst)
 {
@@ -38,7 +39,7 @@ void	replace_whitespaces(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (is_charset(str[i], " \n\t\v\f\r"))
+		if (is_charset(str[i], WHITESPACES))
 			str[i] = ' ';
 		i++;
 	}

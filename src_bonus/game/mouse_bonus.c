@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:35:36 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 22:58:29 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 15:51:00 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "mlx.h"
 
 int	mouse_hook(int x, int y, t_data *data)
 {

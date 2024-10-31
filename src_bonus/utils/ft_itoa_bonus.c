@@ -6,11 +6,11 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:27:57 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:57:24 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:44:34 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "utils_bonus.h"
 
 static size_t	sizelen(long long n)
 {

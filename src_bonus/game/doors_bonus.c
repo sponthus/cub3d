@@ -6,11 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 13:33:42 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 14:48:22 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:50:44 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "mlx.h"
 
 int	check_line(t_data *data, int i, int j)
 {
@@ -23,8 +24,8 @@ int	check_line(t_data *data, int i, int j)
 		return (2);
 	if (data->map[(int)pl.posx + i][(int)pl.posy + j])
 	{
-		if ((data->map[(int)pl.posx + i][(int)pl.posy + j] == 'D' 
-		|| data->map[(int)pl.posx + i][(int)pl.posy + j] == 'O')
+		if ((data->map[(int)pl.posx + i][(int)pl.posy + j] == 'D'
+			|| data->map[(int)pl.posx + i][(int)pl.posy + j] == 'O')
 		&& (i != 0 || j != 0 || (i == 0 && j != 0) || (j == 0 && i != 0)))
 		{
 			return (1);

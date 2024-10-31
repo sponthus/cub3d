@@ -6,12 +6,13 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:41:52 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 14:47:43 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:35:45 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_bonus.h"
 #include "cub3d_bonus.h"
+#include "errors_bonus.h"
 
 int	fill_element(t_pars *pars, t_list *actual)
 {

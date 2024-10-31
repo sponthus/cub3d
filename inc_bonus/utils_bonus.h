@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:02:36 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 14:50:03 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:52:03 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+# define BUFFER_SIZE 42
 
 // Map is on when map is found
 // Empty is basically positive until proven otherwise
