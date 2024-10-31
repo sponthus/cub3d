@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:51:49 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 16:24:49 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:17:52 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ unsigned int	chose_minimap_color(t_data *data, int x, int y)
 	int		map_x;
 	int		map_y;
 
-	beg_x = data->player.posx - ((double)MINIMAP_HEIGHT * 0.5) / TILE_SIZE;
-	beg_y = data->player.posy - ((double)MINIMAP_WIDTH * 0.5) / TILE_SIZE;
-	map_x = (int)(beg_x + (double)x / (double)TILE_SIZE);
-	map_y = (int)(beg_y + (double)y / (double)TILE_SIZE);
+	beg_x = data->player.posx - ((double)MINIMAP_WIDTH * 0.5) / TILE_SIZE;
+	beg_y = data->player.posy + ((double)MINIMAP_HEIGHT * 0.5) / TILE_SIZE;
+	map_x = (int)(beg_x + (double)y / (double)TILE_SIZE);
+	map_y = (int)(beg_y - (double)x / (double)TILE_SIZE);
 	if (map_x >= 0 && map_x < map_size(data) && map_y >= 0
 		&& map_y < map_length(data))
 	{
@@ -61,19 +61,19 @@ void	draw_contours(t_data *data, int basex, int basey)
 	int	x;
 
 	x = 0;
-	while (x <= MINIMAP_HEIGHT)
+	while (x <= MINIMAP_WIDTH)
 	{
 		my_mlx_pixel_put(&data->display.ptr1, basex, basey + x, COL_CONT);
-		my_mlx_pixel_put(&data->display.ptr1, basex + MINIMAP_WIDTH, basey + x, \
-			COL_CONT);
+		my_mlx_pixel_put(&data->display.ptr1, basex + MINIMAP_HEIGHT, \
+			basey + x, COL_CONT);
 		x++;
 	}
 	x = 0;
-	while (x <= MINIMAP_WIDTH)
+	while (x <= MINIMAP_HEIGHT)
 	{
 		my_mlx_pixel_put(&data->display.ptr1, basex + x, basey, COL_CONT);
 		my_mlx_pixel_put(&data->display.ptr1, basex + x, basey \
-			+ MINIMAP_HEIGHT, COL_CONT);
+			+ MINIMAP_WIDTH, COL_CONT);
 		x++;
 	}
 }
@@ -86,15 +86,15 @@ void	draw_minimap(t_data *data)
 	int				basey;
 	unsigned int	color;
 
-	if (MINIMAP_HEIGHT >= WIN_HEIGHT - 15 || MINIMAP_WIDTH >= WIN_WIDTH - 15)
+	if (MINIMAP_HEIGHT >= WIN_HEIGHT - 100 || MINIMAP_WIDTH >= WIN_WIDTH - 100)
 		return ;
 	x = 0;
 	basex = 15;
 	basey = 15;
-	while (x <= MINIMAP_WIDTH)
+	while (x <= MINIMAP_HEIGHT)
 	{
 		y = 0;
-		while (y <= MINIMAP_HEIGHT)
+		while (y <= MINIMAP_WIDTH)
 		{
 			color = chose_minimap_color(data, x, y);
 			my_mlx_pixel_put(&data->display.ptr1, basex + x, basey + y, color);
