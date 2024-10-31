@@ -6,11 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:02:36 by sponthus          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/31 12:22:11 by sponthus         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/30 16:39:29 by sponthus         ###   ########.fr       */
->>>>>>> origin/emma
+/*   Updated: 2024/10/31 14:50:03 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +66,7 @@ int				is_charset(char c, char	*charset);
 int				ft_isdigit(int c);
 int				ft_lstsize(t_list *lst);
 
-<<<<<<< HEAD
 unsigned int	color_atou(const char *nptr);
-=======
-unsigned int	color_atoi(const char *nptr);
->>>>>>> origin/emma
 
 size_t			ft_strlcpy(char *dst, char *src, size_t size);
 
