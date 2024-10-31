@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 22:59:27 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 11:27:41 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_setting
 	struct s_anim		cursor;
 	int					cursor_cam;
 	int					cursor_speed;
+	t_color				cursor_sky;
+	t_color				cursor_floor;
 	t_setting_state		setting_state;
 	t_color_state		color_state;
 	

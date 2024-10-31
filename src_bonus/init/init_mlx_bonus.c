@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 23:22:03 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/10/31 13:39:34 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ void	init_menu(t_data *data)
 	data->menu.setting_menu.barre.scale_y = data->menu.resume.scale_y * 0.8;
 	data->menu.setting_menu.cursor_speed = 0;
 	data->menu.setting_menu.cursor_cam = 0;
+	data->menu.setting_menu.cursor_sky.r = (int)((data->sprites.ceiling >> 16 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height * data->menu.setting_menu.barre.scale_x) / 255;
+	data->menu.setting_menu.cursor_sky.g = (int)((data->sprites.ceiling >> 8 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height * data->menu.setting_menu.barre.scale_x ) / 255;
+	data->menu.setting_menu.cursor_sky.b = (int)((data->sprites.ceiling & 0xFF) * data->menu.setting_menu.barre.anim->frame.height * data->menu.setting_menu.barre.scale_x) / 255;
+	data->menu.setting_menu.cursor_floor.r = (int)((data->sprites.floor >> 16 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height * data->menu.setting_menu.barre.scale_x) / 255;
+	data->menu.setting_menu.cursor_floor.g = (int)((data->sprites.floor >> 8 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height * data->menu.setting_menu.barre.scale_x) / 255;
+	data->menu.setting_menu.cursor_floor.b = (int)((data->sprites.floor & 0xFF) * data->menu.setting_menu.barre.anim->frame.height * data->menu.setting_menu.barre.scale_x) / 255;
 }
 
 bool	init_mlx(t_data *data, t_pars *pars)
