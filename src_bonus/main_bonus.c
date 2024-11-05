@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/30 13:05:29 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:20:10 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	free_animation(t_data *data)
 	destoy_frames(data, data->menu.resume.anim);
 	destoy_frames(data, data->menu.setting.anim);
 	destoy_frames(data, data->menu.exit.anim);
+	destoy_frames(data, data->menu.setting_menu.cam.anim);
+	destoy_frames(data, data->menu.setting_menu.speed.anim);
+	destoy_frames(data, data->menu.setting_menu.color.anim);
+	destoy_frames(data, data->menu.setting_menu.barre.anim);
+	//destoy_frames(data, data->menu.setting_menu.cursor.anim);
 }
 
 int	destroy_game(t_data *data, int exit_status)
@@ -65,6 +70,8 @@ void	free_data(t_data *data)
 		mlx_destroy_image(data->mlx, data->sprites.ea.img);
 	if (data->sprites.we.img)
 		mlx_destroy_image(data->mlx, data->sprites.we.img);
+	if (data->sprites.we.img)
+		mlx_destroy_image(data->mlx, data->sprites.door.img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)

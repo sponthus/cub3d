@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 15:12:02 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:18:18 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define COL_OR 0x0fdf9411 // Orientation on minimap
 # define FPS_COLOR 0x0fdf9411
 
-# define WIN_HEIGHT 1020
-# define WIN_WIDTH 1920
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 600
 
 # define NORTH 1
 # define SOUTH 2

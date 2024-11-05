@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 14:48:41 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:10:10 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ unsigned int	move_red(t_data *data, unsigned int color, int x, int *cursor)
 	if (r + (unsigned int)x > 0 && r + (unsigned int)x <= 255)
 	{
 		r += (unsigned int)x;
-		*(cursor) += x * (int)((data->menu.setting_menu.barre.anim->frame.width * data->menu.setting_menu.barre.scale_x) / 255);
+		*(cursor) += x * (int)((data->menu.setting_menu.barre.anim->frame.height) / 255);
 	}
 	return (r << 16 | g << 8 | b);
 }
@@ -124,7 +124,7 @@ unsigned int	move_green(t_data* data, unsigned int color, int x, int *cursor)
 	if (g + (unsigned int)x > 0 && g + (unsigned int)x <= 255)
 	{	
 		g += (unsigned int)x;
-		*(cursor) += x * (int)((data->menu.setting_menu.barre.anim->frame.width * data->menu.setting_menu.barre.scale_x) / 255);
+		*(cursor) += x * (int)((data->menu.setting_menu.barre.anim->frame.height) / 255);
 	}
 	return (r << 16 | g << 8 | b);
 }
@@ -137,7 +137,7 @@ unsigned int	move_blue(t_data *data, unsigned int color, int x, int *cursor)
 	if (b + (unsigned int)x > 0 && b + (unsigned int)x <= 255)
 	{
 		b += (unsigned int)x;
-		*(cursor) += x * (int)((data->menu.setting_menu.barre.anim->frame.width * data->menu.setting_menu.barre.scale_x) / 255);
+		*(cursor) += x * (int)((data->menu.setting_menu.barre.anim->frame.height) / 255);
 	}
 	return (r << 16 | g << 8 | b);
 }
@@ -162,27 +162,35 @@ void	down_color(t_data *data)
 			data->sprites.floor = move_blue(data, data->sprites.floor, -1, &data->menu.setting_menu.cursor_floor.b);
 	}
 }
+
 void	up_color(t_data *data)
 {
 	if (data->menu.setting_menu.setting_state == COLOR_SKY)
 	{
 		if (data->menu.setting_menu.color_state == RED)
-			data->sprites.ceiling = move_red(data, data->sprites.ceiling, 1, &data->menu.setting_menu.cursor_sky.r);
+			data->sprites.ceiling = move_red(data,
+			data->sprites.ceiling, 1, &data->menu.setting_menu.cursor_sky.r);
 		else if (data->menu.setting_menu.color_state == GREEN)
-			data->sprites.ceiling = move_green(data, data->sprites.ceiling, 1, &data->menu.setting_menu.cursor_sky.g);
+			data->sprites.ceiling = move_green(data,
+			data->sprites.ceiling, 1, &data->menu.setting_menu.cursor_sky.g);
 		else
-			data->sprites.ceiling = move_blue(data, data->sprites.ceiling, 1, &data->menu.setting_menu.cursor_sky.b);
+			data->sprites.ceiling = move_blue(data,
+			data->sprites.ceiling, 1, &data->menu.setting_menu.cursor_sky.b);
 	}
 	else
 	{
 		if (data->menu.setting_menu.color_state == RED)
-			data->sprites.floor = move_red(data, data->sprites.floor, 1, &data->menu.setting_menu.cursor_floor.r);
+			data->sprites.floor = move_red(data,
+			data->sprites.floor, 1, &data->menu.setting_menu.cursor_floor.r);
 		else if (data->menu.setting_menu.color_state == GREEN)
-			data->sprites.floor = move_green(data, data->sprites.floor, 1, &data->menu.setting_menu.cursor_floor.g);
+			data->sprites.floor = move_green(data,
+			data->sprites.floor, 1, &data->menu.setting_menu.cursor_floor.g);
 		else
-			data->sprites.floor = move_blue(data, data->sprites.floor, 1, &data->menu.setting_menu.cursor_floor.b);
+			data->sprites.floor = move_blue(data,
+			data->sprites.floor, 1, &data->menu.setting_menu.cursor_floor.b);
 	}
 }
+
 void	move_color(int keycode, t_data *data)
 {
 	if (keycode == XK_Right)

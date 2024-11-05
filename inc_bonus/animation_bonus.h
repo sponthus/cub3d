@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:18:37 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/17 15:06:16 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/05 15:22:05 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # define SETTING_ANIMATION 1
 # define EXIT_ANIMATION 2
 # define ICONE_ANIMATION 3
+# define SPEED_ANIMATION 4
+# define CAM_ANIMATION 5
+# define COLOR_ANIMATION 6
+# define RED_ANIMATION 7
+# define GREEN_ANIMATION 8
+# define BLUE_ANIMATION 9
 
 struct s_data;
 
