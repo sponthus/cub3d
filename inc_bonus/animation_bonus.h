@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:18:37 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 16:14:09 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:07:16 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 # define SPEED_ANIMATION 4
 # define CAM_ANIMATION 5
 # define COLOR_ANIMATION 6
-# define RED_ANIMATION 7
-# define GREEN_ANIMATION 8
-# define BLUE_ANIMATION 9
-# define BAR_ANIMATION 10
-# define CURS_ANIMATION 11
+# define RED_SKY_ANIMATION 7
+# define RED_FLOOR_ANIMATION 8
+# define GREEN_SKY_ANIMATION 9
+# define GREEN_FLOOR_ANIMATION 10
+# define BLUE_SKY_ANIMATION 11
+# define BLUE_FLOOR_ANIMATION 12
+# define BAR_ANIMATION 13
+# define CURS_ANIMATION 14
 
 struct s_data;
 

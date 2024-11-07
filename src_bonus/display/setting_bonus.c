@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:21:24 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 16:31:48 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:20:05 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,20 @@ int	calcul_cursorx(t_data *data, int cursor)
 			* data->menu.setting_menu.cursor->scale_x));
 }
 
-void	put_color_cursor(t_data *data, int basex, int basey, t_color_cursor cursor)
+int		set_flag_color(t_data *data, t_color_cursor cursor, int flag)
 {
+	if (cursor.r == data->menu.setting_menu.cursor_floor.r
+	&& cursor.g == data->menu.setting_menu.cursor_floor.g
+	&& cursor.b == data->menu.setting_menu.cursor_floor.b)
+		flag++;
+	return (flag);
+}
+
+void	put_color_cursor(t_data *data, int basex, int basey,
+	t_color_cursor cursor)
+{
+	int		flag;
+
 	data->menu.setting_menu.barre.x = data->menu.setting_menu.speed.x
 		+ basex;
 	data->menu.setting_menu.barre.y = basey;
@@ -29,19 +41,27 @@ void	put_color_cursor(t_data *data, int basex, int basey, t_color_cursor cursor)
 	data->menu.setting_menu.cursor->x = calcul_cursorx(data, cursor.r);
 	data->menu.setting_menu.cursor->y = basey
 		+ (30 * data->menu.setting_menu.barre.scale_y);
-	put_button(data, data->menu.setting_menu.cursor, CURS_ANIMATION);
-	data->menu.setting_menu.barre.y += 60 * data->menu.setting_menu.barre.scale_y;
+	flag = RED_SKY_ANIMATION;
+	flag = set_flag_color(data, cursor, flag);
+	put_button(data, data->menu.setting_menu.cursor, flag);
+	data->menu.setting_menu.barre.y += 60
+		* data->menu.setting_menu.barre.scale_y;
 	put_button(data, &data->menu.setting_menu.barre, BAR_ANIMATION);
 	data->menu.setting_menu.cursor->x = calcul_cursorx(data, cursor.g);
 	data->menu.setting_menu.cursor->y = data->menu.setting_menu.barre.y
 		+ (30 * data->menu.setting_menu.barre.scale_y);
-	put_button(data, data->menu.setting_menu.cursor, CURS_ANIMATION);
-	data->menu.setting_menu.barre.y += 60 * data->menu.setting_menu.barre.scale_y;
+	flag = GREEN_SKY_ANIMATION;
+	flag = set_flag_color(data, cursor, flag);
+	put_button(data, data->menu.setting_menu.cursor, flag);
+	data->menu.setting_menu.barre.y += 60
+		* data->menu.setting_menu.barre.scale_y;
 	put_button(data, &data->menu.setting_menu.barre, BAR_ANIMATION);
 	data->menu.setting_menu.cursor->x = calcul_cursorx(data, cursor.b);
 	data->menu.setting_menu.cursor->y = data->menu.setting_menu.barre.y
 		+ (30 * data->menu.setting_menu.barre.scale_y);
-	put_button(data, data->menu.setting_menu.cursor, CURS_ANIMATION);
+	flag = BLUE_SKY_ANIMATION;
+	flag = set_flag_color(data, cursor, flag);
+	put_button(data, data->menu.setting_menu.cursor, flag);
 }
 
 void	put_cursor(t_data *data, int basex, int basey, int cursor)
@@ -96,14 +116,13 @@ void	add_color_content(t_data *data)
 		* data->menu.setting_menu.color.scale_x * 1.2,
 		basey, data->sprites.floor);
 	update_frame(data, &data->menu.icone, 15);
-	
 }
 
 void	setting_menu(t_data *data)
 {
 	int		x;
 	int		cursor;
-	
+
 	x = (data->menu.setting_menu.speed.anim->frame.width
 			* data->menu.setting_menu.speed.scale_x);
 	init_img(data);
