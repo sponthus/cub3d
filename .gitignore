@@ -3,3 +3,4 @@ OBJ/
 cub3d
 *.o
 test*
+*.d

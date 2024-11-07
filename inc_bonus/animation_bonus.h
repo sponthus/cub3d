@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:18:37 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 17:07:16 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:50:14 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_anim
 	double					scale_y;
 } t_anim;
 
-void	init_animation(struct s_data *data, t_anim *element, char *prefix, int nb);
+bool	init_animation(struct s_data *data, t_anim *element, char *prefix, int nb);
 void	update_frame(struct s_data *data, t_anim *element, int v);
 
 #endif

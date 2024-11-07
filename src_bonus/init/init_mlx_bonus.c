@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/07 13:56:21 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:44:10 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ bool	init_mlx(t_data *data, t_pars *pars)
 	if (open_image(data, &data->sprites.door, "textures/ananas.xpm") == false)
 		return (false);
 	init_game(data);
-	init_menu(data);
+	if (init_menu(data) == false)
+		return (false);
 	return (true);
 }

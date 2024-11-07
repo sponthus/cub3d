@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 16:23:25 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:51:49 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@
 
 struct s_data;
 
-typedef enum	e_menu_state
+typedef enum e_menu_state
 {
 	RESUME = 0,
 	SETTING,
 	EXIT
-} t_menu_state;
+}	t_menu_state;
 
-typedef enum	e_setting_state
+typedef enum e_setting_state
 {
 	MOVESPEED = 0,
 	ROTSPEED,
@@ -55,7 +55,7 @@ typedef enum	e_setting_state
 	COLOR_FLOOR
 }	t_setting_state;
 
-typedef enum	e_color_state
+typedef enum e_color_state
 {
 	RED = 0,
 	GREEN,
@@ -67,7 +67,7 @@ typedef struct s_color_cursor
 	int		r;
 	int		g;
 	int		b;
-} t_color_cursor;
+}	t_color_cursor;
 
 typedef struct s_setting
 {
@@ -82,8 +82,7 @@ typedef struct s_setting
 	t_color_cursor				cursor_floor;
 	t_setting_state				setting_state;
 	t_color_state				color_state;
-	
-} t_setting;
+}	t_setting;
 
 typedef struct s_menu
 {
@@ -94,9 +93,9 @@ typedef struct s_menu
 	struct s_anim				icone;
 	t_setting					setting_menu;
 	t_menu_state				state_menu;
-} t_menu;
+}	t_menu;
 
-void	init_menu(struct s_data *data);
+bool	init_menu(struct s_data *data);
 void	pause_game(struct s_data *data);
 void	setting_menu(struct s_data *data);
 
