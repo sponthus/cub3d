@@ -6,10 +6,9 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/05 17:08:42 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 13:56:21 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d_bonus.h"
 #include "parsing_bonus.h"
@@ -30,7 +29,8 @@ void	init_data(t_data *data)
 {
 	if (WIN_HEIGHT < 100 || WIN_WIDTH < 100)
 	{
-		write_err("Windows size is too small (expected > 100px)", NULL, NULL, 42);
+		write_err("Windows size is too small (expected > 100px)",
+			NULL, NULL, 42);
 		exit(EXIT_FAILURE);
 	}
 	data->win_height = WIN_HEIGHT;
@@ -51,59 +51,6 @@ void	init_parsing(t_pars *pars)
 	pars->fd = -1;
 	pars->file = NULL;
 	pars->lst_file = NULL;
-}
-
-void	init_menu(t_data *data)
-{
-	init_animation(data, &data->menu.background, "inc_bonus/background/", 66);
-	init_animation(data, &data->menu.setting, "inc_bonus/menu/setting/", 30);
-	init_animation(data, &data->menu.resume, "inc_bonus/menu/resume/", 29);
-	init_animation(data, &data->menu.exit, "inc_bonus/menu/exit/", 31);
-	init_animation(data, &data->menu.icone, "inc_bonus/menu/icone/", 10);
-	init_animation(data, &data->menu.setting_menu.cam, "inc_bonus/menu/cam/", 31);
-	init_animation(data, &data->menu.setting_menu.speed, "inc_bonus/menu/speed/", 31);
-	init_animation(data, &data->menu.setting_menu.color, "inc_bonus/menu/color/", 32);
-	init_animation(data, &data->menu.setting_menu.barre, "inc_bonus/menu/barre_setting/", 0);
-	init_animation(data, &data->menu.setting_menu.cursor, "inc_bonus/menu/cursor_setting/", 0);
-	data->menu.setting_menu.cursor = &data->menu.icone;
-	data->menu.resume.scale_x = data->win_width / 1920.0;
-	data->menu.resume.scale_y = data->win_height / 1080.0;
-	data->menu.resume.x = data->win_width  - data->win_width * 0.7;
-	data->menu.resume.y = data->win_height  - data->win_height * 0.4;
-	data->menu.setting.scale_x = data->menu.resume.scale_x;
-	data->menu.setting.scale_y = data->menu.resume.scale_y;
-	data->menu.setting.x = data->win_width - data->win_width * 0.3;
-	data->menu.setting.y = data->win_height - data->win_height * 0.3;
-	data->menu.exit.scale_x = data->menu.resume.scale_x;
-	data->menu.exit.scale_y = data->menu.resume.scale_y;
-	data->menu.exit.x = data->win_width  - data->win_width * 0.7;
-	data->menu.exit.y = data->win_height  - data->win_height * 0.2;
-	data->menu.background.x = 0;
-	data->menu.background.y = data->win_height;
-	data->menu.icone.scale_x = data->menu.resume.scale_x;
-	data->menu.icone.scale_y = data->menu.resume.scale_y;
-	data->menu.setting_menu.speed.scale_x = data->menu.resume.scale_x * 0.8;
-	data->menu.setting_menu.speed.scale_y = data->menu.resume.scale_y * 1.2;
-	data->menu.setting_menu.speed.x = data->win_width;
-	data->menu.setting_menu.speed.y = data->win_height  - data->win_height;
-	data->menu.setting_menu.cam.scale_x = data->menu.setting_menu.speed.scale_x;
-	data->menu.setting_menu.cam.scale_y = data->menu.setting_menu.speed.scale_y;
-	data->menu.setting_menu.cam.x = data->win_width;
-	data->menu.setting_menu.cam.y = data->menu.setting_menu.speed.y + 100;
-	data->menu.setting_menu.color.scale_x = data->menu.resume.scale_x;
-	data->menu.setting_menu.color.scale_y = data->menu.resume.scale_y ;
-	data->menu.setting_menu.color.x = data->win_width;
-	data->menu.setting_menu.color.y = data->menu.setting_menu.cam.y + 100;
-	data->menu.setting_menu.barre.scale_x = data->menu.setting_menu.speed.scale_x;
-	data->menu.setting_menu.barre.scale_y = data->menu.setting_menu.speed.scale_y;
-	data->menu.setting_menu.cursor_speed = 0;
-	data->menu.setting_menu.cursor_cam = 0;
-	data->menu.setting_menu.cursor_sky.r = (((data->sprites.ceiling >> 16 & 0xFF) * (data->menu.setting_menu.barre.anim->frame.height)) / 255);
-	data->menu.setting_menu.cursor_sky.g = (((data->sprites.ceiling >> 8 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height) / 255);
-	data->menu.setting_menu.cursor_sky.b = (((data->sprites.ceiling & 0xFF) * data->menu.setting_menu.barre.anim->frame.height) / 255);
-	data->menu.setting_menu.cursor_floor.r = (((data->sprites.floor >> 16 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height) / 255);
-	data->menu.setting_menu.cursor_floor.g = (((data->sprites.floor >> 8 & 0xFF) * data->menu.setting_menu.barre.anim->frame.height) / 255);
-	data->menu.setting_menu.cursor_floor.b = (((data->sprites.floor & 0xFF) * data->menu.setting_menu.barre.anim->frame.height) / 255);
 }
 
 bool	init_mlx(t_data *data, t_pars *pars)

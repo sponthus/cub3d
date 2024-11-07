@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:07:04 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 12:22:11 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:27:41 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils_bonus.h"
 
-unsigned int	color_atou(const char *nptr) // peut-etre plus ft_atoui ducoup ??
+unsigned int	color_atou(const char *nptr)
 {
 	unsigned int	nb;
 	int				i;

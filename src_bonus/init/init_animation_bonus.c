@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 13:13:09 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 14:04:43 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ t_frame	*init_frame(t_data *data, int index, char *prefixe)
 {
 	t_frame	*anim;
 	t_img	img;
+	char	*i;
+	char	*cindex;
+	char	*path;
 
 	anim = malloc(sizeof(t_frame));
 	if (!anim)
 		destroy_game(data, EXIT_FAILURE);
-	char *i = ft_itoa(index);
-	char *cindex = ft_strjoin(prefixe ,i);
-	char *path = ft_strjoin(cindex, ".xpm");
+	i = ft_itoa(index);
+	cindex = ft_strjoin(prefixe, i);
+	path = ft_strjoin(cindex, ".xpm");
 	anim->index = index;
 	if (!open_image(data, &img, path))
 		destroy_game(data, EXIT_FAILURE);
@@ -70,5 +73,3 @@ void	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
 	while (element->anim && element->anim->prev)
 		element->anim = element->anim->prev;
 }
-
-
