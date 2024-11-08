@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/08 12:21:08 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 15:36:13 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define FPS_COLOR 0x0fdf9411
 # define BLACK 0x000000
 
-# define WIN_HEIGHT 1080
-# define WIN_WIDTH 1920
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 600
 
 # define NORTH 1
 # define SOUTH 2

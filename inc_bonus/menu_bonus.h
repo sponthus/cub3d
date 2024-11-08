@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 14:02:57 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 15:37:53 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@
 
 # define MAX_SPEED 0.144
 # define MIN_SPEED 0.05
-# define MAX_ROT 0.0103
+# define MAX_ROT 0.01041
 # define MIN_ROT  0.00101
+
 
 # define MEN_FLAG 1
 # define SETTI_FLAG 2

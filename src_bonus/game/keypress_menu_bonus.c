@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:07:14 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 15:52:59 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 15:36:01 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ void	move_speed_cursor(int keycode, int *cursor, double *speed, t_data *data)
 	set_move_data(&max, &min, &spe, data);
 	if (keycode == XK_Right && *(speed) <= max)
 	{
-		*(cursor) += 10;
+		*(cursor) += (data->menu.setting_menu.barre.anim->frame.height) / 74;
 		*(speed) += spe;
 	}
 	else if (keycode == XK_Left && *(speed) > min)
 	{
-		*(cursor) -= 10;
+		*(cursor) -= (data->menu.setting_menu.barre.anim->frame.height) / 74;
 		*(speed) -= spe;
 	}
+	data->player.speed = data->player.movespeed;
 }
 
 void	set_enum_setting(int keycode, t_data *data)

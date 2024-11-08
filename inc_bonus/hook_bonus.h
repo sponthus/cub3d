@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 15:53:15 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 15:20:45 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ void	key_press_for_setting_menu(int keycode, struct s_data *data);
 void	key_press_for_menu(int keycode, struct s_data *data);
 void	keypress_move_color(int keycode, struct s_data *data);
 
+void	find_keyplayer_move(struct s_data *data);
+void 	find_keyaction(struct s_data *data);
+void	find_keycam_move(struct s_data *data);
 #endif
 

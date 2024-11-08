@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 15:45:40 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 15:15:52 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_keyjump(t_data *data)
 	if (!data->key.space)
 	{
 		data->key.space = 1;
-		data->player.jump_speed = -4;
+		data->player.jump_speed = -7;
 		data->player.initz = data->player.posz;
 	}
 }
@@ -48,7 +48,10 @@ void	set_keyplayer(int keycode, t_data *data)
 	if (keycode == XK_d)
 		data->key.d = 1;
 	if (keycode == XK_Shift_L)
+	{
 		data->key.shift_l = 1;
+		data->player.sprint = true;
+	}
 	if (keycode == XK_o)
 		doors(data);
 }
