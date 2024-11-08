@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_animation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/08 12:13:22 by endoliam         ###   ########lyon.fr   */
+=======
+/*   Updated: 2024/11/07 17:49:53 by sponthus         ###   ########.fr       */
+>>>>>>> c6fe664e345ca82578bd8957af77a6b11d8db057
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +36,7 @@ t_frame	*init_frame(t_data *data, int index, char *prefixe)
 	cindex = ft_strjoin(prefixe, i);
 	path = ft_strjoin(cindex, ".xpm");
 	anim->index = index;
+<<<<<<< HEAD
 	if (!path || !open_image(data, &img, path))
 	{
 		free(anim);
@@ -39,11 +44,23 @@ t_frame	*init_frame(t_data *data, int index, char *prefixe)
 		destroy_game(data, EXIT_FAILURE);
 	}
 	free_path_anime(i, cindex, path);
+=======
+	if (!open_image(data, &img, path))
+	{
+		free(i);
+		free(cindex);
+		free(path);
+		return (NULL); // C'est mis un peu vite a voir si ca marche de couper ici
+	}
+	free(cindex);
+	free(path);
+	free(i);
+>>>>>>> c6fe664e345ca82578bd8957af77a6b11d8db057
 	anim->frame = img;
 	return (anim);
 }
 
-void	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
+bool	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
 {
 	int			i;
 	t_frame		*e_anime;
@@ -54,9 +71,12 @@ void	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
 	while (i <= nb)
 	{
 		e_anime = init_frame(data, i, prefix);
+		if (e_anime == NULL)
+			return (false);
 		add_stack(&element->anim, e_anime);
 		i++;
 	}
 	while (element->anim && element->anim->prev)
 		element->anim = element->anim->prev;
+	return (true);
 }
