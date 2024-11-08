@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:54:49 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 12:32:46 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 13:07:55 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void	set_data_menu(t_data *data)
 
 void	init_menu(t_data *data)
 {
-	init_animation(data, &data->menu.background, MEN_BACK, 66)
-	init_animation(data, &data->menu.setting, MEN_SET, 30)
-	init_animation(data, &data->menu.resume, MEN_RES, 29
-	init_animation(data, &data->menu.exit, MEN_EXI, 31)
-	init_animation(data, &data->menu.icone, MEN_IC, 10)
-	init_animation(data, &data->menu.setting_menu.cam, MEN_CAM, 31)
-	init_animation(data, &data->menu.setting_menu.speed, MEN_SPEED, 31)
-	init_animation(data, &data->menu.setting_menu.color, MEN_COLOR, 32)
-	init_animation(data, &data->menu.setting_menu.barre, MEN_BAR, 0)
+	init_animation(data, &data->menu.background, MEN_BACK, 66);
+	init_animation(data, &data->menu.setting, MEN_SET, 30);
+	init_animation(data, &data->menu.resume, MEN_RES, 29);
+	init_animation(data, &data->menu.exit, MEN_EXI, 31);
+	init_animation(data, &data->menu.icone, MEN_IC, 10);
+	init_animation(data, &data->menu.setting_menu.cam, MEN_CAM, 31);
+	init_animation(data, &data->menu.setting_menu.speed, MEN_SPEED, 31);
+	init_animation(data, &data->menu.setting_menu.color, MEN_COLOR, 32);
+	init_animation(data, &data->menu.setting_menu.barre, MEN_BAR, 0);
 	set_data_menu(data);
 }

@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 12:31:15 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 13:07:48 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_frame	*init_frame(t_data *data, int index, char *prefixe)
 	return (anim);
 }
 
-bool	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
+void	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
 {
 	int			i;
 	t_frame		*e_anime;
@@ -50,12 +50,9 @@ bool	init_animation(t_data *data, t_anim *element, char *prefix, int nb)
 	while (i <= nb)
 	{
 		e_anime = init_frame(data, i, prefix);
-		if (e_anime == NULL)
-			return (false);
 		add_stack(&element->anim, e_anime);
 		i++;
 	}
 	while (element->anim && element->anim->prev)
 		element->anim = element->anim->prev;
-	return (true);
 }

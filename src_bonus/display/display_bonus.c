@@ -6,29 +6,11 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 16:21:12 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 13:26:32 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d_bonus.h"
-
-int	display_game(t_data *data)
-{
-	if (data->statement == PLAY)
-	{
-		data->menu.background.y = data->win_height;
-		data->menu.state_menu = RESUME;	
-		move(data);
-	}
-	else if (data->statement == PAUSE)
-		pause_game(data);
-	else if (data->statement == SETTING_MENU)
-		setting_menu(data);
-	// else if (data->statement == MENU)
-	// 	main_menu(data);
-	return (0);
-}
 
 void	init_img(t_data *data)
 {
@@ -45,11 +27,10 @@ void	init_img(t_data *data)
 			&data->display.ptr1.endian);
 }
 
-
 void	destroy_img(struct s_data *data, int x, int y)
 {
 	mlx_put_image_to_window(data->mlx, data->win,
-		data->display.ptr1.img, x, y); // protect mlx
+		data->display.ptr1.img, x, y);
 	if (data->display.ptr1.img)
 		mlx_destroy_image(data->mlx, data->display.ptr1.img);
 	data->display.ptr1.img = NULL;
@@ -93,4 +74,3 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 		texx = calc_texx_x(data, ray);
 	draw_line_pixel(data, ray, x, texx);
 }
-

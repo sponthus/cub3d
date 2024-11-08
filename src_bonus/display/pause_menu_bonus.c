@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 12:26:59 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 13:22:23 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,54 +49,6 @@ void	add_to_background(t_data *data, t_anim *element, unsigned int c)
 	}
 }
 
-bool	is_anime_element(t_data *data, int flag)
-{
-	if (data->statement == SETTING_MENU)
-	{
-		if ((data->menu.setting_menu.setting_state == MOVESPEED 
-				&& flag == SPEED_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == ROTSPEED
-				&& flag == CAM_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == COLOR_SKY
-				&& flag == COLOR_ANIMATION)
-			||	(data->menu.setting_menu.setting_state == COLOR_FLOOR
-				&& flag == COLOR_ANIMATION))
-			return (true);
-	}
-	else if ((data->menu.state_menu == RESUME && flag == RESUME_ANIMATION)
-		|| (data->menu.state_menu == SETTING && flag == SETTING_ANIMATION)
-		|| (data->menu.state_menu == EXIT && flag == EXIT_ANIMATION))
-		return (true);
-	return (false);
-}
-
-bool	is_setting_icone(t_data *data, int flag)
-{
-	if (data->statement == SETTING_MENU)
-	{
-		if ((data->menu.setting_menu.setting_state == COLOR_SKY
-				&& data->menu.setting_menu.color_state == RED
-				&& flag == RED_SKY_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == COLOR_SKY
-				&& data->menu.setting_menu.color_state == GREEN
-				&& flag == GREEN_SKY_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == COLOR_SKY
-				&& data->menu.setting_menu.color_state == BLUE
-				&& flag == BLUE_SKY_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == COLOR_FLOOR
-				&& data->menu.setting_menu.color_state == RED
-				&& flag == RED_FLOOR_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == COLOR_FLOOR
-				&& data->menu.setting_menu.color_state == GREEN
-				&& flag == GREEN_FLOOR_ANIMATION)
-			|| (data->menu.setting_menu.setting_state == COLOR_FLOOR
-				&& data->menu.setting_menu.color_state == BLUE
-				&& flag == BLUE_FLOOR_ANIMATION))
-			return (true);
-	}
-	return (false);
-}
-
 void	put_button(t_data *data, t_anim *element, int flag)
 {
 	if (is_setting_icone(data, flag))
@@ -106,11 +58,7 @@ void	put_button(t_data *data, t_anim *element, int flag)
 	element->animspeed += data->player.frame * 100;
 	if (is_anime_element(data, flag))
 	{
-		if (element->animspeed > 1 && element->anim->next)
-		{
-			element->animspeed = 0;
-			element->anim = element->anim->next;
-		}
+		got_next_frame(element);
 		data->menu.icone.x = element->x
 			- (element->anim->frame.width * element->scale_x);
 		data->menu.icone.y = element->y;
@@ -132,7 +80,6 @@ void	put_background(t_data *data, t_anim *element)
 
 	x = 0;
 	y = 0;
-		return ;
 	while (x < data->win_width)
 	{
 		y = 0;

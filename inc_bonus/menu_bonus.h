@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 17:51:49 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:02:57 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,13 @@ typedef struct s_menu
 	t_menu_state				state_menu;
 }	t_menu;
 
-bool	init_menu(struct s_data *data);
+void	init_menu(struct s_data *data);
 void	pause_game(struct s_data *data);
 void	setting_menu(struct s_data *data);
+
+void	put_cursor(struct s_data *data, int flag, t_color_cursor *c_cursor);
+void	put_line(struct s_data *data, int basex, int basey, int cursor);
+void	put_button(struct s_data *data, t_anim *element, int flag);
+void	put_background(struct s_data *data, t_anim *element);
 
 #endif

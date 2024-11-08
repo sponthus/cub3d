@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:53:38 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 14:52:37 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:06:51 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,4 @@ void	raycasting(t_data *data)
 	destroy_img(data, 0, 0);
 	doors_message(data);
 	update_frame_data(data);
-	update_frame(data, &data->menu.background, 30);
 }

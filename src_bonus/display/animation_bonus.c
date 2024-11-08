@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:28:16 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/30 10:47:29 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:24:44 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "game_bonus.h"
+
+void	got_next_frame(t_anim *element)
+{
+	if (element->animspeed > 1 && element->anim->next)
+	{
+		element->animspeed = 0;
+		element->anim = element->anim->next;
+	}
+}
 
 void	update_frame(t_data *data, t_anim *element, int v)
 {
@@ -21,11 +30,7 @@ void	update_frame(t_data *data, t_anim *element, int v)
 		while (element->anim && element->anim->prev)
 			element->anim = element->anim->prev;
 	}
-	if (element->animspeed > 1 && element->anim->next)
-	{
-		element->animspeed = 0;
-		element->anim = element->anim->next;
-	}
+	got_next_frame(element);
 }
 
 void	update_frame_data(t_data *data)
