@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/11/08 12:08:42 by endoliam         ###   ########lyon.fr   */
-=======
-/*   Updated: 2024/11/07 17:44:10 by sponthus         ###   ########.fr       */
->>>>>>> c6fe664e345ca82578bd8957af77a6b11d8db057
+/*   Updated: 2024/11/08 12:30:38 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
