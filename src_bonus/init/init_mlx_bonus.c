@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/07 13:56:21 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 12:08:42 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,5 @@ bool	init_mlx(t_data *data, t_pars *pars)
 		return (false);
 	if (open_image(data, &data->sprites.door, "textures/ananas.xpm") == false)
 		return (false);
-	init_game(data);
-	init_menu(data);
 	return (true);
 }

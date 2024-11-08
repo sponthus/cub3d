@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:21:24 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 17:20:05 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 12:27:54 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,17 +126,20 @@ void	setting_menu(t_data *data)
 	x = (data->menu.setting_menu.speed.anim->frame.width
 			* data->menu.setting_menu.speed.scale_x);
 	init_img(data);
-	put_background(data, &data->menu.background);
-	put_button(data, &data->menu.setting_menu.speed, SPEED_ANIMATION);
-	cursor = data->menu.setting_menu.cursor_speed
-		* data->menu.setting_menu.barre.scale_x;
-	put_cursor(data, data->menu.setting_menu.speed.x + x,
-		data->menu.setting_menu.speed.y, cursor);
-	put_button(data, &data->menu.setting_menu.cam, CAM_ANIMATION);
-	cursor = data->menu.setting_menu.cursor_cam
-		* data->menu.setting_menu.barre.scale_x;
-	put_cursor(data, data->menu.setting_menu.cam.x + x,
-		data->menu.setting_menu.cam.y, cursor);
-	add_color_content(data);
-	destroy_img(data, data->menu.background.x, data->menu.background.y);
+	if (data->display.ptr1.img)
+	{
+		put_background(data, &data->menu.background);
+		put_button(data, &data->menu.setting_menu.speed, SPEED_ANIMATION);
+		cursor = data->menu.setting_menu.cursor_speed
+			* data->menu.setting_menu.barre.scale_x;
+		put_cursor(data, data->menu.setting_menu.speed.x + x,
+			data->menu.setting_menu.speed.y, cursor);
+		put_button(data, &data->menu.setting_menu.cam, CAM_ANIMATION);
+		cursor = data->menu.setting_menu.cursor_cam
+			* data->menu.setting_menu.barre.scale_x;
+		put_cursor(data, data->menu.setting_menu.cam.x + x,
+			data->menu.setting_menu.cam.y, cursor);
+		add_color_content(data);
+		destroy_img(data, data->menu.background.x, data->menu.background.y);
+	}
 }

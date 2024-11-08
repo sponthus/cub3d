@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/05 16:20:10 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:35:38 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	destoy_frames(t_data *data, t_frame *frame)
 {
 	t_frame		*to_free;
 
-	if (frame->index != 0)
+	if (frame && frame->index != 0)
 	{
 		while (frame && frame->prev)
 			frame = frame->prev;
@@ -45,7 +45,6 @@ void	free_animation(t_data *data)
 	destoy_frames(data, data->menu.setting_menu.speed.anim);
 	destoy_frames(data, data->menu.setting_menu.color.anim);
 	destoy_frames(data, data->menu.setting_menu.barre.anim);
-	//destoy_frames(data, data->menu.setting_menu.cursor.anim);
 }
 
 int	destroy_game(t_data *data, int exit_status)

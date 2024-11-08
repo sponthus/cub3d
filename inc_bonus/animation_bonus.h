@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:18:37 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 17:07:16 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/08 12:14:28 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,6 @@ typedef struct s_anim
 void	init_animation(struct s_data *data, t_anim *element, char *prefix, int nb);
 void	update_frame(struct s_data *data, t_anim *element, int v);
 
+void			free_path_anime(char *i, char *cindex, char*path);
+void			add_stack(t_frame **anim, t_frame *element);
 #endif

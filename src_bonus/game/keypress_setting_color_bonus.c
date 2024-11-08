@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:08:33 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 16:03:47 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 17:29:43 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ unsigned int	move_rgb_and_color(t_data *data, int x,
 	return (c);
 }
 
-unsigned int	move_rgb(t_data *data, unsigned int color, int x, t_color_cursor *cursor)
+unsigned int	move_rgb(t_data *data, unsigned int color, int x,
+	t_color_cursor *cursor)
 {
 	unsigned int	r;
 	unsigned int	g;
@@ -48,18 +49,18 @@ void	keypress_move_color(int keycode, t_data *data)
 	{
 		if (data->menu.setting_menu.setting_state == COLOR_SKY)
 			data->sprites.ceiling = move_rgb(data, data->sprites.ceiling,
-				-1, &data->menu.setting_menu.cursor_sky);
+					-1, &data->menu.setting_menu.cursor_sky);
 		else
 			data->sprites.floor = move_rgb(data, data->sprites.floor,
-				-1, &data->menu.setting_menu.cursor_floor);
+					-1, &data->menu.setting_menu.cursor_floor);
 	}
 	else if (keycode == XK_Right)
 	{
 		if (data->menu.setting_menu.setting_state == COLOR_SKY)
 			data->sprites.ceiling = move_rgb(data, data->sprites.ceiling,
-				1, &data->menu.setting_menu.cursor_sky);
+					1, &data->menu.setting_menu.cursor_sky);
 		else
 			data->sprites.floor = move_rgb(data, data->sprites.floor,
-				1, &data->menu.setting_menu.cursor_floor);
+					1, &data->menu.setting_menu.cursor_floor);
 	}
 }

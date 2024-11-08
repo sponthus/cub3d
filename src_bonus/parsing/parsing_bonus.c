@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:45:13 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/17 11:17:04 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:09:19 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,7 @@ int	parsing(char *path, t_data *data)
 	if (init_mlx(data, &pars) == false)
 		return (ft_lstclear(&pars.lst_file, free), 1);
 	ft_lstclear(&pars.lst_file, free);
+	init_game(data);
+	init_menu(data);
 	return (0);
 }
