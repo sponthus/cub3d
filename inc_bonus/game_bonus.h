@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:33:44 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 15:06:07 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/12 10:17:35 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 # define GAME_BONUS_H
 
 # include <math.h>
-
 # include "cub3d_bonus.h"
 
-struct s_data;
-struct s_img;
+struct	s_data;
+struct	s_img;
 
-typedef	struct s_time
+typedef struct s_time
 {
 	double					tv_sec;
 	double					tv_usec;
-} t_time;
-
+}	t_time;
 
 typedef struct s_move
 {
@@ -52,12 +50,12 @@ typedef struct s_move
 	double					rotspeed;
 	double					wallheight;
 	double					initz;
-	double 					jump_speed;
+	double					jump_speed;
 	double					gravity;
 	int						size_mapx;
 	int						size_mapy;
 	bool					sprint;
-} t_move;
+}	t_move;
 
 typedef struct s_raycast
 {
@@ -79,8 +77,7 @@ typedef struct s_raycast
 	int			drawend;
 	int			dir;
 	int			door;
-	
-} t_raycast;
+}	t_raycast;
 
 typedef struct s_shadow
 {
@@ -92,38 +89,37 @@ typedef struct s_shadow
 	double		sidedisty;
 	double		deltadistx;
 	double		deltadisty;
-} t_shadow;
-
+}	t_shadow;
 
 /*				game			*/
-void		init_game(struct s_data  *data);
-void		move(struct s_data  *data);
-void		player_move(struct s_data *data, double dirx, double diry);
-void		cam_rotate(struct s_data *data, double rotspeed, int flag);
-void		mouse_setting(struct s_data *data);
+void			init_game(struct s_data *data);
+void			move(struct s_data *data);
+void			player_move(struct s_data *data, double dirx, double diry);
+void			cam_rotate(struct s_data *data, double rotspeed, int flag);
+void			mouse_setting(struct s_data *data);
 
-/*				display			*/
-void		put_pixel_background(struct s_data *data, struct s_img *dis);
-void		draw_line(struct s_data *data, t_raycast *ray, int x, int side);
-int			display_game(struct s_data *data);
+/*					display			*/
+void			put_pixel_background(struct s_data *data, struct s_img *dis);
+void			draw_line(struct s_data *data, t_raycast *ray, int x, int side);
+int				display_game(struct s_data *data);
 
-/*				math			*/
-void		raycasting(struct s_data  *data);
+/*					math			*/
+void			raycasting(struct s_data *data);
 
-/*				textures		*/
-int			calc_texx_x(struct s_data *data, t_raycast *ray);
-int			calc_texx_y(struct s_data *data, t_raycast *ray);
-int			chose_dir(int side, t_raycast *ray);
-int			tex_chose_color(struct s_data *data, int x, int y, int dir);
-int			tex_find_color(struct s_img *img, int y, int x);
+/*					textures		*/
+int				calc_texx_x(struct s_data *data, t_raycast *ray);
+int				calc_texx_y(struct s_data *data, t_raycast *ray);
+int				chose_dir(int side, t_raycast *ray);
+int				tex_chose_color(struct s_data *data, int x, int y, int dir);
+int				tex_find_color(struct s_img *img, int y, int x);
 
 /*				color 			*/
-unsigned int calculate_shaded_color(unsigned int color, double distance);
+unsigned int	calculate_shaded_color(unsigned int color, double distance);
 
 /*				mlx_utils		*/
-void		my_mlx_pixel_put(struct s_img *data, int x, int y, int color);
-void		update_frame_data(struct s_data *data);
-double		my_get_time(void);
-char		*ft_itoa(int n);
+void			my_mlx_pixel_put(struct s_img *data, int x, int y, int color);
+void			update_frame_data(struct s_data *data);
+double			my_get_time(void);
+char			*ft_itoa(int n);
 
 #endif

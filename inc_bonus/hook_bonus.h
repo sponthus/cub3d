@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:46 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 15:20:45 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/12 10:18:02 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <X11/keysym.h>
 
-struct s_data;
+struct	s_data;
 
-typedef	struct s_keypress
+typedef struct s_keypress
 {
 	int		w;
 	int		s;
@@ -43,7 +43,7 @@ void	key_press_for_menu(int keycode, struct s_data *data);
 void	keypress_move_color(int keycode, struct s_data *data);
 
 void	find_keyplayer_move(struct s_data *data);
-void 	find_keyaction(struct s_data *data);
+void	find_keyaction(struct s_data *data);
 void	find_keycam_move(struct s_data *data);
-#endif
 
+#endif

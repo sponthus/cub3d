@@ -3,7 +3,7 @@ NAME = cub3d
 BONUS = cub3d_bonus
 
 CC = cc
-CFLAGS = -MMD -MP -g -Wall -Wextra  -I/usr/include -Iinc -Iinc_bonus -Imlx_linux -O3 #-Werror
+CFLAGS = -MMD -MP -g -Wall -Wextra -Werror -I/usr/include -Iinc -Iinc_bonus -Imlx_linux -O3
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
 
 SRC_DIR = ./src/

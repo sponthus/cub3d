@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 10:07:12 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:15:15 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include "display_bonus.h"
 # include "animation_bonus.h"
 
-# define WIN_HEIGHT 1020
-# define WIN_WIDTH 1920
+# define WIN_HEIGHT 500
+# define WIN_WIDTH 700
 
 # define NORTH 1
 # define SOUTH 2
@@ -49,7 +49,7 @@
 
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT 200
-# define MINIMAP_WIDTH 250
+# define MINIMAP_WIDTH 200
 
 typedef enum e_statement
 {
@@ -57,7 +57,7 @@ typedef enum e_statement
 	SETTING_MENU,
 	PLAY,
 	MENU
-} t_statement;
+}	t_statement;
 
 typedef struct s_data
 {
@@ -87,4 +87,4 @@ int		write_err(char *error, char *target, char *obj, int errno);
 int		map_length(struct s_data *data);
 int		map_size(struct s_data *data);
 
-# endif
+#endif

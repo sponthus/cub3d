@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:18:37 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 14:53:02 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/12 10:14:51 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define FLOOR 1
 # define SKY 2
 
-struct s_data;
+struct	s_data;
 
 typedef struct s_frame
 {
@@ -43,7 +43,7 @@ typedef struct s_frame
 	int						index;
 	struct s_frame			*next;
 	struct s_frame			*prev;
-} t_frame;
+}	t_frame;
 
 typedef struct s_anim
 {
@@ -53,9 +53,10 @@ typedef struct s_anim
 	int						y;
 	double					scale_x;
 	double					scale_y;
-} t_anim;
+}	t_anim;
 
-void			init_animation(struct s_data *data, t_anim *element, char *prefix, int nb);
+void			init_animation(struct s_data *data, t_anim *element, \
+	char *prefix, int nb);
 void			update_frame(struct s_data *data, t_anim *element, int v);
 void			got_next_frame(t_anim *element);
 

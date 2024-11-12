@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:09:35 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:01:24 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,46 @@
 #include "game_bonus.h"
 #include "utils_bonus.h"
 
+char	*anime_path(int index, char *prefixe)
+{
+	char	*path;
+	char	*i;
+	char	*cindex;
+
+	path = NULL;
+	i = ft_itoa(index);
+	cindex = ft_strjoin(prefixe, i);
+	path = ft_strjoin(cindex, ".xpm");
+	free(i);
+	free(cindex);
+	return (path);
+}
+
+// Function modified to suppress compilation warning,
+// added anime_path to create name
 t_frame	*init_frame(t_data *data, int index, char *prefixe)
 {
 	t_frame	*anim;
 	t_img	img;
-	char	*i;
-	char	*cindex;
 	char	*path;
 
 	anim = malloc(sizeof(t_frame));
 	if (!anim)
 		destroy_game(data, EXIT_FAILURE);
-	i = ft_itoa(index);
-	cindex = ft_strjoin(prefixe, i);
-	path = ft_strjoin(cindex, ".xpm");
 	anim->index = index;
-	if (!path || !open_image(data, &img, path))
+	path = anime_path(index, prefixe);
+	if (!path)
 	{
 		free(anim);
-		free_path_anime(i, cindex, path);
 		destroy_game(data, EXIT_FAILURE);
 	}
-	free_path_anime(i, cindex, path);
+	if (!open_image(data, &img, path))
+	{
+		free(path);
+		free(anim);
+		destroy_game(data, EXIT_FAILURE);
+	}
+	free(path);
 	anim->frame = img;
 	return (anim);
 }

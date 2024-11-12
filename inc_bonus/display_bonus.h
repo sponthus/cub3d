@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:58:00 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/07 16:20:35 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/12 10:15:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPLAY_BONUS_H
 # define DISPLAY_BONUS_H
 
-struct s_data;
+struct	s_data;
 
 typedef struct s_img
 {
@@ -44,7 +44,6 @@ typedef struct s_display
 	int					x;
 	int					y;
 }	t_display;
-
 
 void	init_img(struct s_data *data);
 void	destroy_img(struct s_data *data, int x, int y);

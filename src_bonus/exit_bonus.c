@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:56:13 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 14:56:51 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/12 10:42:22 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+#include "utils.h"
+#include "mlx.h"
 
 void	destoy_frames(t_data *data, t_frame *frame)
 {

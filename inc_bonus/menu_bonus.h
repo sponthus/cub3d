@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 15:37:53 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/12 10:22:54 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,18 @@
 # define MEN_COLOR "inc_bonus/menu/color/"
 # define MEN_BAR "inc_bonus/menu/barre_setting/"
 
-# define SCALE_X WIN_WIDTH / 1920.0
-# define SCALE_Y WIN_HEIGHT / 700.0
+# define SCALE_X 1920.0
+# define SCALE_Y 700.0
 
 # define MAX_SPEED 0.144
 # define MIN_SPEED 0.05
 # define MAX_ROT 0.01041
 # define MIN_ROT  0.00101
 
-
 # define MEN_FLAG 1
 # define SETTI_FLAG 2
 
-struct s_data;
+struct	s_data;
 
 typedef enum e_menu_state
 {

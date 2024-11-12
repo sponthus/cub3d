@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:35:36 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:09:14 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:16:31 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	mouse_setting(t_data *data)
 	int		x;
 	int		y;
 
-	mlx_mouse_hide(data->mlx, data->win);
+	// mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
 	mouse_hook(x, y, data);
 }

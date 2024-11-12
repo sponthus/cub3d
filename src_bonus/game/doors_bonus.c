@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 13:33:42 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 10:09:08 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:27:48 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	check_line(t_data *data, int i, int j)
 	t_move	pl;
 
 	pl = data->player;
-	if ((int)pl.posx + i > map_length(data)
-		|| (int)pl.posy + j > map_size(data) || (int)pl.posx + i < 0
+	if ((int)pl.posx + i >= map_size(data)
+		|| (int)pl.posy + j >= map_length(data) || (int)pl.posx + i < 0
 		|| (int)pl.posy + j < 0)
 		return (2);
 	if (data->map[(int)pl.posx + i][(int)pl.posy + j])
@@ -51,8 +51,8 @@ void	doors_message(t_data *data)
 			{
 				if (check_line(data, i, j) == 1)
 				{
-					mlx_string_put(data->mlx, data->win, data->win_height, \
-					data->win_width * 0.5, COL_MSG, DOOR_MSG);
+					mlx_string_put(data->mlx, data->win, 35, \
+					MINIMAP_HEIGHT + 30, COL_MSG, DOOR_MSG);
 				}
 				return ;
 			}

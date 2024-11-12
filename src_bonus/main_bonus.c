@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 10:12:40 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:23:24 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	display_game(t_data *data)
 	if (data->statement == PLAY)
 	{
 		data->menu.background.y = data->win_height;
-		data->menu.state_menu = RESUME;	
+		data->menu.state_menu = RESUME;
 		move(data);
 	}
 	else if (data->statement == PAUSE)
