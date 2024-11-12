@@ -6,31 +6,12 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:32:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 15:47:32 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:08:07 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "mlx.h"
-
-void	setting_menu(t_data *data);
-
-int	display_game(t_data *data)
-{
-	if (data->statement == PLAY)
-	{
-		data->menu.background.y = data->win_height;
-		data->menu.state_menu = RESUME;	
-		move(data);
-	}
-	else if (data->statement == PAUSE)
-		pause_game(data);
-	else if (data->statement == SETTING_MENU)
-		setting_menu(data);
-	// else if (data->statement == MENU)
-	// 	main_menu(data);
-	return (0);
-}
 
 void	init_img(t_data *data)
 {
@@ -47,11 +28,10 @@ void	init_img(t_data *data)
 			&data->display.ptr1.endian);
 }
 
-
 void	destroy_img(struct s_data *data, int x, int y)
 {
 	mlx_put_image_to_window(data->mlx, data->win,
-		data->display.ptr1.img, x, y); // protect mlx
+		data->display.ptr1.img, x, y);
 	if (data->display.ptr1.img)
 		mlx_destroy_image(data->mlx, data->display.ptr1.img);
 	data->display.ptr1.img = NULL;
@@ -77,14 +57,12 @@ void	draw_line_pixel(t_data *data, t_raycast *ray, int x, int texx)
 		}
 		else if (y < ray->drawstart)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.ceiling);
-			// set_sky(data, ray, x, y);
 		else if (y > ray->drawend)
 			my_mlx_pixel_put(&data->display.ptr1, x, y, data->sprites.floor);
 		y++;
 	}
 }
 
-// Side = 0 -> Mur nord ou sud
 void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 {
 	int		texx;
@@ -97,4 +75,3 @@ void	draw_line(t_data *data, t_raycast *ray, int x, int side)
 		texx = calc_texx_x(data, ray);
 	draw_line_pixel(data, ray, x, texx);
 }
-

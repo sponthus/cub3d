@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 13:33:42 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 15:50:44 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:09:08 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	check_line(t_data *data, int i, int j)
 		if ((data->map[(int)pl.posx + i][(int)pl.posy + j] == 'D'
 			|| data->map[(int)pl.posx + i][(int)pl.posy + j] == 'O')
 		&& (i != 0 || j != 0 || (i == 0 && j != 0) || (j == 0 && i != 0)))
-		{
 			return (1);
-		}
 	}
 	else
 		return (2);

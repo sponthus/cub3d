@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 15:52:20 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:07:12 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define COL_CONT 0xFFE0
 # define COL_MSG 0x0fdf9411
 # define FPS_COLOR 0x0fdf9411
+# define BLACK 0x000000
 
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT 200
@@ -56,7 +57,7 @@ typedef enum e_statement
 	SETTING_MENU,
 	PLAY,
 	MENU
-}	t_statement;
+} t_statement;
 
 typedef struct s_data
 {
@@ -86,4 +87,4 @@ int		write_err(char *error, char *target, char *obj, int errno);
 int		map_length(struct s_data *data);
 int		map_size(struct s_data *data);
 
-#endif
+# endif

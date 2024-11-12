@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:09:55 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 15:55:31 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:09:20 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,50 +58,11 @@ void	cam_rotate(t_data *data, double rotspeed, int flag)
 	}
 }
 
-void	find_keyplayer_move(t_data *data)
-{
-	if (data->key.w)
-		player_move(data, data->player.dirx, data->player.diry);
-	if (data->key.s)
-		player_move(data, -data->player.dirx, -data->player.diry);
-	if (data->key.a)
-		player_move(data, -data->player.diry, data->player.dirx);
-	if (data->key.d)
-		player_move(data, data->player.diry, -data->player.dirx);
-	//else if (!data->key.shift_l && !data->key.c)
-	//	data->player.movespeed = data->player.speed;
-	if (data->key.space)
-	{
-		data->player.posz += data->player.jump_speed;
-		data->player.jump_speed += data->player.gravity;
-		if (data->player.posz >= data->player.initz)
-		{
-			data->player.posz = data->player.initz;
-			data->key.space = 0;
-			data->player.jump_speed = 0;
-		}
-	}
-	//if (data->key.shift_l && !data->key.c)
-	//	data->player.movespeed = data->player.movespeed * 0.9;
-}
-
-void	find_keycam_move(t_data *data)
-{
-	if (data->key.right)
-		cam_rotate(data, -data->player.rotspeed, 'w');
-	if (data->key.left)
-		cam_rotate(data, data->player.rotspeed, 'w');
-	if (data->key.up)
-		cam_rotate(data, -data->player.rotspeed, 'h');
-	if (data->key.down)
-		cam_rotate(data, data->player.rotspeed, 'h');
-}
-
 void	move(t_data *data)
 {
 	find_keyplayer_move(data);
 	find_keycam_move(data);
+	find_keyaction(data);
 	mouse_setting(data);
-	//data->player.wallheight += 0.002;
 	raycasting(data);
 }
