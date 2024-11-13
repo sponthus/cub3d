@@ -6,23 +6,23 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:51:49 by sponthus          #+#    #+#             */
-/*   Updated: 2024/10/31 15:49:27 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:16:19 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-unsigned int	chose_minimap_color(t_data *data, int x, int y)
+unsigned int	chose_minimap_color(t_data *data, int x, int y, double tile)
 {
 	double	beg_x;
 	double	beg_y;
 	int		map_x;
 	int		map_y;
 
-	beg_x = data->player.posx - ((double)MINIMAP_WIDTH * 0.5) / TILE_SIZE;
-	beg_y = data->player.posy + ((double)MINIMAP_HEIGHT * 0.5) / TILE_SIZE;
-	map_x = (int)(beg_x + (double)y / (double)TILE_SIZE);
-	map_y = (int)(beg_y - (double)x / (double)TILE_SIZE);
+	beg_x = data->player.posx - ((double)MINIMAP_HEIGHT * 0.5) * tile;
+	beg_y = data->player.posy - ((double)MINIMAP_WIDTH * 0.5) * tile;
+	map_x = (int)(beg_x + (double)y * tile);
+	map_y = (int)(beg_y + (double)x * tile);
 	if (map_x >= 0 && map_x < map_size(data) && map_y >= 0
 		&& map_y < map_length(data))
 	{
@@ -82,26 +82,24 @@ void	draw_minimap(t_data *data)
 {
 	int				x;
 	int				y;
-	int				basex;
-	int				basey;
 	unsigned int	color;
+	double			tile;
 
-	if (MINIMAP_HEIGHT >= WIN_HEIGHT - 100 || MINIMAP_WIDTH >= WIN_WIDTH - 100)
+	if (MINIMAP_HEIGHT >= WIN_HEIGHT >> 1 || MINIMAP_WIDTH >= WIN_WIDTH >> 1)
 		return ;
 	x = 0;
-	basex = 15;
-	basey = 15;
+	tile = ((double)map_length(data) + (double)map_size(data)) / TILE_SCALE;
 	while (x <= MINIMAP_HEIGHT)
 	{
 		y = 0;
 		while (y <= MINIMAP_WIDTH)
 		{
-			color = chose_minimap_color(data, x, y);
-			my_mlx_pixel_put(&data->display.ptr1, basex + x, basey + y, color);
+			color = chose_minimap_color(data, x, y, tile);
+			my_mlx_pixel_put(&data->display.ptr1, BASEX + x, BASEY + y, color);
 			y++;
 		}
 		x++;
 	}
-	draw_player(data, basex, basey);
-	draw_contours(data, basex, basey);
+	draw_player(data, BASEX, BASEY);
+	draw_contours(data, BASEX, BASEY);
 }

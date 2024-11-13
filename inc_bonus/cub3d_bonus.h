@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/13 12:17:57 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:09:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@
 # define BLACK 0x000000
 # define DOOR_TEXTURE "textures/purple_stone.xpm"
 
-# define TILE_SIZE 7
+# define TILE_SCALE 300
 # define MINIMAP_HEIGHT 200
 # define MINIMAP_WIDTH 200
+# define BASEX 15
+# define BASEY 15
 
 typedef enum e_statement
 {

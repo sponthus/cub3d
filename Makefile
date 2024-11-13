@@ -1,6 +1,6 @@
-NAME = cub3d
+NAME = cub3D
 
-BONUS = cub3d_bonus
+BONUS = cub3D_bonus
 
 CC = cc
 CFLAGS = -MMD -MP -g -Wall -Wextra -Werror -I/usr/include -Iinc -Iinc_bonus -Imlx_linux -O3
