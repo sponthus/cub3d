@@ -3,13 +3,14 @@ SO textures/dark_theme/south.xpm
 WE textures/dark_theme/west.xpm   
 EA textures/dark_theme/east.xpm
 
-F 0,0,33
-C 251,241,15
+F 250,0,0
+C 251,2F,15
 
 1111111111
-1101100001
-11N1000011
+1000100001
+10N0000011
 1100011001
 1001110011
 1100000001
 1111111111
+

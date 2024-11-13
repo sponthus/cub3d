@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 11:15:15 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:17:57 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define COL_MSG 0x0fdf9411
 # define FPS_COLOR 0x0fdf9411
 # define BLACK 0x000000
+# define DOOR_TEXTURE "textures/purple_stone.xpm"
 
 # define TILE_SIZE 7
 # define MINIMAP_HEIGHT 200

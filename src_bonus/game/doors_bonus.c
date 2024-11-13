@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 13:33:42 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 11:27:48 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:29:53 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,30 @@ void	doors_message(t_data *data)
 	}
 }
 
-void	doors(t_data *data)
+void	doors(t_data *d)
 {
 	int		i;
 	int		j;
-	t_move	pl;
+	t_move	p;
 
 	i = -3;
-	pl = data->player;
+	p = d->player;
 	while (++i < 3)
 	{
 		j = -3;
 		while (++j < 3)
 		{
-			if (data->map[(int)pl.posx + i][(int)pl.posy + j])
+			if (check_line(d, i, j) != 0)
 			{
-				if (data->map[(int)pl.posx + i][(int)pl.posy + j] == 'D')
-					data->map[(int)pl.posx + i][(int)pl.posy + j] = 'O';
-				else if (data->map[(int)pl.posx + i][(int)pl.posy + j] == 'O')
-					if (i != 0 || j != 0 || (i == 0 && j != 0)
-						|| (j == 0 && i != 0))
-						data->map[(int)pl.posx + i][(int)pl.posy + j] = 'D';
+				if (check_line(d, i, j) == 1)
+				{
+					if (d->map[(int)p.posx + i][(int)p.posy + j] == 'D')
+						d->map[(int)p.posx + i][(int)p.posy + j] = 'O';
+					else if (d->map[(int)p.posx + i][(int)p.posy + j] == 'O')
+						d->map[(int)p.posx + i][(int)p.posy + j] = 'D';
+				}
+				else
+					return ;
 			}
 		}
 	}

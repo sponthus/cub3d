@@ -1,7 +1,7 @@
-NO inc_bonus/wall/north.xpm
-SO inc_bonus/wall/south.xpm
-WE inc_bonus/wall/west.xpm   
-EA inc_bonus/wall/east.xpm
+NO textures/dark_theme/north.xpm
+SO textures/dark_theme/south.xpm
+WE textures/dark_theme/west.xpm   
+EA textures/dark_theme/east.xpm
 
 F 0,0,33
 C 251,241,15

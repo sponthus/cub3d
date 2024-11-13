@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:07:51 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 10:10:03 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:17:33 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	init_mlx(t_data *data, t_pars *pars)
 		return (false);
 	if (open_image(data, &data->sprites.ea, pars->ea) == false)
 		return (false);
-	if (open_image(data, &data->sprites.door, "textures/ananas.xpm") == false)
+	if (open_image(data, &data->sprites.door, DOOR_TEXTURE) == false)
 		return (false);
 	return (true);
 }
