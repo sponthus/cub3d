@@ -1,7 +1,7 @@
-NO      textures/64x/bookshelf.xpm
-                    SO                  textures/64x/WaterF1.xpm
-           W                   textures/purple_stone.xpm   
-EA textures/64x/Planks.xpm
+NO      inc_bonus/wall/north.xpm
+                    SO                  inc_bonus/wall/south.xpm
+           W                   inc_bonus/wall/west.xpm   
+EA inc_bonus/wall/east.xpm
 
 F     0,0,33
                  

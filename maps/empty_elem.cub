@@ -1,7 +1,7 @@
 NO textures/64x/bookshelf.png
 SO  
-WE textures/purple_stone.xpm   
-EA textures/64x/Planks.xpm
+WE inc_bonus/wall/west.xpm   
+EA inc_bonus/wall/east.xpm
 
 F 250,0,0
 C 251,241,15

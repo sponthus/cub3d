@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:27 by endoliam          #+#    #+#             */
-/*   Updated: 2024/10/31 14:25:28 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:43:47 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void	init_game(t_data *data)
 	ft_memset(&data->player, 0, sizeof(t_move));
 	data->player.fov = 60;
 	init_player(data->map, &data->player);
+	data->player.posx += 0.5;
+	data->player.posy += 0.5;
 	data->player.gravity = 0.05;
-	data->player.speed = 0.02;
+	data->player.speed = 0.01;
 	data->player.movespeed = data->player.speed;
 	data->player.rotspeed = 0.01;
 	data->player.wallheight = 5;
