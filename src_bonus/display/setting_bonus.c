@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:21:24 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 14:51:11 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/13 10:45:22 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	add_color_content(t_data *data)
 		+ data->menu.setting_menu.color.anim->frame.height
 		* data->menu.setting_menu.color.scale_x * 1.2,
 		basey, data->sprites.floor);
-	update_frame(data, &data->menu.icone, 15);
 }
 
 void	add_speeds_cursors(t_data *data)

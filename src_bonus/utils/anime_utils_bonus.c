@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   anime_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:52:39 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:54:45 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:29:40 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	add_stack(t_frame **anim, t_frame *element)
 	}
 }
 
-// void	free_path_anime(char *i, char *cindex, char*path)
-// {
-// 	if (cindex)
-// 		free(cindex);
-// 	if (path)
-// 		free(path);
-// 	if (i)
-// 		free(i);
-// }
+void	free_path_anime(char *i, char *cindex, char*path)
+{
+	if (cindex)
+		free(cindex);
+	if (path)
+		free(path);
+	if (i)
+		free(i);
+}
 
 bool	is_anime_element(t_data *data, int flag)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:28:16 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:07:54 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:44:13 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	update_frame_data(t_data *data)
 	data->player.time = my_get_time();
 	if (data->player.time != data->player.old_time)
 		data->player.frame = (data->player.time - data->player.old_time)
-			* 0.0002;
+			* 0.0001;
 	else
 		data->player.frame = 0;
 	fps = ft_itoa(1 / data->player.frame);

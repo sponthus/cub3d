@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause_menu_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:03:20 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:08:16 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:56:08 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ void	put_button(t_data *data, t_anim *element, int flag)
 		add_to_background(data, element, FPS_COLOR);
 	else
 		add_to_background(data, element, 0);
-	element->animspeed += data->player.frame * 100;
+	if (flag == COLOR_ANIMATION
+		|| flag == SPEED_ANIMATION || flag == CAM_ANIMATION)
+		element->animspeed += data->player.frame * 5000;
+	else
+		element->animspeed += data->player.frame * 500;
 	if (is_anime_element(data, flag))
 	{
 		got_next_frame(element);
@@ -96,7 +100,7 @@ void	put_background(t_data *data, t_anim *element)
 		}
 		x++;
 	}
-	update_frame(data, &data->menu.background, 60);
+	update_frame(data, &data->menu.background, 500);
 }
 
 void	pause_game(t_data *data)
@@ -110,7 +114,7 @@ void	pause_game(t_data *data)
 		put_button(data, &data->menu.setting, SETTING_ANIMATION);
 		put_button(data, &data->menu.exit, EXIT_ANIMATION);
 		add_to_background(data, &data->menu.icone, 0);
-		update_frame(data, &data->menu.icone, 10);
+		update_frame(data, &data->menu.icone, 100);
 		destroy_img(data, data->menu.background.x, data->menu.background.y);
 		if (data->menu.background.y > 0)
 			data->menu.background.y -= data->win_height * 0.05;

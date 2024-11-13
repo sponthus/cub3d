@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:23:47 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:22:54 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:37:19 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define MEN_COLOR "inc_bonus/menu/color/"
 # define MEN_BAR "inc_bonus/menu/barre_setting/"
 
-# define SCALE_X 1920.0
-# define SCALE_Y 700.0
+# define SCALE_X  0.0005208  // 1/1920.0
+# define SCALE_Y 0.001428  // 1/700.0
 
 # define MAX_SPEED 0.144
 # define MIN_SPEED 0.05

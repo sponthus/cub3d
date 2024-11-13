@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_menu_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:54:49 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/12 10:21:13 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:31:03 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	set_img_data(t_anim *element, int x, int y, int flag)
 {
 	if (flag == MEN_FLAG)
 	{
-		element->scale_x = WIN_WIDTH / SCALE_X;
-		element->scale_y = WIN_HEIGHT / SCALE_Y;
+		element->scale_x = WIN_WIDTH * SCALE_X;
+		element->scale_y = WIN_HEIGHT * SCALE_Y;
 	}
 	else if (flag == SETTI_FLAG)
 	{
-		element->scale_x = WIN_WIDTH / SCALE_X * 0.8;
-		element->scale_y = WIN_HEIGHT / SCALE_Y * 1.2;
+		element->scale_x = WIN_WIDTH * SCALE_X * 0.8;
+		element->scale_y = WIN_HEIGHT * SCALE_Y * 1.2;
 	}
 	element->x = x;
 	element->y = y;
@@ -73,8 +73,8 @@ void	set_data_menu(t_data *data)
 	set_img_data(&data->menu.exit,
 		data->win_width - data->win_width * 0.7,
 		data->win_height - data->win_height * 0.2, MEN_FLAG);
-	data->menu.icone.scale_x = WIN_WIDTH / SCALE_X;
-	data->menu.icone.scale_y = WIN_HEIGHT / SCALE_Y;
+	data->menu.icone.scale_x = WIN_WIDTH * SCALE_X;
+	data->menu.icone.scale_y = WIN_HEIGHT * SCALE_Y;
 	init_setting_data(data);
 }
 
