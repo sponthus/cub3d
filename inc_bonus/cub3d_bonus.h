@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:08:16 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/13 14:09:42 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:31:55 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define EAST 4
 # define DOOR 5
 
-# define DOOR_MSG "Press O to open/close door"
+# define DOOR_MSG "Press E to open/close door"
 
 // Colors to personalize according to your vibe
 # define COL_BACK 0x000000

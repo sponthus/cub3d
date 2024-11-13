@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:39:46 by sponthus          #+#    #+#             */
-/*   Updated: 2024/11/12 10:23:24 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:32:42 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	display_game(t_data *data)
 		pause_game(data);
 	else if (data->statement == SETTING_MENU)
 		setting_menu(data);
-	// else if (data->statement == MENU)
-	// 	main_menu(data);
 	return (0);
 }
 
@@ -41,14 +39,6 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (parsing(argv[1], &data) == 1)
-		{
-			free_data(&data);
-			return (1);
-		}
-	}
-	else if (argc == 1) // Ca va partir en version finale
-	{
-		if (parsing("inc_bonus/default.cub", &data) == 1)
 		{
 			free_data(&data);
 			return (1);

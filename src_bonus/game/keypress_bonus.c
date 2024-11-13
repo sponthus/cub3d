@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:26:21 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 15:15:52 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/13 14:31:45 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	set_keyplayer(int keycode, t_data *data)
 		data->key.shift_l = 1;
 		data->player.sprint = true;
 	}
-	if (keycode == XK_o)
+	if (keycode == XK_e)
 		doors(data);
 }
 
