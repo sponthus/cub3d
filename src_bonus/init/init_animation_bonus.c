@@ -6,7 +6,7 @@
 /*   By: endoliam <endoliam@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:59:30 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/08 13:07:48 by endoliam         ###   ########lyon.fr   */
+/*   Updated: 2024/11/13 10:26:50 by endoliam         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_frame	*init_frame(t_data *data, int index, char *prefixe)
 	char	*cindex;
 	char	*path;
 
+	ft_memset(&img, 0, sizeof(t_img));
 	anim = malloc(sizeof(t_frame));
 	if (!anim)
 		destroy_game(data, EXIT_FAILURE);
