@@ -6,7 +6,7 @@
 /*   By: sponthus <sponthus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:35:36 by endoliam          #+#    #+#             */
-/*   Updated: 2024/11/13 14:38:24 by sponthus         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:00:54 by sponthus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	mouse_hook(int x, int y, t_data *data)
 	return (0);
 }
 
+// To avoid leaks, comment mouse_hide
 void	mouse_setting(t_data *data)
 {
 	int		x;
